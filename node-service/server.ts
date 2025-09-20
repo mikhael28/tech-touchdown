@@ -10,6 +10,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import exaRoutes from "./routes/exa";
+import authRoutes from "./routes/auth";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -47,6 +48,7 @@ app.get("/health", (req: Request, res: Response) => {
 
 // API Routes
 app.use("/api/exa", exaRoutes);
+app.use("/api/auth", authRoutes);
 
 // Root endpoint
 app.get("/", (req: Request, res: Response) => {
@@ -56,6 +58,7 @@ app.get("/", (req: Request, res: Response) => {
     endpoints: {
       health: "/health",
       exa: "/api/exa",
+      auth: "/api/auth",
       scripts: "/api/scripts",
       frontend_example: "/static/frontend-example.html",
     },
