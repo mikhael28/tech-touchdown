@@ -10,6 +10,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { exaApi } from '../services/exaApi';
 import { ExaSearchResult, SearchFilters, SearchState } from '../types/exa';
 import SearchResults from '../components/SearchResults';
+import TeamSelectionModal from '../components/TeamSelectionModal';
+import FavoriteTeamsBubbles from '../components/FavoriteTeamsBubbles';
+import { useFavoriteTeams } from '../hooks/useFavoriteTeams';
 
 const Home: React.FC = () => {
   const [searchState, setSearchState] = useState<SearchState>({
@@ -23,13 +26,36 @@ const Home: React.FC = () => {
       useAutoprompt: true,
       type: 'neural',
       includeContent: true,
-      includeHighlights: true,
-      includeSummary: false,
+      includeHighlights: false,
+      includeSummary: true,
     }
   });
 
   const [showFilters, setShowFilters] = useState(false);
   const [searchInput, setSearchInput] = useState('');
+  const [showTeamModal, setShowTeamModal] = useState(false);
+
+  const {
+    favoriteTeams,
+    isQuestionnaireCompleted,
+    isLoading: teamsLoading,
+    saveFavoriteTeams,
+    markQuestionnaireCompleted,
+    removeTeam,
+  } = useFavoriteTeams();
+
+  useEffect(() => {
+    setTimeout(() => {
+      handleSearch('What are the latest headlines in the NFL, NBA, MLB, and NHL?');
+    }, 1000);
+  }, []);
+
+  // Show team selection modal if questionnaire not completed
+  useEffect(() => {
+    if (!teamsLoading && !isQuestionnaireCompleted) {
+      setShowTeamModal(true);
+    }
+  }, [teamsLoading, isQuestionnaireCompleted]);
 
   const handleSearch = async (query: string) => {
     if (!query.trim()) return;
@@ -82,8 +108,8 @@ const Home: React.FC = () => {
         useAutoprompt: true,
         type: 'neural',
         includeContent: true,
-        includeHighlights: true,
-        includeSummary: false,
+        includeHighlights: false,
+        includeSummary: true,
       }
     }));
   };
@@ -105,15 +131,32 @@ const Home: React.FC = () => {
     }
   };
 
+  const handleTeamSelectionComplete = (teams: any) => {
+    saveFavoriteTeams(teams);
+    markQuestionnaireCompleted();
+    setShowTeamModal(false);
+  };
+
+  const handleEditTeams = () => {
+    setShowTeamModal(true);
+  };
+
+  const handleRemoveTeam = (sport: keyof typeof favoriteTeams, teamShortName: string) => {
+    removeTeam(sport, teamShortName);
+  };
+
   return (
     <div className="space-y-6 p-6">
       {/* Header */}
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-foreground">Search Articles</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Discover the latest articles and web content using AI-powered search
-        </p>
-      </div>
+      <Card>
+        <CardContent className="p-6">
+          <FavoriteTeamsBubbles
+            favoriteTeams={favoriteTeams}
+            onRemoveTeam={handleRemoveTeam}
+            onEditTeams={handleEditTeams}
+          />
+        </CardContent>
+      </Card>
 
       {/* Search Bar */}
       <Card>
@@ -296,10 +339,20 @@ const Home: React.FC = () => {
         </CardContent>
       </Card>
 
+      {/* Favorite Teams Bubbles */}
+     
+
       {/* Search Results */}
       <SearchResults 
         searchState={searchState}
         onSearch={handleSearch}
+      />
+
+      {/* Team Selection Modal */}
+      <TeamSelectionModal
+        isOpen={showTeamModal}
+        onClose={() => setShowTeamModal(false)}
+        onComplete={handleTeamSelectionComplete}
       />
     </div>
   );

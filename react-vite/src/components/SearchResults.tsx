@@ -157,76 +157,70 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
 
       <div className="space-y-4">
         {results.map((result, index) => (
-          <Card key={index} className="hover:shadow-md transition-shadow">
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <div className="flex-1 min-w-0">
+          <Card key={index} className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary">
+            <CardHeader className="pb-3">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1 min-w-0 space-y-3">
                   <CardTitle 
-                    className="text-lg leading-tight mb-2 cursor-pointer hover:text-primary transition-colors"
+                    className="text-xl leading-tight cursor-pointer hover:text-primary transition-colors line-clamp-2"
                     onClick={() => handleViewContent(result)}
                   >
                     {result.title}
                   </CardTitle>
                   
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
-                    <div className="flex items-center gap-1">
-                      <Globe className="h-3 w-3" />
-                      <span>{getDomainFromUrl(result.url)}</span>
+                  <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-1.5">
+                      <Globe className="h-4 w-4" />
+                      <span className="font-medium">{getDomainFromUrl(result.url)}</span>
                     </div>
                     
                     {result.publishedDate && (
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="h-4 w-4" />
                         <span>{formatDate(result.publishedDate)}</span>
                       </div>
                     )}
                     
                     {result.author && (
-                      <div className="flex items-center gap-1">
-                        <User className="h-3 w-3" />
+                      <div className="flex items-center gap-1.5">
+                        <User className="h-4 w-4" />
                         <span>{result.author}</span>
                       </div>
-                    )}
-                    
-                    {result.score && (
-                      <Badge variant="outline" className="text-xs">
-                        Score: {result.score.toFixed(2)}
-                      </Badge>
                     )}
                   </div>
                 </div>
                 
-                <div className="flex gap-2 ml-2 flex-shrink-0">
+                <div className="flex gap-1 flex-shrink-0">
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
                     onClick={() => handleViewContent(result)}
-                    className="flex items-center gap-1"
+                    className="flex items-center gap-2 px-3"
                   >
-                    <FileText className="h-3 w-3" />
+                    <FileText className="h-4 w-4" />
                     Read
                   </Button>
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
                     onClick={() => handleOpenIframe(result)}
-                    className="flex items-center gap-1"
+                    className="flex items-center gap-2 px-3"
                   >
-                    <Eye className="h-3 w-3" />
+                    <Eye className="h-4 w-4" />
                     View
                   </Button>
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
                     asChild
-                    className="flex items-center gap-1"
+                    className="flex items-center gap-2 px-3"
                   >
                     <a
                       href={result.url}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <ExternalLink className="h-3 w-3" />
+                      <ExternalLink className="h-4 w-4" />
                       Visit
                     </a>
                   </Button>
@@ -234,42 +228,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
               </div>
             </CardHeader>
             
-            <CardContent>
-              {result.summary && (
-                <div className="mb-3">
-                  <Badge variant="secondary" className="mb-2">
-                    AI Summary
-                  </Badge>
-                  <p className="text-sm text-muted-foreground">
-                    {result.summary}
-                  </p>
-                </div>
-              )}
-              
-              {result.text && (
-                <div className="mb-3">
-                  <p className="text-sm leading-relaxed">
-                    {truncateText(result.text, 300)}
-                  </p>
-                </div>
-              )}
-              
-              {result.highlights && result.highlights.length > 0 && (
-                <div>
-                  <Badge variant="outline" className="mb-2">
-                    Key Highlights
-                  </Badge>
-                  <ul className="space-y-1">
-                    {result.highlights.slice(0, 3).map((highlight, idx) => (
-                      <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </CardContent>
+            {result.summary && (
+              <CardContent className="pt-0">
+                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                  {result.summary}
+                </p>
+              </CardContent>
+            )}
           </Card>
         ))}
       </div>
