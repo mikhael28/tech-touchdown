@@ -31,11 +31,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       icon: Laptop,
     },
     {
-      name: "Search",
-      href: "/search",
-      icon: Search,
-    },
-    {
       name: "Profile",
       href: "/profile",
       icon: User,
