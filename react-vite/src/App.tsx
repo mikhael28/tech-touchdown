@@ -6,6 +6,7 @@ import Home from "./pages/Dashboard";
 import Sports from "./pages/Sports";
 import Tech from "./pages/Tech";
 import Profile from "./pages/Profile";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="sports" element={<Sports />} />
             <Route path="tech" element={<Tech />} />
+            <Route path="search" element={<Search />} />
             <Route path="profile" element={<Profile />} />
           </Route>
         </Routes>

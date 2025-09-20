@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 import ThemeToggle from "./ThemeToggle";
-import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop } from "lucide-react";
+import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search } from "lucide-react";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -28,6 +28,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       name: "Tech",
       href: "/tech",
       icon: Laptop,
+    },
+    {
+      name: "Search",
+      href: "/search",
+      icon: Search,
     },
     {
       name: "Profile",
