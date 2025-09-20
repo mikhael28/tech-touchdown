@@ -1,9 +1,13 @@
-import React from 'react';
-import { ExternalLink, Calendar, Globe, User, Clock, AlertCircle, Loader2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Calendar, Globe, User, Clock, AlertCircle, Loader2, Eye, FileText } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { SearchState } from '../types/exa';
+import { SearchState, ExaSearchResult } from '../types/exa';
+import RightSideDrawer from './RightSideDrawer';
+import ExternalIframe from './ExternalIframe';
+import ContentDisplay from './ContentDisplay';
+import { exaApi } from '../services/exaApi';
 
 interface SearchResultsProps {
   searchState: SearchState;
@@ -12,6 +16,14 @@ interface SearchResultsProps {
 
 const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) => {
   const { isLoading, results, error, query } = searchState;
+  
+  // State for drawer and iframe
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [iframeOpen, setIframeOpen] = useState(false);
+  const [selectedContent, setSelectedContent] = useState<ExaSearchResult | null>(null);
+  const [contentLoading, setContentLoading] = useState(false);
+  const [contentError, setContentError] = useState<string | null>(null);
+  const [scrapedContent, setScrapedContent] = useState<ExaSearchResult | null>(null);
 
   const getDomainFromUrl = (url: string): string => {
     try {
@@ -33,6 +45,46 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
   const truncateText = (text: string, maxLength: number = 200): string => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
+  };
+
+  const handleViewContent = async (result: ExaSearchResult) => {
+    setSelectedContent(result);
+    setDrawerOpen(true);
+    setContentLoading(true);
+    setContentError(null);
+    setScrapedContent(null);
+
+    try {
+      const response = await exaApi.getContents([result.url]);
+      if (response.success && response.results.length > 0) {
+        setScrapedContent(response.results[0]);
+      } else {
+        setScrapedContent(result); // Fallback to original result
+      }
+    } catch (error) {
+      console.error('Error fetching content:', error);
+      setContentError(error instanceof Error ? error.message : 'Failed to load content');
+      setScrapedContent(result); // Fallback to original result
+    } finally {
+      setContentLoading(false);
+    }
+  };
+
+  const handleOpenIframe = (result: ExaSearchResult) => {
+    setSelectedContent(result);
+    setIframeOpen(true);
+  };
+
+  const handleCloseDrawer = () => {
+    setDrawerOpen(false);
+    setSelectedContent(null);
+    setScrapedContent(null);
+    setContentError(null);
+  };
+
+  const handleCloseIframe = () => {
+    setIframeOpen(false);
+    setSelectedContent(null);
   };
 
   if (isLoading) {
@@ -109,15 +161,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="flex-1 min-w-0">
-                  <CardTitle className="text-lg leading-tight mb-2">
-                    <a
-                      href={result.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-primary transition-colors"
-                    >
-                      {result.title}
-                    </a>
+                  <CardTitle 
+                    className="text-lg leading-tight mb-2 cursor-pointer hover:text-primary transition-colors"
+                    onClick={() => handleViewContent(result)}
+                  >
+                    {result.title}
                   </CardTitle>
                   
                   <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
@@ -148,22 +196,41 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
                   </div>
                 </div>
                 
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  asChild
-                  className="ml-2 flex-shrink-0"
-                >
-                  <a
-                    href={result.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <div className="flex gap-2 ml-2 flex-shrink-0">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleViewContent(result)}
                     className="flex items-center gap-1"
                   >
-                    <ExternalLink className="h-3 w-3" />
-                    Visit
-                  </a>
-                </Button>
+                    <FileText className="h-3 w-3" />
+                    Read
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleOpenIframe(result)}
+                    className="flex items-center gap-1"
+                  >
+                    <Eye className="h-3 w-3" />
+                    View
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    asChild
+                    className="flex items-center gap-1"
+                  >
+                    <a
+                      href={result.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="h-3 w-3" />
+                      Visit
+                    </a>
+                  </Button>
+                </div>
               </div>
             </CardHeader>
             
@@ -206,6 +273,50 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
           </Card>
         ))}
       </div>
+
+      {/* Right Side Drawer for Content */}
+      <RightSideDrawer
+        open={drawerOpen}
+        setOpen={setDrawerOpen}
+        title={selectedContent?.title}
+        size="xl"
+      >
+        {selectedContent && (
+          <ContentDisplay
+            content={scrapedContent || selectedContent}
+            isLoading={contentLoading}
+            error={contentError}
+            onOpenInIframe={() => {
+              setDrawerOpen(false);
+              handleOpenIframe(selectedContent);
+            }}
+          />
+        )}
+      </RightSideDrawer>
+
+      {/* External Iframe Modal */}
+      {iframeOpen && selectedContent && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-2xl w-full max-w-7xl h-[90vh] flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
+                {selectedContent.title}
+              </h3>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleCloseIframe}
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              >
+                <ExternalLink className="h-4 w-4" />
+              </Button>
+            </div>
+            <div className="flex-1 overflow-hidden">
+              <ExternalIframe url={selectedContent.url} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

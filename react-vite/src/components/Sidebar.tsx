@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 import ThemeToggle from "./ThemeToggle";
+import MP3Player from "./MusicPlayer";
 import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search } from "lucide-react";
 
 interface SidebarProps {
@@ -101,15 +102,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
           </nav>
 
           {/* Footer */}
-          <div className="border-t p-4 space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Theme</span>
-              <ThemeToggle />
+          <div className="border-t p-4 space-y-4">
+            {/* Music Player */}
+            <div className="flex justify-center">
+              <MP3Player />
             </div>
-            <Button variant="ghost" className="w-full justify-start">
-              <LogOut className="mr-3 h-5 w-5" />
-              Logout
-            </Button>
+            
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">Theme</span>
+                <ThemeToggle />
+              </div>
+              <Button variant="ghost" className="w-full justify-start">
+                <LogOut className="mr-3 h-5 w-5" />
+                Logout
+              </Button>
+            </div>
           </div>
         </div>
       </div>
