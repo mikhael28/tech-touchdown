@@ -16,3 +16,8 @@ The repository for the code implemented during the CascadiaJS Hackathon.
 - Convert `env.example` into `.env` and populate environment variables.
 - `npm run build` to build the JavaScript files for execution within the `dist` folder
 - `npm start` runs the built JS files in the `dist` folder.
+
+`react-native` - React Native boilerplate, using Bun, Expo and TypeScript
+
+- `bun install` to install
+- `npx expo start` to run the local dev server
