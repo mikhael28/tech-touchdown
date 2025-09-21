@@ -19,7 +19,8 @@
     "helmet": "^7.1.0",
     "morgan": "^1.10.0",
     "node-fetch": "^3.3.2",
-    "puppeteer": "^24.19.0"
+    "puppeteer": "^24.19.0",
+    "twilio": "^5.10.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

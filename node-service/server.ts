@@ -13,6 +13,8 @@ import fetch from "node-fetch";
 import exaRoutes from "./routes/exa";
 import authRoutes from "./routes/auth";
 import sportsRoutes from "./routes/sports";
+import twilioRoutes from "./routes/twilio";
+import twimlRoutes from "./routes/twiml";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -250,6 +252,8 @@ Return ONLY the JSON object, no other text.`;
 app.use("/api/exa", exaRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/sports", sportsRoutes);
+app.use("/api/twilio", twilioRoutes);
+app.use("/api/twiml", twimlRoutes);
 
 // Root endpoint
 app.get("/", (req: Request, res: Response) => {
@@ -261,6 +265,8 @@ app.get("/", (req: Request, res: Response) => {
       exa: "/api/exa",
       auth: "/api/auth",
       sports: "/api/sports",
+      twilio: "/api/twilio",
+      twiml: "/api/twiml",
       jina: "/api/jina",
       scripts: "/api/scripts",
       frontend_example: "/static/frontend-example.html",
@@ -303,6 +309,8 @@ app.listen(PORT, () => {
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🔍 Exa AI API: http://localhost:${PORT}/api/exa`);
   console.log(`🏈 Sports API: http://localhost:${PORT}/api/sports`);
+  console.log(`📞 Twilio API: http://localhost:${PORT}/api/twilio`);
+  console.log(`🎵 TwiML API: http://localhost:${PORT}/api/twiml`);
   console.log(`⚙️  Scripts API: http://localhost:${PORT}/api/scripts`);
 
   // Check for required environment variables
@@ -314,6 +322,16 @@ app.listen(PORT, () => {
   if (!process.env.OPENAI_API_KEY) {
     console.warn(
       "⚠️  Warning: OPENAI_API_KEY not found in environment variables"
+    );
+  }
+  if (
+    !process.env.TWILIO_ACCOUNT_SID ||
+    !process.env.TWILIO_API_KEY ||
+    !process.env.TWILIO_API_SECRET ||
+    !process.env.TWILIO_TWIML_APP_SID
+  ) {
+    console.warn(
+      "⚠️  Warning: Twilio configuration not found in environment variables"
     );
   }
 });

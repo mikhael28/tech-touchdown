@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Users, MessageCircle, Crown, Shield } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import AudioChat from './AudioChat';
 
 interface ChatMessage {
   id: string;
@@ -24,6 +25,7 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isConnected, setIsConnected] = useState(false);
+  const [voiceParticipants, setVoiceParticipants] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Mock data for chat messages
@@ -218,7 +220,7 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
                 {awayTeam} vs {homeTeam}
               </h3>
               <p className="text-xs text-gray-600 dark:text-gray-400">
-                Live Game Chat
+                Live Game Chat {voiceParticipants > 0 && `• ${voiceParticipants} in voice`}
               </p>
             </div>
           </div>
@@ -227,6 +229,15 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
             <span>{messages.length} messages</span>
           </div>
         </div>
+      </div>
+
+      {/* Audio Chat Section */}
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-3">
+        <AudioChat
+          gameId={gameId}
+          roomName={`game-${gameId}-${selectedTeam || 'neutral'}`}
+          onParticipantCountChange={setVoiceParticipants}
+        />
       </div>
 
       {/* Messages Area */}

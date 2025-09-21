@@ -8,6 +8,7 @@ import Home from "./pages/Dashboard";
 import Sports from "./pages/Sports";
 import FantasyLeague from "./pages/FantasyLeague";
 import Profile from "./pages/Profile";
+import Slideshow from "./pages/Slideshow";
 import LoginPage from "./components/LoginPage";
 import OAuthCallback from "./pages/OAuthCallback";
 
@@ -25,6 +26,7 @@ function App() {
                 <Route path="sports" element={<Sports />} />
                 <Route path="fantasy" element={<FantasyLeague />} />
                 <Route path="profile" element={<Profile />} />
+                <Route path="slideshow" element={<Slideshow />} />
               </Route>
             </Routes>
           </Router>
