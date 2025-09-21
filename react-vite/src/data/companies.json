@@ -1,0 +1,1354 @@
+[
+  {
+    "link": "/companies/nox-metals",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/d953f614b90f897eb3f17d74909591b83860cbc1.png",
+    "name": "Nox Metals",
+    "description": "The modern factory for fast, low-cost metals.",
+    "vertical": "Industrials",
+    "sub-vertical": "Manufacturing and Robotics"
+  },
+  {
+    "link": "/companies/blue",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/90acd1189896151e269eca2dc0a6b15c7042d091.png",
+    "name": "Blue",
+    "description": "The first voice assistant that can control every app on your\n              iPhone",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/paloma",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/59cd4e66e87a2529fc200defa6e386523e11058a.png",
+    "name": "Paloma",
+    "description": "AI-native CRM for putting post-sales operations on\n              autopilot",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/uplift-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/4c2008e580fb1146da7922b566c2a03af87f5a0c.png",
+    "name": "Uplift AI",
+    "description": "Foundational Voice Models for regional languages",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/realroots",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/e4b72e88bef4437e7d672c23bb7e1f952c837fca.png",
+    "name": "RealRoots",
+    "description": "AI social app for female transplants",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/luminal",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/1d9c818fe88489dd24e5032f7a25a97571050869.png",
+    "name": "Luminal",
+    "description": "Making AI run fast on any hardware.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/freya",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/cd359a60dfecfce9e7a798a4a228f08f05943dcb.png",
+    "name": "Freya",
+    "description": "Voice AI for European Enterprises",
+    "vertical": "Fintech",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/burnt",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/2af9e43cd6c77970b3bff5071024e812ac9ee3e0.png",
+    "name": "burnt",
+    "description": "Agentic Operating System for Food Supply Chain",
+    "vertical": "B2B",
+    "sub-vertical": "Supply Chain and Logistics"
+  },
+  {
+    "link": "/companies/avent",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/d96212731936adf020604b4e95b7700e967455b1.png",
+    "name": "Avent",
+    "description": "AI agents for industrial commerce",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/cacao",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/d368744b2d3baf62eb10c49a6211dd71ba08c437.png",
+    "name": "Cacao",
+    "description": "The Global Dollar App for Brazil",
+    "vertical": "Fintech",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/veritus-agent",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/b301b9f0345d2f7e32e073734be71f290ed3ea40.png",
+    "name": "Veritus Agent",
+    "description": "AI agents for the consumer lending industry",
+    "vertical": "Fintech",
+    "sub-vertical": "Credit and Lending"
+  },
+  {
+    "link": "/companies/outrove",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/90fdf57ee767b5dd755c70594623163dda1cbae4.png",
+    "name": "Outrove",
+    "description": "Ultra-realistic AI Recruiter",
+    "vertical": "B2B",
+    "sub-vertical": "Recruiting and Talent"
+  },
+  {
+    "link": "/companies/noso-labs",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/65242d9e142c66d4afe70eb47ebf05c1dcff789c.png",
+    "name": "NOSO LABS",
+    "description": "Build AI agents for field technicians to diagnose and sell 10x\n              better",
+    "vertical": "Industrials",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/vulcan-technologies",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/99289e9c71cb1127d9713f9951ef029e17d28248.png",
+    "name": "Vulcan Technologies",
+    "description": "AI regulatory drafting and compliance",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/spotlight-realty",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/677917fd980b1f33bfa85125a5b4023b60d9fa41.png",
+    "name": "Spotlight Realty",
+    "description": "AI powered brokerage reducing residential rental commissions in\n              NYC…",
+    "vertical": "",
+    "sub-vertical": "Real Estate and Construction"
+  },
+  {
+    "link": "/companies/interfere",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/8874713141e02cb143838e685aab73861963b373.png",
+    "name": "Interfere",
+    "description": "Next-gen observability that finds & fixes bugs\n              automatically",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/munify",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/905f3adbeab084e1762af3c3a57f96b6c781d02f.png",
+    "name": "Munify",
+    "description": "The Cross-Border Neobank for the Middle East",
+    "vertical": "Fintech",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/rowflow",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/4556b19fb6feb8d4b68cc26dd6a04f18622c3c33.png",
+    "name": "RowFlow",
+    "description": "Replacing forms with AI conversations",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/tectoai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/660e2396a1d079a64a42ea2a4ce4b81cefd385f0.png",
+    "name": "TectoAI",
+    "description": "Recruit and Monitor AI Employees",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/duranium",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/2a84608596d6e85a1a64227a175491ef9496eb22.png",
+    "name": "Duranium",
+    "description": "Reshoring critical metal production",
+    "vertical": "Industrials",
+    "sub-vertical": "Manufacturing and Robotics"
+  },
+  {
+    "link": "/companies/perspectives-health",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/d4d717434657a084785d53a7ab208f3a1b202dae.png",
+    "name": "Perspectives Health",
+    "description": "AI Agent for Clinic EMRs",
+    "vertical": "Healthcare",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/modelence",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/29b7379070cfa5f91e4300dce0bab8471d55a5d0.png",
+    "name": "Modelence",
+    "description": "All-in-one TypeScript cloud for production AI apps",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/magnetic",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/9c6be0818283f49c20fc921c3bc7db67bfb60bf5.png",
+    "name": "Magnetic",
+    "description": "AI Tax Preparer for CPA firms",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/fleetline",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/2ea7f2d064227baf73862c76f498eff3ea9f6c7d.png",
+    "name": "Fleetline",
+    "description": "Optimizing fleet planning with data driven algorithms",
+    "vertical": "B2B",
+    "sub-vertical": "Supply Chain and Logistics"
+  },
+  {
+    "link": "/companies/clodo",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/f11e383f1603855e0c14f84e4d86a8e59ed719ed.png",
+    "name": "Clodo",
+    "description": "AI For Real Estate",
+    "vertical": "",
+    "sub-vertical": "Real Estate and Construction"
+  },
+  {
+    "link": "/companies/stagewise",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/77a0945ae8c271b92f411a28c4d7ed11be60ad29.png",
+    "name": "stagewise",
+    "description": "The frontend coding agent for real codebases.",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/flywheel-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/20c7285daed594e49818c41dd7e677796b8e4b61.png",
+    "name": "Flywheel AI",
+    "description": "Waymo for excavators",
+    "vertical": "Industrials",
+    "sub-vertical": "Manufacturing and Robotics"
+  },
+  {
+    "link": "/companies/vibe-code-go",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/ffeca89d176d23081681b5dd3135c9a26bcfb7f5.png",
+    "name": "Vibe Code Go",
+    "description": "Code from your phone",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/juxta",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/0e2406b819c520b6b5c6f58e45423c720bf0661d.png",
+    "name": "Juxta",
+    "description": "Building a GPS alternative 100x more powerful with no hardware\n              needed.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/okibi",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/3c2f1b7539d172894c5a52bd97c07fa059c46ce1.png",
+    "name": "Okibi",
+    "description": "Build AI coworkers using natural language, it's Lovable for\n              agents",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/dscribe-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/741086b6ee1ac324a06d9b831065e36b5b8e9d9b.png",
+    "name": "dScribe AI",
+    "description": "Computer vision for bulk inventory tracking",
+    "vertical": "B2B",
+    "sub-vertical": "Supply Chain and Logistics"
+  },
+  {
+    "link": "/companies/kernel",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/99f219c3bf45966a5083306e113e41c33e2a056a.png",
+    "name": "Kernel",
+    "description": "Crazy Fast Browsers-as-a-Service",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/reacher",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/e18f0a8b8fff511049fe03b4ad0dc3b98bce28b5.png",
+    "name": "Reacher",
+    "description": "We automate creator marketing for the world's largest\n              brands",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/certus-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/4913536f9defe2e375acb9a499aa2ac443e9dc95.png",
+    "name": "Certus AI",
+    "description": "Replacing the restaurant phone line with Voice AI",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/hera-video",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/74b33eae20672c87a08f3ca790501128e2c07280.png",
+    "name": "Hera",
+    "description": "AI Motion Designer",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/nottelabs",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/63003c4a4bcce138151403c1e186fcebf3dfa34a.png",
+    "name": "Nottelabs",
+    "description": "Reliable Web Agents for Enterprise",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/pally",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/8122df650e86be44e74129b9b3b90d553a670985.png",
+    "name": "Pally",
+    "description": "Intelligent Unified Inbox + Personal CRM",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/locata",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/c0351a7bc0e508af83b9f25fa8db67212e25a78c.png",
+    "name": "Locata",
+    "description": "AI Referral Automation for Primary Care Clinics",
+    "vertical": "Healthcare",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/pleom",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/3b1e76d8c0743b28030c0f3c37f0d0bfa7f51272.png",
+    "name": "Pleom",
+    "description": "Talk to your AI",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/convexia",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/c68bf871c0fe363c6048343df283d9282ab990f4.png",
+    "name": "Convexia",
+    "description": "The world's first AI-maximalist pharma company",
+    "vertical": "Healthcare",
+    "sub-vertical": "Drug Discovery and Delivery"
+  },
+  {
+    "link": "/companies/sigmanticai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/551c81e2cf1198e6431c7a170e74ee43deff6f61.png",
+    "name": "SigmanticAI",
+    "description": "The Cursor for Chip Design - Delivering Silicon-Ready Chip\n              Designs…",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/opennote",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/fbef42e17cd76584a4249ebbc49a1db7307ab1b1.png",
+    "name": "Opennote",
+    "description": "The AI tutor that lives in your notes",
+    "vertical": "Education",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/sira",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/76b581290f19eb08a9fc677f74b5ecc46cfd20a1.png",
+    "name": "Sira",
+    "description": "AI Native Rippling for Deskless Workers",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/f4",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/a1af9d562299111b9e8590450d36412897ddd8f8.png",
+    "name": "F4",
+    "description": "Automating compliance checks for engineering drawings",
+    "vertical": "Industrials",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/metis",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/6e4dd7846f3b83970b08dbf433808e366a4bfd64.png",
+    "name": "Metis",
+    "description": "Infrastructure to build reliable agents",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/tryeden",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/12c60f7c48d152e63842700acbb1bf22c973bd5a.png",
+    "name": "Eden",
+    "description": "Autonomous Marketing AI for Ecommerce Brands",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/altur",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/ce362aa339ed75ccb6c9572c39d69b3d181f1cc9.png",
+    "name": "Altur",
+    "description": "Voice AI Agents for Debt Collection",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/pares-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/dbbb70598f14b005aa7da32e84d2d14fed9e3e3a.png",
+    "name": "PARES AI",
+    "description": "Helping commercial real estate brokers find and close more\n              deals.",
+    "vertical": "",
+    "sub-vertical": "Real Estate and Construction"
+  },
+  {
+    "link": "/companies/avelis-health",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/9759643303306b86f190396a0aa959a693947140.png",
+    "name": "Avelis Health",
+    "description": "We audit medical claims for self-insured employers and health\n              plans.",
+    "vertical": "Healthcare",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/nautilus",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/4b6ad11628869059a0e0126b6b03d41bab676578.png",
+    "name": "Nautilus",
+    "description": "AI platform to grow and to optimize car washes",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/humoniq",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/5b4b4793c04b2144e6d808676c5d789049433c7b.png",
+    "name": "Humoniq",
+    "description": "AI-Native BPO for travel & transport",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/palace",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/f6c96ba5c83b86c4246bc8f55c3a927bdde88653.png",
+    "name": "Palace",
+    "description": "Operational intelligence for PE funds and PE-backed\n              companies",
+    "vertical": "Fintech",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/idler",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/16afdb2665f574c194f085db06a6420848311d95.png",
+    "name": "Idler",
+    "description": "Scale AI for reinforcement learning environments.",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/floot",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/1f34cf0cf02c3e2059e48082daf0ddc693722515.png",
+    "name": "Floot",
+    "description": "Vibecoding platform for non-coders to build serious apps",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/alara",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/d5adee669e859434dbf90f866697a82e1a2fc2bd.png",
+    "name": "Alara",
+    "description": "Procurement Platform for Dental Offices",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/socratix-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/8e2ca9bf4442a297067557ded4df426f78a01f37.png",
+    "name": "Socratix AI",
+    "description": "AI coworkers for fraud and risk teams.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/minimal-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/c63bc96cffb87cb2d06890455f91a39acb01d02d.png",
+    "name": "Minimal AI",
+    "description": "AI Customer Support Teams for E-commerce",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/risely-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/4680fe6ec9d7629b24dfdc3825d767092e53950d.png",
+    "name": "Risely AI",
+    "description": "AI agents that automate administrative work across college\n              campuses.",
+    "vertical": "Education",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/omnara",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/878412a3d9ba975b0a0a65bd2a45ed8e7067c94f.png",
+    "name": "Omnara",
+    "description": "The Command Center for AI Agents",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/knowlify",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/f9c7327b2253f8bd8e5f5ae01e113ba12ee0e4bd.png",
+    "name": "Knowlify",
+    "description": "Convert textual content into explainer videos in < 15s",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/autosana",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/5c7dda83aa113d5017c2cb187435ccccb356bd6a.png",
+    "name": "Autosana",
+    "description": "AI QA Engineer for Mobile Teams",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/april",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/d5d3a6edb5621c81b20be14a648f9b57921bf764.png",
+    "name": "April",
+    "description": "Voice AI Executive Assistant",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/iron-grid",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/74e6bdb4c255f21276dac2d593eebde20bf29b57.png",
+    "name": "Iron Grid",
+    "description": "AI Insurance for hardware.",
+    "vertical": "Fintech",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/finto-de",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/f6adb7f41be65aa21db82cf58680bb6b24b1fdaa.png",
+    "name": "Finto",
+    "description": "AI accounting for enterprise finance teams",
+    "vertical": "B2B",
+    "sub-vertical": "Finance and Accounting"
+  },
+  {
+    "link": "/companies/motives",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/6ccc0035baccfcafd8c4eccd692ca8198963efca.png",
+    "name": "Motives",
+    "description": "Consumer focus groups run by AI",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/relling",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/e003594279b3a4474845b643ff2ee16c26f34a1a.png",
+    "name": "Relling",
+    "description": "ImageNet for world models",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/hyprnote",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/d4a829cb9eab332531a16b5e3dfc25fe3fc64606.png",
+    "name": "Hyprnote",
+    "description": "Open-source AI notetaker for the enterprise",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/mcp-use",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/5a3741e5c8fc7d9b30c081ec6b9b3a70e387566d.png",
+    "name": "mcp-use",
+    "description": "Open-source dev tools and infrastructure for MCP.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/novaflow",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/284bcf8fd014c43e486fa3243ceddc4a1b5a8484.png",
+    "name": "Novaflow",
+    "description": "The AI data analyst for biology labs",
+    "vertical": "Healthcare",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/perseus-defense",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/5cdd4deac94e3261e5048ff6c4ffdd39942a5840.png",
+    "name": "Perseus Defense",
+    "description": "America's Golden Dome for Drones",
+    "vertical": "Industrials",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/phases",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/7f48e664a460b19faede05bd1de6c49c5d3931a9.png",
+    "name": "Phases",
+    "description": "Automating clinical trials, starting with patient\n              recruitment.",
+    "vertical": "Healthcare",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/solva",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/3433319e1ee9ca49d1592168aee7f875a287f1ea.png",
+    "name": "Solva",
+    "description": "Automates insurance claims and stops incorrect payouts",
+    "vertical": "Fintech",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/albacore-inc",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/136331286874ea99fbd7e2a7b2acfee659b0c7bf.png",
+    "name": "Albacore Inc.",
+    "description": "Autonomous undersea vehicles to deter maritime invasions.",
+    "vertical": "Government",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/riff",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/d63a87fa04a91e21264426ce96efd1e5bed8b086.png",
+    "name": "Riff",
+    "description": "Cursor for music production",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/mohi",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/202c1f3ef1ad38b089ef5d40eac21bf0a299f83b.png",
+    "name": "Mohi",
+    "description": "Analyze and understand complex agent workflows with\n              clarity.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/mimos",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/9f836a0c8c51e91ad3364666cbc06dd260a0a3c1.png",
+    "name": "Mimos",
+    "description": "Helping companies rank in AI search",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/nozomio",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/1d85c6a1195667680f7ed4c90a6bda101d0cc579.png",
+    "name": "Nozomio",
+    "description": "Context augmentation for agents",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/vibeflow",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/5596537c1b7f7b2fdc729cd0da77e9c233f79180.png",
+    "name": "VibeFlow",
+    "description": "Shopify for saas",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/comena",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/0cd3632057a23091b73c4c26a68f56e59b7f0ba4.png",
+    "name": "Comena",
+    "description": "AI agents for distributors and manufacturers to automate order\n              entry.",
+    "vertical": "B2B",
+    "sub-vertical": "Supply Chain and Logistics"
+  },
+  {
+    "link": "/companies/normal",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/41742610e9abf1c307890c4206c045f1bce68bce.png",
+    "name": "Normal",
+    "description": "Modern compliance for drones, robots, IoT, and beyond",
+    "vertical": "Industrials",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/ghosteye",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/81ba9326d1d371675b429c97e982da02b3d22b88.png",
+    "name": "GhostEye",
+    "description": "The Offensive Security Team that never sleeps.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/channel3",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/68ab8f3604e8e37628ae61b0f2bc76124389ada3.png",
+    "name": "Channel3",
+    "description": "Database of every product on the internet",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/epicenter",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/15e87b5dae1ddc0ace7595505c49a86f51b6979a.png",
+    "name": "Epicenter",
+    "description": "ChatGPT's memory feature in an open, portable format",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/candytrail",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/b0fdeec730be1800b110510e5da85dc49f55644c.png",
+    "name": "Candytrail",
+    "description": "AI agents for in-person sales teams, starting with coaching",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/embedder",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/2cb9ce1e52f71e5db25b0bce11fcb9be12a15f7d.png",
+    "name": "Embedder",
+    "description": "Coding Agent for Firmware",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/flai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/6b90c0f9fa101c9a96455820ea0a553837b94f49.png",
+    "name": "Flai",
+    "description": "We Bring Customers to Your Dealership",
+    "vertical": "Industrials",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/b-12",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/3a76216fdba4f1c2c1e164dfb8851692bcc330c5.png",
+    "name": "b-12",
+    "description": "Chemical Copilot for Pharma and Biotech",
+    "vertical": "Healthcare",
+    "sub-vertical": "Drug Discovery and Delivery"
+  },
+  {
+    "link": "/companies/fulcrum",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/35c56987ac351304ba02872fb865e4cb5eebbc22.png",
+    "name": "Fulcrum",
+    "description": "The agentic debugger for AI systems",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/trace-so",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/0c2aef05823ea025fd58985ddba1bb239174e788.png",
+    "name": "Trace",
+    "description": "Workflow automation that routes tasks to humans and AI",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/the-interface",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/810308579f6f68ad3885b631328af1d0668015af.png",
+    "name": "The Interface",
+    "description": "The foundations for AI-native media",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/ironledger-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/fda446d464914642f213b7da0cd38f3f6fead898.png",
+    "name": "IronLedger.ai",
+    "description": "AI agents for property accounting",
+    "vertical": "",
+    "sub-vertical": "Real Estate and Construction"
+  },
+  {
+    "link": "/companies/doe",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/c4f710ccf11734c2c75ffd07ca7442b64c2f35ab.png",
+    "name": "Doe",
+    "description": "Autonomous AI workforce for PE roll-ups",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/louiza-labs",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/4220e2cfc6aae811d256a42fb434498602e5b513.png",
+    "name": "Louiza Labs",
+    "description": "Simulated human biology and synthetic medical datasets.",
+    "vertical": "Healthcare",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/parachute",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/ffdb102f014e8ce8401417ee051d9fbec55550e0.png",
+    "name": "Parachute",
+    "description": "Infrastructure for hospitals to monitor and deploy clinical AI",
+    "vertical": "Healthcare",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/riverbank-security",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/e2c4cd4965511ab936008331a12f4b2958401280.png",
+    "name": "Riverbank Security",
+    "description": "AI-native Red Teaming and Offensive Security",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/kalinda",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/dc717d7521c4543043c20540b7ff90d62356bd8e.png",
+    "name": "Kalinda",
+    "description": "Deep research for class action law firms",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/stellon-labs",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/e0f795844bb7b220e603390ba0b9ce967fb6db26.png",
+    "name": "Stellon Labs",
+    "description": "Building tiny frontier AI models that run on edge devices",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/bootloop",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/93ce55100656a6ea0aa0d88dd475881eab4f5632.png",
+    "name": "BootLoop",
+    "description": "Firmware in minutes, not months - rigorously tested on real\n              hardware",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/nexa-labs",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/489fd97ad45ee1d6d874c7a99792bf1552ebddc2.png",
+    "name": "Nexa Labs",
+    "description": "Implantable microchips and AI for cattle monitoring",
+    "vertical": "Industrials",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/induction-labs",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/0c2f926be6434de6b8c75a3a873f2b79fe0bdf59.png",
+    "name": "Induction Labs",
+    "description": "Training the best computer use models in the world. Automate\n              anything.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/agenthub-2",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/5d79e8581245eb7d73760c80116738ec9835755e.png",
+    "name": "AgentHub",
+    "description": "The simulation and evaluation engine for AI agents",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/cocreate",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/0fa7e6874bb04b698aead6e523b8be6359e8af3d.png",
+    "name": "cocreate",
+    "description": "AI-native video production software that automates\n              post-production",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/slashy",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/e47e34f35e388489ce2a0f3f4a13e6b49dce9ab9.png",
+    "name": "Slashy",
+    "description": "AI Native Ops Layer for Business Workflows",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/wedge",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/f77131cbecf4a204722622db553ac42245dbff78.png",
+    "name": "Wedge",
+    "description": "Palantir for Healthcare AI Agents",
+    "vertical": "Healthcare",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/careswift",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/f57117138aa46056d21a2d0bd92569a3da39e148.png",
+    "name": "CareSwift",
+    "description": "AI scribe for Ambulance Reports",
+    "vertical": "Healthcare",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/pangolin",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/e255c0b8547eae92642ef5a790e42e33f9bed016.png",
+    "name": "Pangolin",
+    "description": "Open-source alternative to Cloudflare Tunnels",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/kestroll",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/146dcc3d13f9a26c2300485534fada61ffbc8c0f.png",
+    "name": "Kestroll",
+    "description": "Agentic Digital and Media Asset Management",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/tesora",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/2793bc4802e1c1cddfc383aed3ac255ec33a0465.png",
+    "name": "Tesora",
+    "description": "Digital employees for manufacturing operations",
+    "vertical": "B2B",
+    "sub-vertical": "Supply Chain and Logistics"
+  },
+  {
+    "link": "/companies/deepaware-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/c1f361055ad23340a67d324b48d58339307211fb.png",
+    "name": "DeepAware AI",
+    "description": "Help AI data centers unlock more compute and become more\n              efficient",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/stockline",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/bd3787e9958fd9e9b42a9bb7223fe8689a2863a9.png",
+    "name": "Stockline",
+    "description": "AI-native ERP for food wholesalers",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/heysidekick",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/c2842d2a52b047f3cdc0601cc787b7972d74a3bf.png",
+    "name": "Sidekick",
+    "description": "Lovable for automations",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/keystone",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/8c3915c83dfe6a246f33ae908d5156017a0cef3f.png",
+    "name": "Keystone",
+    "description": "Your team's on-call AI engineer",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/deepgrove",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/59526ba018b33a62299943322dc03eae29a298f4.png",
+    "name": "DeepGrove",
+    "description": "Frontier Intelligence. On Any Device.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/frizzle",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/3daf2d29bc3da3d9f526ade87b3daa93b0d6a6cd.png",
+    "name": "Frizzle",
+    "description": "AI Grading for Teachers",
+    "vertical": "Education",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/skope",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/2c24ca870b6eaffd66597cfdb3e463eeed660675.png",
+    "name": "Skope",
+    "description": "The billing system for AI products",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/ondeck-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/9fb6ad4cbd4cdfac49ff1b40404d7053d5789883.png",
+    "name": "OnDeck AI",
+    "description": "Analyze any footage, without training a model",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/alter",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/3a30946452aaca1a7c8b4b8fefafd9807f194243.png",
+    "name": "Alter",
+    "description": "Secure access control and authorization platform for agent\n              workflows",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/imprezia",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/dcf816765d47aaccb81f4306b7dcf298ccb8337e.png",
+    "name": "Imprezia",
+    "description": "The World's First AI Ad Network.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/lilac",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/18234851431f8da18d1f087abc867a57412f1a97.png",
+    "name": "Lilac",
+    "description": "Spot GPUs that use idle GPUs from enterprises",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/tryjanet",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/00eb0a0f3a1d2e114523331a618501c6336a1b3f.png",
+    "name": "Janet AI",
+    "description": "The AI-Native Jira",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/cyberdesk",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/b6deea0aa4e96211ac35f75ade0705df19758a8e.png",
+    "name": "Cyberdesk",
+    "description": "Self learning computer use agent for developers",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/qualify-bot",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/ceffd4f572173f3b351bfe31078aa9baee60955e.png",
+    "name": "Qualify.bot",
+    "description": "AI phone agents for Commercial Lending",
+    "vertical": "B2B",
+    "sub-vertical": "Finance and Accounting"
+  },
+  {
+    "link": "/companies/panels",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/ee4b164260ea438a9d56d44266a78d08d778c3bc.png",
+    "name": "Panels",
+    "description": "Audio Data for AI Labs",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/herdora",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/179683a8dd97e578123332a8c5364707962a3392.png",
+    "name": "Herdora",
+    "description": "Cursor for CUDA",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/nuntius",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/419ca938d39201c4fff4ef02cd003dd413be8954.png",
+    "name": "Nuntius",
+    "description": "Making Models Follow Rules.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/orange-slice",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/9a35549672464ddd96cd4caea3ef725e10f03c19.png",
+    "name": "Orange Slice",
+    "description": "AI agents that find you customers who already want to buy",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/monarcha",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/1ca14064cb81ecebe2c5dd03339d7a44f1e9320f.png",
+    "name": "Monarcha",
+    "description": "An expert for your spatial data",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/lotas",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/b64e79cf442071bbe251c8f19acacccc3dbf1fea.png",
+    "name": "Lotas",
+    "description": "Cursor for Data Science — secure, AI-native IDE for data\n              scientists",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/design-arena",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/5f1a8344ff885ad778d50753135552f998c9bb9e.png",
+    "name": "Design Arena",
+    "description": "World's largest crowdsourced benchmark for AI-generated\n              design",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/effigov",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/f7ff2d4057e1128c01e602989e199ee71f53d392.png",
+    "name": "EffiGov",
+    "description": "The AI OS for Cities",
+    "vertical": "Government",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/bitrig",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/cab11cbab7740801b864a1576c8a78d2f69fa8e6.png",
+    "name": "bitrig",
+    "description": "Vibe code, test, and deploy Swift apps. All from your\n              iPhone.",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/lark",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/67710e46a3214b779fb0c410b22c7dd1f1f89778.png",
+    "name": "Lark",
+    "description": "AI Native Billing Platform",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/topological",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/2b9c845239fb1f16317889a4a843409e109b24f6.png",
+    "name": "Topological",
+    "description": "Physics-based foundation models for CAD optimization.",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/datafruit",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/c0545fc19adebb3a29cdf7c671311902833861e8.png",
+    "name": "datafruit",
+    "description": "AI DevOps Engineer",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/contextfort",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/0bb8bde8646cf10a60dc7d32e6b9b4e39c4a7557.png",
+    "name": "ContextFort",
+    "description": "Helping construction contractors find errors in blueprints",
+    "vertical": "Construction",
+    "sub-vertical": "Real Estate and Construction"
+  },
+  {
+    "link": "/companies/zeroeval",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/d7ecfb758177e9198eb8221c46198150c3a277ba.png",
+    "name": "ZeroEval",
+    "description": "Auto-optimizer for AI agents",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/verne-robotics",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/08842805c015165cf0d7e591168f2b15a9e9c85a.png",
+    "name": "Verne Robotics",
+    "description": "AI models that teach robots new skills in hours",
+    "vertical": "Industrials",
+    "sub-vertical": "Manufacturing and Robotics"
+  },
+  {
+    "link": "/companies/pharmie-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/0d229305f98494015f6e3f083bec99ca9e83082a.png",
+    "name": "Pharmie AI",
+    "description": "The first AI pharmacy technician",
+    "vertical": "Healthcare",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/liva-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/6d577992606b8392c9619b8dffacec074b48668d.png",
+    "name": "Liva AI",
+    "description": "Scale AI for video and voice data.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/pond",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/b509b40e2c3c32e42ebe7d8742a534de91515647.png",
+    "name": "Pond",
+    "description": "Superhuman for text messages",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/ghostship",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/1e6eeafade8c1d3cdb6545bb6e588d11a521444e.png",
+    "name": "Ghostship",
+    "description": "AI Agents that Find Bugs in Your Product",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/shor",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/a4831b44f5c4fb81b23bc71603346f936a8519a8.png",
+    "name": "Shor",
+    "description": "The fastest, most affordable payroll for global teams",
+    "vertical": "Fintech",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/golpo",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/918421e6cceeb8c0fe7223230f5345ddad2d5145.png",
+    "name": "Golpo",
+    "description": "Most Powerful AI Video Gen Model for Explainer Videos From\n              Documents",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/async",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/a6a6a6deeb99cb0fdc200c141518d2d94972bd2b.png",
+    "name": "Async",
+    "description": "AI-native Linear",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/lanesurf",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/4d37647098f0e48b82775e4aeffec72627577735.png",
+    "name": "Lanesurf",
+    "description": "Voice AI for booking freight",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/gaus",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/46613747d4e524395d78d130167310be1c6c0303.png",
+    "name": "Gaus",
+    "description": "AI advisor for retail investors",
+    "vertical": "Fintech",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/blank-bio",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/be87bc4cb37ba90fa0907b54d6337ec3f0723a2f.png",
+    "name": "Blank Bio",
+    "description": "RNA-based AI for better drugs and smarter clinical trials.",
+    "vertical": "Healthcare",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/truthsystems",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/a8136f761e13642b6fed7c2f34b631be3b028652.png",
+    "name": "truthsystems",
+    "description": "Automatically blocking risky behavior with real-time governance\n              agents",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/agentmail",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/229d0f8aee3512a3e3602b0a708550a51a4f5e11.png",
+    "name": "AgentMail",
+    "description": "API email service provider for AI Agents",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/traceroot-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/fc86727a443ac448343eba0a5ce27b88d63b2f8f.png",
+    "name": "TraceRoot.AI",
+    "description": "Open source AI agents auto-fix your production bugs",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/halluminate",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/b8aa250417be3c8c72069f938a492da564c11b69.png",
+    "name": "Halluminate",
+    "description": "Data and RL environments to automate knowledge work",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/mangodesk",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/28f75fbb2513c3b5ef3e67a4b3c47ce3995f896b.png",
+    "name": "MangoDesk",
+    "description": "Simple platform to create data for AI",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/the-prompting-company",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/465a7528e2de2669ab4bb994eb9cb8630eff6db1.png",
+    "name": "The Prompting Company",
+    "description": "We help products get mentioned in ChatGPT.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/acrely",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/599629b9dce294f5621aeaf663b76424933bd820.png",
+    "name": "Acrely",
+    "description": "AI CSR + Dispatch for HVAC",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/dedalus-labs",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/17a7e021922e11a9b8f5a5ff401fd1b2375e7969.png",
+    "name": "Dedalus Labs",
+    "description": "Connect any LLM to any MCP tools and create complex agents in\n              minutes.",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/closera",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/ff4023cc85097ec825f74cc6019f8b85ea20321a.png",
+    "name": "Closera",
+    "description": "AI employees for commercial real estate",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/meteor",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/463b3d216b98b96d985f820caa0a09e2c3c9ee44.png",
+    "name": "Meteor",
+    "description": "An AI-Native Browser",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/getasap-asia",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/642bff7a1b26de3309aed7fc5200498a8dca5180.png",
+    "name": "GETASAP ASIA",
+    "description": "Tech-Enabled Distributor for Retailers in Southeast Asia",
+    "vertical": "B2B",
+    "sub-vertical": "Supply Chain and Logistics"
+  },
+  {
+    "link": "/companies/pingo-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/8c01715a01a6f73433d324a587d34bafc2adf824.png",
+    "name": "Pingo AI",
+    "description": "AI companion that helps you learn languages",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/rid",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/d1583a51adf24cb86ab18bad935b2c25ef0f2170.png",
+    "name": "Rid",
+    "description": "Sell with a text.",
+    "vertical": "Consumer",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/synthetic-society",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/b2b8be4ce1ebb38b874cd798499bbc2de228fc36.png",
+    "name": "Synthetic Society",
+    "description": "Synthetic Users to Simulate Real Users",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/cactus",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/38edcfba2831cce5f05a5da045992ae4f758e655.png",
+    "name": "Cactus",
+    "description": "Kernels & Engine for running AI on phones",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/nixo",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/3442ddefa8f2ffb38f683757efc6de9a1e78890b.png",
+    "name": "Nixo",
+    "description": "The first ops platform for forward deployed engineers",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/serafis",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/67a815e7868c4a6d85c8b5fdb3324a29a6600f72.png",
+    "name": "Serafis",
+    "description": "The AI knowledge graph for institutional investors",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/wayline",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/aa83a2cdabf22eb6acd4e5c54d4969ec37a0a549.png",
+    "name": "WAYLINE",
+    "description": "AI voice for property managers",
+    "vertical": "",
+    "sub-vertical": "Real Estate and Construction"
+  },
+  {
+    "link": "/companies/ambral",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/c1261383b7f5f7d5fcba63a49453bf6d9148fcfc.png",
+    "name": "Ambral",
+    "description": "AI-powered Account Managers",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/fluidize",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/bdde5b32f2b28f78eb65fb57e6bddd78dfc14d6b.png",
+    "name": "Fluidize",
+    "description": "Helping scientists and engineers run experiments with AI.",
+    "vertical": "B2B",
+    "sub-vertical": "Engineering, Product and Design"
+  },
+  {
+    "link": "/companies/autumn",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/6a032c69ab86b17f432855010110e329002ec9e2.png",
+    "name": "Autumn",
+    "description": "Billing infrastructure for AI",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  },
+  {
+    "link": "/companies/stormy-ai",
+    "image_url": "https://bookface-images.s3.amazonaws.com/small_logos/a4f3f3c7294f8988b367d1e4a0f95cecc0483ea8.png",
+    "name": "Stormy AI",
+    "description": "Al platform that makes social marketing as easy as running a\n              Google…",
+    "vertical": "B2B",
+    "sub-vertical": ""
+  }
+]
