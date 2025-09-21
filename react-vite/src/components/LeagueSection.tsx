@@ -1,12 +1,13 @@
 import React from 'react';
-import { League } from '../types/sports';
+import { League, Game } from '../types/sports';
 import GameCard from './GameCard';
 
 interface LeagueSectionProps {
   league: League;
+  onGameClick?: (game: Game) => void;
 }
 
-const LeagueSection: React.FC<LeagueSectionProps> = ({ league }) => {
+const LeagueSection: React.FC<LeagueSectionProps> = ({ league, onGameClick }) => {
   if (league.games.length === 0) return null;
 
   return (
@@ -16,7 +17,7 @@ const LeagueSection: React.FC<LeagueSectionProps> = ({ league }) => {
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {league.games.map((game) => (
-          <GameCard key={game.id} game={game} />
+          <GameCard key={game.id} game={game} onGameClick={onGameClick} />
         ))}
       </div>
     </div>

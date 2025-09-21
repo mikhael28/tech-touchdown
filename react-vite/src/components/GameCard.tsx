@@ -3,9 +3,10 @@ import { Game } from '../types/sports';
 
 interface GameCardProps {
   game: Game;
+  onGameClick?: (game: Game) => void;
 }
 
-const GameCard: React.FC<GameCardProps> = ({ game }) => {
+const GameCard: React.FC<GameCardProps> = ({ game, onGameClick }) => {
   const getStatusColor = (status: string, isLive: boolean, isCompleted: boolean) => {
     if (isLive) return 'text-red-500';
     if (isCompleted) return 'text-gray-500';
@@ -17,8 +18,19 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
     return `${awayScore} - ${homeScore}`;
   };
 
+  const handleClick = () => {
+    if (onGameClick) {
+      onGameClick(game);
+    }
+  };
+
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow">
+    <div 
+      className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 transition-all ${
+        onGameClick ? 'hover:shadow-md hover:scale-[1.02] cursor-pointer' : 'hover:shadow-md'
+      }`}
+      onClick={handleClick}
+    >
       <div className="flex items-center justify-between mb-2">
         <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
           {game.league}

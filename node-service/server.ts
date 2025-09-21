@@ -97,6 +97,155 @@ app.post("/api/jina", async (req: Request, res: Response) => {
   }
 });
 
+// Process single game with Jina + OpenAI
+app.post("/api/game/process", async (req: Request, res: Response) => {
+  try {
+    const { gameId, url } = req.body;
+
+    if (!gameId || !url) {
+      res.status(400).json({
+        error: {
+          message: "Game ID and URL are required",
+        },
+      });
+      return;
+    }
+
+    if (!process.env.OPENAI_API_KEY) {
+      res.status(503).json({
+        error: {
+          message:
+            "OpenAI API key not found. Please set OPENAI_API_KEY in environment variables.",
+          code: "OPENAI_API_KEY_MISSING",
+        },
+      });
+      return;
+    }
+
+    // Step 1: Fetch content using Jina AI
+    const jinaUrl = `https://r.jina.ai/${url}`;
+    const jinaHeaders = {
+      Authorization:
+        "Bearer jina_c2e1c121a61e4e3ba0032a5abda74edfDb9wTnY7Bp00uewzE__W2uI5VcgG",
+    };
+
+    const jinaResponse = await fetch(jinaUrl, { headers: jinaHeaders });
+
+    if (!jinaResponse.ok) {
+      throw new Error(
+        `Jina AI API error: ${jinaResponse.status} ${jinaResponse.statusText}`
+      );
+    }
+
+    const jinaData = await jinaResponse.text();
+
+    // Step 2: Process with OpenAI to extract game data
+    const systemPrompt = `You are a sports data processor. Extract the most up-to-date game information from the provided content and return it as a JSON object matching this exact TypeScript interface:
+
+interface Game {
+  id: string;
+  league: string;
+  homeTeam: string;
+  awayTeam: string;
+  homeScore: number | null;
+  awayScore: number | null;
+  gameStatus: 'scheduled' | 'live' | 'completed' | 'postponed' | 'cancelled';
+  startTime?: string;
+  date: string;
+  isLive: boolean;
+  isCompleted: boolean;
+  period?: string;
+  broadcast?: string;
+  url?: string;
+}
+
+CRITICAL REQUIREMENTS:
+- Return ONLY a valid JSON object, no other text, no markdown formatting
+- Use the provided gameId as the id field
+- Determine the appropriate gameStatus based on the content (e.g., "Final" = completed, "Top 5th" = live, "12:10 AM UTC" = scheduled)
+- Set isLive to true if the game is currently in progress (has inning/period info)
+- Set isCompleted to true if the game shows "Final" or similar completion status
+- Extract team names and scores accurately
+- Use the league name from the content or infer it appropriately
+- Include the original URL in the url field
+
+Return ONLY the JSON object, no other text.`;
+
+    const userPrompt = `Extract the most current game information from this content for game ID "${gameId}": "${jinaData}"`;
+
+    const openaiResponse = await fetch(
+      "https://api.openai.com/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: process.env.OPENAI_MODEL || "gpt-4o",
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userPrompt },
+          ],
+          max_tokens: 1000,
+          temperature: 0.3,
+        }),
+      }
+    );
+
+    if (!openaiResponse.ok) {
+      throw new Error(
+        `OpenAI API error: ${openaiResponse.status} ${openaiResponse.statusText}`
+      );
+    }
+
+    const openaiData = (await openaiResponse.json()) as any;
+    const content = openaiData.choices?.[0]?.message?.content;
+
+    if (!content) {
+      throw new Error("No content received from OpenAI API");
+    }
+
+    // Clean the content to extract valid JSON
+    let cleanedContent = content.trim();
+    if (cleanedContent.startsWith("```json")) {
+      cleanedContent = cleanedContent
+        .replace(/^```json\s*/, "")
+        .replace(/\s*```$/, "");
+    } else if (cleanedContent.startsWith("```")) {
+      cleanedContent = cleanedContent
+        .replace(/^```\s*/, "")
+        .replace(/\s*```$/, "");
+    }
+
+    // Validate JSON
+    let gameData;
+    try {
+      gameData = JSON.parse(cleanedContent);
+    } catch (error) {
+      console.error("Invalid JSON received from OpenAI:", cleanedContent);
+      throw new Error("Invalid JSON format received from OpenAI API");
+    }
+
+    res.status(200).json({
+      success: true,
+      gameId,
+      gameData,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("Game processing error:", error);
+    res.status(500).json({
+      error: {
+        message:
+          error instanceof Error
+            ? error.message
+            : "Failed to process game data",
+      },
+    });
+  }
+});
+
 // API Routes
 app.use("/api/exa", exaRoutes);
 app.use("/api/auth", authRoutes);

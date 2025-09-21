@@ -3,6 +3,8 @@ import useSportsData from '../hooks/useSportsData';
 import useJinaAI from '../hooks/useJinaAI';
 import useSportsAI from '../hooks/useSportsAI';
 import LeagueSection from '../components/LeagueSection';
+import GameDetailDrawer from '../components/GameDetailDrawer';
+import { Game } from '../types/sports';
 
 // Utility function to clean and filter Jina API content for sports data
 const cleanSportsContent = (content: string): string => {
@@ -45,6 +47,8 @@ const Sports = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isAutoProcessing, setIsAutoProcessing] = useState(false);
   const [processingStep, setProcessingStep] = useState<string>('');
+  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleJinaFetch = async (url: string = 'https://plaintextsports.com/') => {
     const result = await fetchJinaData(url);
@@ -145,6 +149,17 @@ const Sports = () => {
     }
   };
 
+  const handleGameClick = (game: Game) => {
+    setSelectedGame(game);
+    setIsDrawerOpen(true);
+  };
+
+  const handleCloseDrawer = () => {
+    setIsDrawerOpen(false);
+    // Small delay to allow drawer to close before clearing selected game
+    setTimeout(() => setSelectedGame(null), 300);
+  };
+
   // Load from localStorage on component mount and auto-start if no data
   useEffect(() => {
     const savedData = localStorage.getItem('generatedSportsData');
@@ -162,7 +177,29 @@ const Sports = () => {
       // No saved data, start auto process
       startAutoProcess();
     }
-  }, []);
+
+    // Listen for game updates from the game processor
+    const handleGameUpdate = (event: CustomEvent) => {
+      const { updatedGame, sportsData } = event.detail;
+      console.log('Game updated:', updatedGame);
+      
+      // Update the processed sports data with the new game data
+      if (sportsData) {
+        setProcessedSportsData(sportsData);
+      }
+      
+      // Update the selected game if it's the same game that was updated
+      if (selectedGame && selectedGame.id === updatedGame.id) {
+        setSelectedGame(updatedGame);
+      }
+    };
+
+    window.addEventListener('sportsDataUpdated', handleGameUpdate as EventListener);
+    
+    return () => {
+      window.removeEventListener('sportsDataUpdated', handleGameUpdate as EventListener);
+    };
+  }, [selectedGame]);
 
   if (loading) {
     return (
@@ -334,13 +371,13 @@ const Sports = () => {
           </div>
           
           {processedSportsData.leagues.map((league: any) => (
-            <LeagueSection key={league.name} league={league} />
+            <LeagueSection key={league.name} league={league} onGameClick={handleGameClick} />
           ))}
         </>
       ) : data && data.leagues.length > 0 ? (
         <>
           {data.leagues.map((league) => (
-            <LeagueSection key={league.name} league={league} />
+            <LeagueSection key={league.name} league={league} onGameClick={handleGameClick} />
           ))}
 
           <div className="text-center text-sm text-gray-500 dark:text-gray-400 pt-4">
@@ -358,6 +395,13 @@ const Sports = () => {
           </div>
         </div>
       )}
+
+      {/* Game Detail Drawer */}
+      <GameDetailDrawer
+        game={selectedGame}
+        isOpen={isDrawerOpen}
+        onClose={handleCloseDrawer}
+      />
     </div>
   );
 };

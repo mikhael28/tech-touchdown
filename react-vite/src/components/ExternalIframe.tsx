@@ -51,7 +51,7 @@ export default function ExternalSiteModal(props: any) {
   }, [props.url]);
 
   return (
-    <div className="items-center justify-center">
+    <div className="flex items-center justify-center h-full w-full">
       {loading === true ? (
         <div
           style={{
@@ -85,6 +85,7 @@ export default function ExternalSiteModal(props: any) {
               width={`${window.innerWidth * 0.9}px`}
               height={`${window.innerHeight * 0.8}px`}
               src={props.url}
+              className="mx-auto"
             />
           )}
         </>
