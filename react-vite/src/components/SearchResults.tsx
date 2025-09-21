@@ -89,10 +89,10 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
 
   if (isLoading) {
     return (
-      <Card>
+      <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
         <CardContent className="p-8 text-center">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
-          <p className="text-muted-foreground">Searching for articles...</p>
+          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-gray-600 dark:text-gray-400" />
+          <p className="text-muted-foreground dark:text-gray-400">Searching for articles...</p>
         </CardContent>
       </Card>
     );
@@ -100,11 +100,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
 
   if (error) {
     return (
-      <Card>
+      <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
         <CardContent className="p-8 text-center">
           <AlertCircle className="h-8 w-8 text-destructive mx-auto mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Search Error</h3>
-          <p className="text-muted-foreground mb-4">{error}</p>
+          <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">Search Error</h3>
+          <p className="text-muted-foreground dark:text-gray-400 mb-4">{error}</p>
           <Button onClick={() => onSearch(query)} variant="outline">
             Try Again
           </Button>
@@ -115,11 +115,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
 
   if (!query) {
     return (
-      <Card>
+      <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
         <CardContent className="p-8 text-center">
-          <Globe className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Start Your Search</h3>
-          <p className="text-muted-foreground">
+          <Globe className="h-12 w-12 text-muted-foreground dark:text-gray-400 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">Start Your Search</h3>
+          <p className="text-muted-foreground dark:text-gray-400">
             Enter a search query above to discover articles and web content
           </p>
         </CardContent>
@@ -129,11 +129,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
 
   if (results.length === 0) {
     return (
-      <Card>
+      <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
         <CardContent className="p-8 text-center">
-          <AlertCircle className="h-8 w-8 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-semibold mb-2">No Results Found</h3>
-          <p className="text-muted-foreground mb-4">
+          <AlertCircle className="h-8 w-8 text-muted-foreground dark:text-gray-400 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">No Results Found</h3>
+          <p className="text-muted-foreground dark:text-gray-400 mb-4">
             No articles found for "{query}". Try adjusting your search terms or filters.
           </p>
           <Button onClick={() => onSearch(query)} variant="outline">
@@ -147,28 +147,28 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold">
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
           Search Results for "{query}"
         </h2>
-        <Badge variant="secondary">
+        <Badge variant="secondary" className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
           {results.length} result{results.length !== 1 ? 's' : ''}
         </Badge>
       </div>
 
       <div className="space-y-4">
         {results.map((result, index) => (
-          <Card key={index} className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary">
+          <Card key={index} className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-lg dark:hover:shadow-gray-900/20 transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary">
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0 space-y-3">
                   <CardTitle 
-                    className="text-xl leading-tight cursor-pointer hover:text-primary transition-colors line-clamp-2"
+                    className="text-xl leading-tight cursor-pointer hover:text-primary transition-colors line-clamp-2 text-gray-900 dark:text-gray-100"
                     onClick={() => handleViewContent(result)}
                   >
                     {result.title}
                   </CardTitle>
                   
-                  <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-6 text-sm text-muted-foreground dark:text-gray-400">
                     <div className="flex items-center gap-1.5">
                       <Globe className="h-4 w-4" />
                       <span className="font-medium">{getDomainFromUrl(result.url)}</span>
