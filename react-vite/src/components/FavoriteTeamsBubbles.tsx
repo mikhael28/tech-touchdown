@@ -8,6 +8,7 @@ interface FavoriteTeamsBubblesProps {
   favoriteTeams: FavoriteTeams;
   onRemoveTeam: (sport: keyof FavoriteTeams, teamShortName: string) => void;
   onEditTeams: () => void;
+  onTeamItemClick?: (sport: keyof FavoriteTeams, teamShortName: string) => void;
 }
 
 interface FavoriteTeams {
@@ -28,6 +29,7 @@ const FavoriteTeamsBubbles: React.FC<FavoriteTeamsBubblesProps> = ({
   favoriteTeams,
   onRemoveTeam,
   onEditTeams,
+  onTeamItemClick,
 }) => {
   const getTeamInfo = (sport: keyof FavoriteTeams, teamShortName: string) => {
     const config = sportConfig[sport];
@@ -89,7 +91,8 @@ const FavoriteTeamsBubbles: React.FC<FavoriteTeamsBubblesProps> = ({
                   return (
                     <div
                       key={`${sport}-${teamShortName}`}
-                      className="group relative inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-muted to-muted/80 hover:from-primary/10 hover:to-primary/5 border border-border hover:border-primary/30 transition-all duration-200 hover:shadow-md"
+                      className={`group relative inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-muted to-muted/80 hover:from-primary/10 hover:to-primary/5 border border-border hover:border-primary/30 transition-all duration-200 hover:shadow-md ${onTeamItemClick ? 'cursor-pointer' : ''}`}
+                      onClick={() => onTeamItemClick?.(sport as keyof FavoriteTeams, teamShortName)}
                     >
                       <div className="w-6 h-6 rounded-full bg-background flex items-center justify-center">
                         <img

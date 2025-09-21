@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchInterface from './SearchInterface';
 import FavoriteTeamsBubbles from './FavoriteTeamsBubbles';
 import { useFavoriteTeams } from '../hooks/useFavoriteTeams';
+import { nfl, nba, mlb, nhl } from '../data/teams';
 
 interface FavoriteTeams {
   nfl: string[];
@@ -20,8 +21,28 @@ const SportsSearch: React.FC<SportsSearchProps> = ({ onEditTeams }) => {
     removeTeam,
   } = useFavoriteTeams();
 
+  const [searchQuery, setSearchQuery] = useState('');
+
   const handleRemoveTeam = (sport: keyof FavoriteTeams, teamShortName: string) => {
     removeTeam(sport, teamShortName);
+  };
+
+  // Team item click handler
+  const handleTeamItemClick = (sport: keyof FavoriteTeams, teamShortName: string) => {
+    const sportConfig = {
+      nfl: { teams: nfl, label: 'NFL' },
+      nba: { teams: nba, label: 'NBA' },
+      mlb: { teams: mlb, label: 'MLB' },
+      nhl: { teams: nhl, label: 'NHL' },
+    };
+    
+    const config = sportConfig[sport];
+    const team = config.teams.find((team: any) => team.short_name === teamShortName);
+    
+    if (team) {
+      const focusedQuery = `${team.name} ${config.label} news articles latest updates`;
+      setSearchQuery(focusedQuery);
+    }
   };
 
   // onEditTeams is now passed as a prop from the parent Dashboard component
@@ -34,16 +55,18 @@ const SportsSearch: React.FC<SportsSearchProps> = ({ onEditTeams }) => {
           favoriteTeams={favoriteTeams}
           onRemoveTeam={handleRemoveTeam}
           onEditTeams={onEditTeams}
+          onTeamItemClick={handleTeamItemClick}
         />
       </div>
       
       {/* Search Interface Section */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-y-auto">
         <SearchInterface
           title="🏈 Sports News"
           placeholder="Search for sports articles, news, or any topic..."
           defaultQuery="What are the latest headlines in the NFL, NBA, MLB, and NHL?"
           className="h-full"
+          searchQuery={searchQuery}
         />
       </div>
     </div>

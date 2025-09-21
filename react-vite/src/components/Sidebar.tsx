@@ -26,11 +26,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       icon: Trophy,
     },
     {
-      name: "Tech",
-      href: "/tech",
-      icon: Laptop,
-    },
-    {
       name: "Profile",
       href: "/profile",
       icon: User,

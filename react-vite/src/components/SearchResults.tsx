@@ -9,12 +9,16 @@ import ExternalIframe from './ExternalIframe';
 import ContentDisplay from './ContentDisplay';
 import { exaApi } from '../services/exaApi';
 
+
 interface SearchResultsProps {
   searchState: SearchState;
   onSearch: (query: string) => void;
 }
 
-const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) => {
+const SearchResults: React.FC<SearchResultsProps> = ({ 
+  searchState, 
+  onSearch
+}) => {
   const { isLoading, results, error, query } = searchState;
   
   // State for drawer and iframe
@@ -150,7 +154,6 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
         <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
           {query}
         </h2>
-
       </div>
 
       <div className="space-y-4">

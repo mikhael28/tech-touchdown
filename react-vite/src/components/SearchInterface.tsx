@@ -15,13 +15,15 @@ interface SearchInterfaceProps {
   placeholder: string;
   defaultQuery: string;
   className?: string;
+  searchQuery?: string;
 }
 
 const SearchInterface: React.FC<SearchInterfaceProps> = ({
   title,
   placeholder,
   defaultQuery,
-  className = ''
+  className = '',
+  searchQuery
 }) => {
   const [searchState, setSearchState] = useState<SearchState>({
     isLoading: false,
@@ -47,6 +49,13 @@ const SearchInterface: React.FC<SearchInterfaceProps> = ({
       handleSearch(defaultQuery);
     }, 1000);
   }, [defaultQuery]);
+
+  // Effect to handle external search queries (from bubble clicks)
+  useEffect(() => {
+    if (searchQuery && searchQuery !== searchState.query) {
+      handleSearch(searchQuery);
+    }
+  }, [searchQuery]);
 
   const handleSearch = async (query: string) => {
     if (!query.trim()) return;

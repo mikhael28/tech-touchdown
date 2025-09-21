@@ -8,6 +8,7 @@ interface FavoriteTechBubblesProps {
   favoriteTech: FavoriteTech;
   onRemoveTech: (category: keyof FavoriteTech, itemShortName: string) => void;
   onEditTech: () => void;
+  onTechItemClick?: (category: keyof FavoriteTech, itemShortName: string) => void;
 }
 
 interface FavoriteTech {
@@ -28,6 +29,7 @@ const FavoriteTechBubbles: React.FC<FavoriteTechBubblesProps> = ({
   favoriteTech,
   onRemoveTech,
   onEditTech,
+  onTechItemClick,
 }) => {
   const getTechInfo = (category: keyof FavoriteTech, itemShortName: string) => {
     const config = techConfig[category];
@@ -89,7 +91,8 @@ const FavoriteTechBubbles: React.FC<FavoriteTechBubblesProps> = ({
                   return (
                     <div
                       key={`${category}-${itemShortName}`}
-                      className="group relative inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-muted to-muted/80 hover:from-primary/10 hover:to-primary/5 border border-border hover:border-primary/30 transition-all duration-200 hover:shadow-md"
+                      className={`group relative inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-muted to-muted/80 hover:from-primary/10 hover:to-primary/5 border border-border hover:border-primary/30 transition-all duration-200 hover:shadow-md ${onTechItemClick ? 'cursor-pointer' : ''}`}
+                      onClick={() => onTechItemClick?.(category as keyof FavoriteTech, itemShortName)}
                     >
                       <div className="w-6 h-6 rounded-full bg-background flex items-center justify-center">
                         {item.icon_url ? (
