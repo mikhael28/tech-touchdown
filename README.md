@@ -1,5 +1,7 @@
 # Tech Touchdown
 
+With questions, contact me at mikhael@hey.com or michael@expatriaonline.com
+
 The repository for the code implemented during the CascadiaJS Hackathon.
 
 ## Repository Structure
