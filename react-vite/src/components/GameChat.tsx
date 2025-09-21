@@ -26,6 +26,8 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isConnected, setIsConnected] = useState(false);
   const [voiceParticipants, setVoiceParticipants] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isUsingFallback, setIsUsingFallback] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Mock data for chat messages
@@ -80,10 +82,43 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
     }
   ];
 
+  // API URL from environment or default to localhost
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
+  // Load messages when component mounts
   useEffect(() => {
-    // Initialize with mock messages
-    setMessages(mockMessages);
+    loadMessages();
   }, [gameId]);
+
+  const loadMessages = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/api/chat/games/${gameId}/messages?awayTeam=${encodeURIComponent(awayTeam)}&homeTeam=${encodeURIComponent(homeTeam)}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setMessages(data.messages);
+        setIsUsingFallback(data.fallback || false);
+      } else {
+        throw new Error('Failed to load messages');
+      }
+    } catch (error) {
+      console.error('Error loading messages:', error);
+      // Fallback to mock data
+      setMessages(mockMessages);
+      setIsUsingFallback(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     scrollToBottom();
@@ -107,19 +142,55 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
     }
   };
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (message.trim() && selectedTeam && user?.login) {
-      const newMessage: ChatMessage = {
-        id: Date.now().toString(),
-        username: user.login,
-        message: message.trim(),
-        timestamp: new Date(),
-        team: selectedTeam,
-        role: 'user'
-      };
-      setMessages(prev => [...prev, newMessage]);
-      setMessage('');
+      setIsLoading(true);
+
+      try {
+        const response = await fetch(
+          `${API_BASE_URL}/api/chat/games/${gameId}/messages`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              message: message.trim(),
+              team: selectedTeam,
+              username: user.login,
+              awayTeam,
+              homeTeam,
+            }),
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setMessages(prev => [...prev, data.message]);
+          setMessage('');
+          setIsUsingFallback(false);
+        } else {
+          throw new Error('Failed to send message');
+        }
+      } catch (error) {
+        console.error('Error sending message:', error);
+
+        // Fallback to local message handling
+        const newMessage: ChatMessage = {
+          id: Date.now().toString(),
+          username: user.login,
+          message: message.trim(),
+          timestamp: new Date(),
+          team: selectedTeam,
+          role: 'user'
+        };
+        setMessages(prev => [...prev, newMessage]);
+        setMessage('');
+        setIsUsingFallback(true);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -221,6 +292,9 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
               </h3>
               <p className="text-xs text-gray-600 dark:text-gray-400">
                 Live Game Chat {voiceParticipants > 0 && `• ${voiceParticipants} in voice`}
+                {isUsingFallback && (
+                  <span className="ml-2 text-orange-500">• Offline Mode</span>
+                )}
               </p>
             </div>
           </div>
@@ -266,7 +340,7 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
                   {msg.team === 'away' ? awayTeam : homeTeam}
                 </span>
                 <span className="text-xs text-gray-500 dark:text-gray-400">
-                  {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
               </div>
               <p className="text-xs text-gray-700 dark:text-gray-300 break-words">
@@ -290,10 +364,14 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
           />
           <button
             type="submit"
-            disabled={!message.trim()}
+            disabled={!message.trim() || isLoading}
             className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white p-1.5 rounded-md transition-colors"
           >
-            <Send className="h-3 w-3" />
+            {isLoading ? (
+              <div className="h-3 w-3 border border-white border-t-transparent rounded-full animate-spin" />
+            ) : (
+              <Send className="h-3 w-3" />
+            )}
           </button>
         </form>
       </div>

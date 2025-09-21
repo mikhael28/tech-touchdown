@@ -15,6 +15,8 @@ import authRoutes from "./routes/auth";
 import sportsRoutes from "./routes/sports";
 import twilioRoutes from "./routes/twilio";
 import twimlRoutes from "./routes/twiml";
+import gameChatRoutes from "./routes/gameChat";
+import { initializeDatabase, testConnection } from "./lib/database";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -254,6 +256,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/sports", sportsRoutes);
 app.use("/api/twilio", twilioRoutes);
 app.use("/api/twiml", twimlRoutes);
+app.use("/api/chat", gameChatRoutes);
 
 // Root endpoint
 app.get("/", (req: Request, res: Response) => {
@@ -304,14 +307,37 @@ app.use("*", (req: Request, res: Response) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 Tech Touchdown API Server running on port ${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🔍 Exa AI API: http://localhost:${PORT}/api/exa`);
   console.log(`🏈 Sports API: http://localhost:${PORT}/api/sports`);
   console.log(`📞 Twilio API: http://localhost:${PORT}/api/twilio`);
   console.log(`🎵 TwiML API: http://localhost:${PORT}/api/twiml`);
+  console.log(`💬 Game Chat API: http://localhost:${PORT}/api/chat`);
   console.log(`⚙️  Scripts API: http://localhost:${PORT}/api/scripts`);
+
+  // Initialize database if NEON_DATABASE_URL is provided
+  if (process.env.NEON_DATABASE_URL) {
+    console.log(`🗄️  Initializing Neon database...`);
+    try {
+      const isConnected = await testConnection();
+      if (isConnected) {
+        const isInitialized = await initializeDatabase();
+        if (isInitialized) {
+          console.log(`✅ Neon database connected and initialized`);
+        } else {
+          console.log(`⚠️  Database connected but initialization failed`);
+        }
+      } else {
+        console.log(`❌ Database connection failed`);
+      }
+    } catch (error) {
+      console.log(`❌ Database setup error:`, error);
+    }
+  } else {
+    console.log(`⚠️  NEON_DATABASE_URL not found - chat will use mock data`);
+  }
 
   // Check for required environment variables
   if (!process.env.EXA_API_KEY && !process.env.EXASEARCH_API_KEY) {
