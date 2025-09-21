@@ -150,53 +150,66 @@ const SearchResults: React.FC<SearchResultsProps> = ({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between px-6">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-          {query}
-        </h2>
+      {/* Header with search query and results count */}
+      <div className="flex items-center justify-between px-2">
+        <div className="space-y-1">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            Search Results
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            Found {results.length} result{results.length !== 1 ? 's' : ''} for "{query}"
+          </p>
+        </div>
       </div>
 
+      {/* Results List */}
       <div className="space-y-4">
         {results.map((result, index) => (
-          <Card key={index} className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-lg dark:hover:shadow-gray-900/20 transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary">
+          <Card 
+            key={index} 
+            className="group bg-white dark:bg-gray-800/50 border-gray-200 dark:border-gray-700/50 hover:border-primary/50 dark:hover:border-primary/30 hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-gray-900/20 transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm border-l-4 border-l-transparent hover:border-l-primary"
+          >
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0 space-y-3">
+                  {/* Title */}
                   <CardTitle 
-                    className="text-xl leading-tight cursor-pointer hover:text-primary transition-colors line-clamp-2 text-gray-900 dark:text-gray-100"
+                    className="text-xl leading-tight cursor-pointer hover:text-primary transition-colors line-clamp-2 text-gray-900 dark:text-white group-hover:text-primary"
                     onClick={() => handleViewContent(result)}
                   >
                     {result.title}
                   </CardTitle>
                   
-                  <div className="flex items-center gap-6 text-sm text-muted-foreground dark:text-gray-400">
-                    <div className="flex items-center gap-1.5">
+                  {/* Metadata */}
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 dark:bg-gray-700/50 rounded-full">
                       <Globe className="h-4 w-4" />
                       <span className="font-medium">{getDomainFromUrl(result.url)}</span>
                     </div>
                     
                     {result.publishedDate && (
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 dark:bg-gray-700/50 rounded-full">
                         <Calendar className="h-4 w-4" />
                         <span>{formatDate(result.publishedDate)}</span>
                       </div>
                     )}
                     
                     {result.author && (
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 dark:bg-gray-700/50 rounded-full">
                         <User className="h-4 w-4" />
-                        <span>{result.author}</span>
+                        <span className="truncate max-w-32">{result.author}</span>
                       </div>
                     )}
                   </div>
                 </div>
                 
-                <div className="flex gap-1 flex-shrink-0">
+                {/* Action Buttons */}
+                <div className="flex gap-2 flex-shrink-0">
                   <Button
-                    variant="outline"
+                    variant="default"
                     size="sm"
                     onClick={() => handleViewContent(result)}
-                    className="flex items-center gap-2 px-3"
+                    className="flex items-center gap-2 px-3 bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm"
                   >
                     <FileText className="h-4 w-4" />
                     Read
@@ -204,17 +217,8 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => handleOpenIframe(result)}
-                    className="flex items-center gap-2 px-3"
-                  >
-                    <Eye className="h-4 w-4" />
-                    View
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
                     asChild
-                    className="flex items-center gap-2 px-3"
+                    className="flex items-center gap-2 px-3 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
                   >
                     <a
                       href={result.url}
@@ -229,6 +233,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
               </div>
             </CardHeader>
             
+            {/* Summary */}
             {result.summary && (
               <CardContent className="pt-0">
                 <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import ThemeToggle from "./ThemeToggle";
+import HeaderMusicPlayer from "./HeaderMusicPlayer";
 import { Button } from "./ui/button";
 import { Menu, User, LogOut } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
@@ -38,16 +39,16 @@ const Layout: React.FC = () => {
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Top bar */}
         <header className="flex h-16 items-center justify-between border-b bg-card px-6">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 flex-1 min-w-0">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden"
+              className="lg:hidden flex-shrink-0"
             >
               <Menu className="h-5 w-5" />
             </Button>
-            <h1 className="text-lg font-semibold">Tech Touchdown</h1>
+            <HeaderMusicPlayer />
           </div>
           
           <div className="flex items-center gap-4">

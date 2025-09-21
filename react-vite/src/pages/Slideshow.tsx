@@ -12,29 +12,31 @@ const Slideshow: React.FC = () => {
     {
       id: 1,
       title: "Tech Touchdown",
-      subtitle: "Bridging Sports and Technology",
-      content: "A revolutionary platform that brings together the excitement of sports with cutting-edge technology, creating an immersive experience for fans, athletes, and tech enthusiasts alike.",
-      image: "/powered-by-vitawind-bright.png",
-      bgColor: "bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800"
+      subtitle: "The Latest News in Tech & Sports",
+      content: "From the CascadiaJS 2025 Hackathon, a project & podcast to bridge the world of tech & sports. A place to discuss the latest news, talk trash &  connect.",
+      // image: "/powered-by-vitawind-bright.png",
+      bgColor: "bg-gradient-to-br from-green-600 via-emerald-600 to-teal-800",
+      
     },
     {
       id: 2,
-      title: "Why Sports Matter",
-      content: "Sports bring people together, create communities, and inspire greatness. They teach us about teamwork, perseverance, and the thrill of competition. In our digital age, sports remain one of the most authentic ways to connect with others and celebrate human achievement.",
-      bgColor: "bg-gradient-to-br from-green-600 via-emerald-600 to-teal-800"
+      title: "Our Venn Diagram",
+      subtitle: "Millions of people every day listen to news about sports; whether through radio, cable television, or reading articles online. At the same time, millions of people every day read news about tech; whether through social media, Hacker News, or through podcasts. Why not combine the two?",
+      content: "Software engineers need to exercise more, and touch grass. Non-technical people should probably learn a little bit more about the software that is running their world. People want human connection on game day; that's why 40,000 people to the stadium, or dozens crowd into a bar.",
+      bgColor: "bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800"
     },
-    {
-      id: 3,
-      title: "Why Tech Matters",
-      content: "Technology drives innovation, solves complex problems, and creates new possibilities. It enhances our daily lives, connects us globally, and pushes the boundaries of what's possible. Tech is the engine of progress in our modern world.",
-      bgColor: "bg-gradient-to-br from-orange-600 via-red-600 to-pink-800"
-    },
-    {
-      id: 4,
-      title: "Bringing Two Worlds Together",
-      content: "Tech Touchdown combines the passion of sports with the power of technology. We create immersive experiences, real-time analytics, fantasy leagues, and social connections that make sports more engaging and accessible to everyone.",
-      bgColor: "bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-800"
-    }
+    // {
+    //   id: 3,
+    //   title: "Why Tech Matters",
+    //   content: "Chances are, if you don't understand how modern technology works, you will be taken advantage of. If we can help more people become AI literate, we can build a future",
+    //   bgColor: "bg-gradient-to-br from-orange-600 via-red-600 to-pink-800"
+    // },
+    // {
+    //   id: 4,
+    //   title: "Bringing Two Worlds Together",
+    //   content: "Tech Touchdown combines the passion of sports with the power of technology. We create immersive experiences, real-time analytics, fantasy leagues, and social connections that make sports more engaging and accessible to everyone.",
+    //   bgColor: "bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-800"
+    // }
   ];
 
   const nextSlide = () => {
@@ -162,13 +164,13 @@ const Slideshow: React.FC = () => {
                 </p>
               </div>
 
-              <div className="flex justify-center">
+              {/* <div className="flex justify-center">
                 <img
                   src={currentSlideData.image}
                   alt="Tech Touchdown"
                   className="h-32 w-auto opacity-90"
                 />
-              </div>
+              </div> */}
             </div>
           )}
 
@@ -178,6 +180,9 @@ const Slideshow: React.FC = () => {
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
                 {currentSlideData.title}
               </h1>
+              <h2 className="text-2xl md:text-4xl font-light text-white/90">
+                  {currentSlideData.subtitle}
+                </h2>
               
               <div className="max-w-5xl mx-auto">
                 <p className="text-xl md:text-3xl leading-relaxed text-white/90">
