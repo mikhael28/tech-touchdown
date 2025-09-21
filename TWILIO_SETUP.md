@@ -58,7 +58,7 @@ TWILIO_TWIML_APP_SID=your_twiml_app_sid_here
 
 # Existing environment variables...
 # PORT=3001
-# FRONTEND_URL=http://localhost:5173
+# FRONTEND_URL=http://localhost:3000
 # ... other variables
 ```
 
@@ -84,12 +84,14 @@ When deploying to production, update your TwiML Application URLs:
 ## Step 7: Test Your Setup
 
 1. Start your backend server:
+
    ```bash
    cd node-service
    npm run dev
    ```
 
 2. Start your frontend:
+
    ```bash
    cd react-vite
    npm run dev
@@ -103,10 +105,12 @@ When deploying to production, update your TwiML Application URLs:
 ### Common Issues
 
 1. **"Missing required Twilio configuration" error**
+
    - Check that all environment variables are set correctly
    - Restart your server after updating `.env` file
 
 2. **"Device error" or "Call error" messages**
+
    - Verify your TwiML Application URL is accessible
    - Check browser permissions for microphone access
    - Ensure you're using HTTPS in production (required for WebRTC)
@@ -126,6 +130,7 @@ When deploying to production, update your TwiML Application URLs:
 For local HTTPS development (recommended for testing):
 
 1. Use tools like `ngrok` to create a secure tunnel:
+
    ```bash
    ngrok http 3001
    ```
@@ -150,11 +155,13 @@ For local HTTPS development (recommended for testing):
 ## Usage Limits
 
 ### Free Tier Limits (as of 2025)
+
 - **Voice Minutes**: $15 credit (approximately 150 minutes in the US)
 - **Concurrent Calls**: Up to 2 concurrent calls
 - **TwiML Applications**: Unlimited
 
 ### Scaling Considerations
+
 - Upgrade to a paid plan for higher usage
 - Consider implementing user limits per conference
 - Monitor usage via Twilio Console

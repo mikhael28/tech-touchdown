@@ -70,6 +70,12 @@ const AudioChat: React.FC<AudioChatProps> = ({
   useEffect(() => {
     let mounted = true;
 
+    // Prevent double initialization
+    if (device || deviceRef.current) {
+      console.log('🔄 Device already exists, skipping initialization');
+      return;
+    }
+
     const initializeDevice = async () => {
       try {
         if (!user?.login) {
@@ -77,9 +83,14 @@ const AudioChat: React.FC<AudioChatProps> = ({
           return;
         }
 
+        console.log('🚀 Initializing new Twilio Device for user:', user.login);
+
         // Get access token from backend
         const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
-        const response = await fetch(`${backendUrl}/api/twilio/access-token`, {
+        const tokenUrl = `${backendUrl}/api/twilio/access-token`;
+        console.log('🔗 Requesting access token from:', tokenUrl);
+
+        const response = await fetch(tokenUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -94,7 +105,14 @@ const AudioChat: React.FC<AudioChatProps> = ({
           throw new Error(`Failed to get access token: ${response.statusText}`);
         }
 
-        const { token } = await response.json();
+        const tokenData = await response.json();
+        const { token } = tokenData;
+        console.log('🎫 Received token data:', {
+          hasToken: !!token,
+          identity: tokenData.identity,
+          roomName: tokenData.roomName,
+          tokenLength: token?.length
+        });
 
         if (!mounted) return;
 
@@ -121,10 +139,13 @@ const AudioChat: React.FC<AudioChatProps> = ({
         // Device event listeners
         twilioDevice.on('ready', () => {
           console.log('✅ Twilio Device Ready - Ready to make calls');
+          console.log('🔧 Device state:', twilioDevice.state);
+          console.log('🔧 Device token:', twilioDevice.token);
           if (mounted) {
             setDevice(twilioDevice);
             deviceRef.current = twilioDevice;
             setState(prev => ({ ...prev, error: null }));
+            console.log('🔧 Device set in state, component should enable Join button');
           }
         });
 
@@ -163,9 +184,25 @@ const AudioChat: React.FC<AudioChatProps> = ({
         // Register the device with error handling
         try {
           await twilioDevice.register();
+          console.log('📝 Device registration completed, state:', twilioDevice.state);
+
+          // Force device to be ready - sometimes the ready event doesn't fire
+          console.log('✅ Setting device as ready after registration');
+          if (mounted) {
+            setDevice(twilioDevice);
+            deviceRef.current = twilioDevice;
+            setState(prev => ({ ...prev, error: null }));
+          }
         } catch (registerError) {
           console.warn('Device registration warning:', registerError);
           // Continue even if registration has warnings
+          // Still try to set the device if registration "fails" but device exists
+          if (mounted && twilioDevice) {
+            console.log('⚠️ Setting device despite registration warning');
+            setDevice(twilioDevice);
+            deviceRef.current = twilioDevice;
+            setState(prev => ({ ...prev, error: null }));
+          }
         }
 
       } catch (error) {
@@ -191,6 +228,13 @@ const AudioChat: React.FC<AudioChatProps> = ({
 
   // Join conference call
   const joinConference = async () => {
+    console.log('🚀 Join conference called', {
+      hasDevice: !!device,
+      deviceState: device?.state,
+      hasUser: !!user?.login,
+      isConnecting: state.isConnecting
+    });
+
     if (!device || !user?.login) {
       console.error('❌ Cannot join conference: Device not ready or user not authenticated');
       setState(prev => ({ ...prev, error: 'Device not ready or user not authenticated' }));
@@ -215,7 +259,12 @@ const AudioChat: React.FC<AudioChatProps> = ({
       console.log('📞 Initiating call with params:', params);
       const outgoingCall = await device.connect({ params });
       console.log('📞 Call initiated, setting up event listeners...');
-      
+      console.log('📞 Call object:', {
+        status: outgoingCall.status(),
+        parameters: outgoingCall.parameters,
+        direction: outgoingCall.direction
+      });
+
       setCall(outgoingCall);
       callRef.current = outgoingCall;
 
@@ -313,6 +362,8 @@ const AudioChat: React.FC<AudioChatProps> = ({
     }
   };
 
+  console.log('Device', device);
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
@@ -324,6 +375,8 @@ const AudioChat: React.FC<AudioChatProps> = ({
       }
     };
   }, []);
+
+  console.log(state.isConnected);
 
   const getConnectionStatus = () => {
     if (state.isConnecting) return 'Connecting...';
@@ -374,7 +427,15 @@ const AudioChat: React.FC<AudioChatProps> = ({
         <div className="flex space-x-2">
           {!state.isConnected ? (
             <button
-              onClick={joinConference}
+              onClick={() => {
+                console.log('🔘 Join button clicked!', {
+                  hasDevice: !!device,
+                  deviceState: device?.state,
+                  isConnecting: state.isConnecting,
+                  buttonDisabled: !device || state.isConnecting
+                });
+                joinConference();
+              }}
               disabled={!device || state.isConnecting}
               className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white text-xs font-medium py-2 px-3 rounded-md transition-colors flex items-center justify-center space-x-1"
             >
@@ -428,6 +489,16 @@ const AudioChat: React.FC<AudioChatProps> = ({
         <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
           Room: {roomName}
         </div>
+
+        {/* Debug Info */}
+        {import.meta.env.VITE_NODE_ENV === 'development' && (
+          <div className="text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 p-2 rounded">
+            <div>Device: {device ? `Ready (${device.state})` : 'Not Ready'}</div>
+            <div>User: {user?.login || 'Not Authenticated'}</div>
+            <div>Status: {getConnectionStatus()}</div>
+            <div>Button Enabled: {device && !state.isConnecting ? 'Yes' : 'No'}</div>
+          </div>
+        )}
       </div>
     </div>
   );

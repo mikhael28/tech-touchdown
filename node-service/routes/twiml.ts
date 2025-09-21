@@ -24,7 +24,7 @@ router.post("/voice", (req: Request, res: Response) => {
 
     // Get the base URL for status callbacks
     const baseUrl =
-      process.env.BASE_URL || `http://localhost:${process.env.PORT || 3001}`;
+      process.env.BASE_URL || `https://68251244e5c9.ngrok-free.app`;
     const statusCallbackUrl = `${baseUrl}/api/twiml/conference-status`;
 
     // Generate TwiML response to join conference
