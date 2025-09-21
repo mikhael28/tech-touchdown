@@ -38,6 +38,34 @@ const AudioChat: React.FC<AudioChatProps> = ({
   const deviceRef = useRef<Device | null>(null);
   const callRef = useRef<Call | null>(null);
 
+  // Request microphone permissions
+  const requestMicrophonePermission = async () => {
+    try {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        // Stop the stream immediately as we just needed permission
+        stream.getTracks().forEach(track => track.stop());
+        return true;
+      }
+    } catch (error) {
+      console.warn('Microphone permission denied or not available:', error);
+    }
+    return false;
+  };
+
+  // Get available audio devices
+  const getAudioDevices = async () => {
+    try {
+      if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        return devices.filter(device => device.kind === 'audiooutput');
+      }
+    } catch (error) {
+      console.warn('Could not enumerate audio devices:', error);
+    }
+    return [];
+  };
+
   // Initialize Twilio Device
   useEffect(() => {
     let mounted = true;
@@ -50,7 +78,8 @@ const AudioChat: React.FC<AudioChatProps> = ({
         }
 
         // Get access token from backend
-        const response = await fetch('http://localhost:3001/api/twilio/access-token', {
+        const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+        const response = await fetch(`${backendUrl}/api/twilio/access-token`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -69,17 +98,29 @@ const AudioChat: React.FC<AudioChatProps> = ({
 
         if (!mounted) return;
 
+        // Request microphone permissions first
+        const hasPermission = await requestMicrophonePermission();
+        if (!hasPermission) {
+          console.warn('Microphone permission not granted, audio may not work properly');
+        }
+
+        // Get available audio devices first
+        const audioDevices = await getAudioDevices();
+        console.log('Available audio devices:', audioDevices);
+
         // Create and setup Twilio Device
         const twilioDevice = new Device(token, {
           logLevel: 'warn',
           // @ts-ignore
           codecPreferences: ['opus', 'pcmu'],
-          enableRingingState: true
+          enableRingingState: true,
+          // @ts-ignore
+          fakeLocalDTMF: true
         });
 
         // Device event listeners
         twilioDevice.on('ready', () => {
-          console.log('Twilio Device Ready');
+          console.log('✅ Twilio Device Ready - Ready to make calls');
           if (mounted) {
             setDevice(twilioDevice);
             deviceRef.current = twilioDevice;
@@ -88,8 +129,14 @@ const AudioChat: React.FC<AudioChatProps> = ({
         });
 
         twilioDevice.on('error', (error) => {
-          console.error('Twilio Device Error:', error);
+          console.error('❌ Twilio Device Error:', error);
           if (mounted) {
+            // Handle specific audio device errors more gracefully
+            if (error.message && error.message.includes('Devices not found')) {
+              console.warn('⚠️ Audio device warning (non-critical):', error.message);
+              // Don't treat this as a critical error, just log it
+              return;
+            }
             setState(prev => ({
               ...prev,
               error: `Device error: ${error.message}`,
@@ -98,14 +145,28 @@ const AudioChat: React.FC<AudioChatProps> = ({
           }
         });
 
+        // Add device state logging
+        twilioDevice.on('registered', () => {
+          console.log('📝 Device registered with Twilio');
+        });
+
+        twilioDevice.on('unregistered', () => {
+          console.log('📝 Device unregistered from Twilio');
+        });
+
         twilioDevice.on('incoming', (incomingCall) => {
           console.log('Incoming call from:', incomingCall.parameters.From);
           // Auto-reject incoming calls for this conference setup
           incomingCall.reject();
         });
 
-        // Register the device
-        await twilioDevice.register();
+        // Register the device with error handling
+        try {
+          await twilioDevice.register();
+        } catch (registerError) {
+          console.warn('Device registration warning:', registerError);
+          // Continue even if registration has warnings
+        }
 
       } catch (error) {
         console.error('Failed to initialize Twilio Device:', error);
@@ -131,9 +192,16 @@ const AudioChat: React.FC<AudioChatProps> = ({
   // Join conference call
   const joinConference = async () => {
     if (!device || !user?.login) {
+      console.error('❌ Cannot join conference: Device not ready or user not authenticated');
       setState(prev => ({ ...prev, error: 'Device not ready or user not authenticated' }));
       return;
     }
+
+    console.log('🚀 Starting conference join process...', {
+      roomName,
+      user: user.login,
+      deviceState: device.state
+    });
 
     setState(prev => ({ ...prev, isConnecting: true, error: null }));
 
@@ -144,13 +212,16 @@ const AudioChat: React.FC<AudioChatProps> = ({
         From: user.login
       };
 
+      console.log('📞 Initiating call with params:', params);
       const outgoingCall = await device.connect({ params });
+      console.log('📞 Call initiated, setting up event listeners...');
+      
       setCall(outgoingCall);
       callRef.current = outgoingCall;
 
       // Call event listeners
       outgoingCall.on('accept', () => {
-        console.log('Call accepted');
+        console.log('✅ Call accepted - Conference joined successfully');
         setState(prev => ({
           ...prev,
           isConnected: true,
@@ -161,7 +232,7 @@ const AudioChat: React.FC<AudioChatProps> = ({
       });
 
       outgoingCall.on('disconnect', () => {
-        console.log('Call disconnected');
+        console.log('❌ Call disconnected - Conference left');
         setState(prev => ({
           ...prev,
           isConnected: false,
@@ -174,7 +245,7 @@ const AudioChat: React.FC<AudioChatProps> = ({
       });
 
       outgoingCall.on('error', (error) => {
-        console.error('Call error:', error);
+        console.error('❌ Call error:', error);
         setState(prev => ({
           ...prev,
           error: `Call error: ${error.message}`,
@@ -183,6 +254,28 @@ const AudioChat: React.FC<AudioChatProps> = ({
         }));
         setCall(null);
         callRef.current = null;
+      });
+
+      // Add more detailed call state logging
+      outgoingCall.on('ringing', () => {
+        console.log('📞 Call ringing - Connecting to conference...');
+      });
+
+      outgoingCall.on('cancel', () => {
+        console.log('🚫 Call cancelled');
+        setState(prev => ({
+          ...prev,
+          isConnected: false,
+          isConnecting: false
+        }));
+      });
+
+      // Log call parameters for debugging
+      console.log('📋 Call parameters:', {
+        to: params.To,
+        from: params.From,
+        callSid: outgoingCall.parameters?.CallSid,
+        status: outgoingCall.status()
       });
 
     } catch (error) {

@@ -5,7 +5,14 @@ const router = express.Router();
 // TwiML endpoint for voice calls to join conference
 router.post("/voice", (req: Request, res: Response) => {
   try {
-    const { To } = req.body;
+    const { To, From, CallSid } = req.body;
+
+    console.log("🎯 TwiML Voice Request:", {
+      to: To,
+      from: From,
+      callSid: CallSid,
+      timestamp: new Date().toISOString(),
+    });
 
     // Extract room name from the To parameter (format: conference:roomName)
     let roomName = "default-room";
@@ -13,13 +20,20 @@ router.post("/voice", (req: Request, res: Response) => {
       roomName = To.replace("conference:", "");
     }
 
+    console.log(`📞 Creating conference room: ${roomName}`);
+
+    // Get the base URL for status callbacks
+    const baseUrl =
+      process.env.BASE_URL || `http://localhost:${process.env.PORT || 3001}`;
+    const statusCallbackUrl = `${baseUrl}/api/twiml/conference-status`;
+
     // Generate TwiML response to join conference
     const twiml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Dial>
     <Conference
       waitUrl="http://twimlets.com/holdmusic?Bucket=com.twilio.music.ambient"
-      statusCallback="/api/twiml/conference-status"
+      statusCallback="${statusCallbackUrl}"
       statusCallbackEvent="start end join leave mute hold"
       statusCallbackMethod="POST"
       record="false"
@@ -31,9 +45,10 @@ router.post("/voice", (req: Request, res: Response) => {
   </Dial>
 </Response>`;
 
+    console.log("📋 Generated TwiML:", twiml);
+
     res.set("Content-Type", "text/xml");
     res.status(200).send(twiml);
-
   } catch (error) {
     console.error("TwiML voice error:", error);
 
@@ -56,14 +71,18 @@ router.post("/conference-status", (req: Request, res: Response) => {
       StatusCallbackEvent,
       FriendlyName,
       Timestamp,
-      ParticipantLabel
+      ParticipantLabel,
+      ParticipantSid,
+      CallSid,
     } = req.body;
 
-    console.log(`Conference ${StatusCallbackEvent}:`, {
+    console.log(`🎉 Conference Event: ${StatusCallbackEvent}`, {
       conferenceSid: ConferenceSid,
       roomName: FriendlyName,
       participant: ParticipantLabel,
-      timestamp: Timestamp
+      participantSid: ParticipantSid,
+      callSid: CallSid,
+      timestamp: Timestamp,
     });
 
     // You can add additional logic here to track conference events
@@ -71,7 +90,7 @@ router.post("/conference-status", (req: Request, res: Response) => {
 
     res.status(200).send("OK");
   } catch (error) {
-    console.error("Conference status callback error:", error);
+    console.error("❌ Conference status callback error:", error);
     res.status(500).send("Error");
   }
 });
@@ -81,7 +100,7 @@ router.get("/health", (req: Request, res: Response) => {
   res.status(200).json({
     status: "healthy",
     service: "TwiML endpoints",
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
