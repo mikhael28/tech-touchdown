@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import RightSideDrawer from './RightSideDrawer';
+import LeftSideDrawer from './LeftSideDrawer';
 import { useJinaContent } from '../hooks/useJinaContent';
 import useGameProcessor from '../hooks/useGameProcessor';
 import ExternalIframe from './ExternalIframe';
+import GameChat from './GameChat';
 import { Game } from '../types/sports';
-import { ExternalLink, Eye, FileText, RefreshCw } from 'lucide-react';
+import { RefreshCw, BarChart3 } from 'lucide-react';
 
 interface GameDetailDrawerProps {
   game: Game | null;
@@ -15,7 +17,7 @@ interface GameDetailDrawerProps {
 const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClose }) => {
   const { content, loading, error, fetchContent, clearContent } = useJinaContent();
   const { processGame, loading: processingGame, error: processingError } = useGameProcessor();
-  const [viewMode, setViewMode] = useState<'content' | 'iframe'>('iframe');
+  const [isAdvancedStatsOpen, setIsAdvancedStatsOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const isFetchingRef = useRef(false);
 
@@ -84,13 +86,7 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
       );
     }
 
-    if (viewMode === 'iframe' && game?.url) {
-      return (
-        <div className="h-full">
-          <ExternalIframe url={game.url} />
-        </div>
-      );
-    }
+
 
     if (!content) {
       return (
@@ -107,16 +103,16 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
     }
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Game Header */}
         {game && (
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-6 border border-blue-200 dark:border-blue-800">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white">
                 {game.awayTeam} vs {game.homeTeam}
               </h2>
               <div className="flex items-center space-x-2">
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-800 px-3 py-1 rounded-full">
+                <span className="text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded-full">
                   {game.league}
                 </span>
                 {game.url && (
@@ -138,14 +134,14 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
             </div>
             
             {/* Enhanced Scoreboard */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between">
                 {/* Away Team */}
                 <div className="flex-1 text-center">
-                  <div className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                  <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                     {game.awayTeam}
                   </div>
-                  <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">
                     {game.awayScore !== null ? game.awayScore : '-'}
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
@@ -154,8 +150,8 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
                 </div>
                 
                 {/* Game Status & Period */}
-                <div className="flex flex-col items-center justify-center px-4">
-                  <div className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
+                <div className="flex flex-col items-center justify-center px-3">
+                  <div className="text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">
                     {game.gameStatus === 'live' ? 'LIVE' : 
                      game.gameStatus === 'completed' ? 'FINAL' :
                      game.gameStatus === 'scheduled' ? 'UPCOMING' :
@@ -166,16 +162,16 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
                       {game.period}
                     </div>
                   )}
-                  <div className="w-8 h-px bg-gray-300 dark:bg-gray-600 my-2"></div>
+                  <div className="w-6 h-px bg-gray-300 dark:bg-gray-600 my-1"></div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">VS</div>
                 </div>
                 
                 {/* Home Team */}
                 <div className="flex-1 text-center">
-                  <div className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                  <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                     {game.homeTeam}
                   </div>
-                  <div className="text-4xl font-bold text-red-600 dark:text-red-400 mb-2">
+                  <div className="text-3xl font-bold text-red-600 dark:text-red-400 mb-1">
                     {game.homeScore !== null ? game.homeScore : '-'}
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
@@ -185,8 +181,8 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
               </div>
               
               {/* Game Status Indicator */}
-              <div className="mt-4 flex items-center justify-center">
-                <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+              <div className="mt-3 flex items-center justify-center">
+                <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
                   game.gameStatus === 'live' 
                     ? 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300 animate-pulse'
                     : game.gameStatus === 'completed'
@@ -195,7 +191,7 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
                     ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300'
                     : 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300'
                 }`}>
-                  <div className={`w-2 h-2 rounded-full mr-2 ${
+                  <div className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
                     game.gameStatus === 'live' 
                       ? 'bg-red-500 animate-pulse'
                       : game.gameStatus === 'completed'
@@ -213,10 +209,10 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
             </div>
 
             {/* Game Details */}
-            <div className="mt-4 space-y-3">
+            <div className="mt-3 space-y-2">
               {game.startTime && (
-                <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-400">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center justify-center text-xs text-gray-600 dark:text-gray-400">
+                  <svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   {game.startTime}
@@ -224,8 +220,8 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
               )}
 
               {game.broadcast && (
-                <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-400">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center justify-center text-xs text-gray-600 dark:text-gray-400">
+                  <svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
                   {game.broadcast}
@@ -233,94 +229,82 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
               )}
 
               {game.period && game.gameStatus === 'live' && (
-                <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-400">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></div>
+                <div className="flex items-center justify-center text-xs text-gray-600 dark:text-gray-400">
+                  <div className="w-1.5 h-1.5 bg-red-500 rounded-full mr-1.5 animate-pulse"></div>
                   Currently in: {game.period}
+                </div>
+              )}
+
+              {/* Advanced Stats Button */}
+              {game.url && (
+                <div className="flex justify-center mt-3">
+                  <button
+                    onClick={() => setIsAdvancedStatsOpen(true)}
+                    className="flex items-center px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-md transition-colors"
+                  >
+                    <BarChart3 className="h-3 w-3 mr-1.5" />
+                    View Advanced Stats
+                  </button>
                 </div>
               )}
             </div>
           </div>
         )}
 
-        {/* Content */}
-        <div className="prose dark:prose-invert max-w-none">
-          {content.title && (
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              {content.title}
-            </h3>
-          )}
-
-          {content.text && (
-            <div className="space-y-4">
-              <h4 className="text-sm font-medium text-gray-900 dark:text-white">Content</h4>
-              <div className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
-                {content.text}
-              </div>
-            </div>
-          )}
-
-          {content.url && (
-            <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-              <a
-                href={content.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
-              >
-                View original source
-                <ExternalLink className="ml-1 h-4 w-4" />
-              </a>
-            </div>
-          )}
-        </div>
+        {/* Game Chat */}
+        {game && (
+          <div className="flex-1 min-h-0">
+            <GameChat 
+              gameId={game.id} 
+              awayTeam={game.awayTeam} 
+              homeTeam={game.homeTeam} 
+            />
+          </div>
+        )}
       </div>
     );
   };
 
   return (
-    <RightSideDrawer
-      open={isOpen}
-      setOpen={onClose}
-      title={game ? `${game.awayTeam} vs ${game.homeTeam}` : 'Game Details'}
-      size="xl"
-    >
-      <div className="h-full flex flex-col">
-        {/* View Mode Toggle */}
-        {game?.url && (
-          <div className="flex items-center justify-center mb-4 p-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div className="flex items-center space-x-1">
-              <button
-                onClick={() => setViewMode('content')}
-                className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  viewMode === 'content'
-                    ? 'bg-blue-500 text-white'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
-                }`}
-              >
-                <FileText className="h-4 w-4 mr-2" />
-                Content
-              </button>
-              <button
-                onClick={() => setViewMode('iframe')}
-                className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  viewMode === 'iframe'
-                    ? 'bg-blue-500 text-white'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
-                }`}
-              >
-                <Eye className="h-4 w-4 mr-2" />
-                Live View
-              </button>
-            </div>
+    <>
+      <RightSideDrawer
+        open={isOpen}
+        setOpen={onClose}
+        title={game ? `${game.awayTeam} vs ${game.homeTeam}` : 'Game Details'}
+        size="xl"
+      >
+        <div className="h-full flex flex-col">
+          {/* Content Area */}
+          <div className="flex-1 overflow-hidden">
+            {renderContent()}
           </div>
-        )}
-
-        {/* Content Area */}
-        <div className="flex-1 overflow-hidden">
-          {renderContent()}
         </div>
-      </div>
-    </RightSideDrawer>
+      </RightSideDrawer>
+
+      {/* Advanced Stats Left Side Drawer */}
+      {game && (
+        <LeftSideDrawer
+          open={isAdvancedStatsOpen}
+          setOpen={setIsAdvancedStatsOpen}
+          title="Advanced Stats"
+          size="lg"
+        >
+          <div className="h-full">
+            {game.url ? (
+              <ExternalIframe url={game.url} />
+            ) : (
+              <div className="text-center py-12">
+                <div className="text-gray-500 dark:text-gray-400">
+                  <BarChart3 className="mx-auto h-12 w-12 mb-4" />
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No stats available</h3>
+                  <p>Advanced statistics are not available for this game</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </LeftSideDrawer>
+      )}
+    </>
   );
 };
 

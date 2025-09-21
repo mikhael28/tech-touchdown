@@ -81,7 +81,7 @@ import {
                   leaveTo="-translate-x-full"
                 >
                   <DialogPanel
-                    className={`pointer-events-auto relative w-screen max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl 2xl:max-w-5xl`}
+                    className={`pointer-events-auto relative w-screen max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl`}
                   >
                     {/* Main content */}
                     <div className="flex h-full flex-col bg-white shadow-2xl ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10">
