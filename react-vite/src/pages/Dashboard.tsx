@@ -60,16 +60,19 @@ const Home: React.FC = () => {
   const handleSearch = async (query: string) => {
     if (!query.trim()) return;
 
+    const trimmedQuery = query.trim();
+    const updatedFilters = { ...searchState.filters, query: trimmedQuery };
+
     setSearchState(prev => ({
       ...prev,
       isLoading: true,
       error: null,
-      query: query.trim(),
-      filters: { ...prev.filters, query: query.trim() }
+      query: trimmedQuery,
+      filters: updatedFilters
     }));
 
     try {
-      const response = await exaApi.search(searchState.filters);
+      const response = await exaApi.search(updatedFilters);
       setSearchState(prev => ({
         ...prev,
         isLoading: false,

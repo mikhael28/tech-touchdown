@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { RefreshCw } from 'lucide-react';
 import useSportsData from '../hooks/useSportsData';
 import useJinaAI from '../hooks/useJinaAI';
 import useSportsAI from '../hooks/useSportsAI';
@@ -49,6 +50,7 @@ const Sports = () => {
   const [processingStep, setProcessingStep] = useState<string>('');
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [lastMajorUpdate, setLastMajorUpdate] = useState<string | null>(null);
 
   const handleJinaFetch = async (url: string = 'https://plaintextsports.com/') => {
     const result = await fetchJinaData(url);
@@ -112,6 +114,11 @@ const Sports = () => {
       
       // Save to localStorage
       localStorage.setItem('generatedSportsData', JSON.stringify(sportsData));
+      
+      // Update last major update timestamp
+      const updateTime = new Date().toISOString();
+      setLastMajorUpdate(updateTime);
+      localStorage.setItem('lastMajorUpdate', updateTime);
     }
   };
 
@@ -163,6 +170,12 @@ const Sports = () => {
   // Load from localStorage on component mount and auto-start if no data
   useEffect(() => {
     const savedData = localStorage.getItem('generatedSportsData');
+    const savedLastUpdate = localStorage.getItem('lastMajorUpdate');
+    
+    if (savedLastUpdate) {
+      setLastMajorUpdate(savedLastUpdate);
+    }
+    
     if (savedData) {
       try {
         const parsedData = JSON.parse(savedData);
@@ -170,6 +183,7 @@ const Sports = () => {
       } catch (error) {
         console.error('Error parsing saved sports data:', error);
         localStorage.removeItem('generatedSportsData');
+        localStorage.removeItem('lastMajorUpdate');
         // Start auto process if saved data is corrupted
         startAutoProcess();
       }
@@ -246,21 +260,31 @@ const Sports = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Sports</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">Today's games and scores</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">
+            Today's games and scores
+            {lastMajorUpdate && (
+              <span className="ml-2 text-sm">
+                • Last updated: {new Date(lastMajorUpdate).toLocaleTimeString()}
+              </span>
+            )}
+          </p>
         </div>
         <div className="flex gap-2">
           <button
             onClick={handleRefresh}
             disabled={isRefreshing || jinaLoading || sportsAILoading}
-            className="bg-green-500 hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg font-medium"
+            className="bg-green-500 hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2"
           >
+            <RefreshCw className={`h-4 w-4 ${(isRefreshing || jinaLoading || sportsAILoading) ? 'animate-spin' : ''}`} />
             {isRefreshing ? 'Refreshing...' : 'Refresh All'}
           </button>
           <button
             onClick={refetch}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium"
+            disabled={loading}
+            className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2"
           >
-            Refresh API
+            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+            {loading ? 'Refreshing...' : 'Refresh API'}
           </button>
         </div>
       </div>
@@ -356,19 +380,7 @@ const Sports = () => {
       {/* Show processed sports data if available, otherwise show regular API data */}
       {processedSportsData && processedSportsData.leagues.length > 0 ? (
         <>
-          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-green-900 dark:text-green-200">
-                🏈 AI-Generated Sports Data
-              </h2>
-              <div className="text-sm text-green-700 dark:text-green-300">
-                {processedSportsData.totalGames} games • {processedSportsData.totalLeagues} leagues
-              </div>
-            </div>
-            <div className="text-xs text-green-600 dark:text-green-400 mt-1">
-              Last processed: {new Date(processedSportsData.lastUpdated).toLocaleTimeString()}
-            </div>
-          </div>
+        
           
           {processedSportsData.leagues.map((league: any) => (
             <LeagueSection key={league.name} league={league} onGameClick={handleGameClick} />
@@ -381,7 +393,7 @@ const Sports = () => {
           ))}
 
           <div className="text-center text-sm text-gray-500 dark:text-gray-400 pt-4">
-            Last updated: {new Date(data.lastUpdated).toLocaleTimeString()}
+            Last updated: {lastMajorUpdate ? new Date(lastMajorUpdate).toLocaleTimeString() : 'Unknown'}
           </div>
         </>
       ) : (

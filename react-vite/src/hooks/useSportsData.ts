@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { SportsData, Game, League } from '../types/sports';
+import { useState, useEffect } from "react";
+import { SportsData, Game, League } from "../types/sports";
 
 const useSportsData = () => {
   const [data, setData] = useState<SportsData | null>(null);
@@ -11,10 +11,10 @@ const useSportsData = () => {
       setLoading(true);
       setError(null);
 
-      const response = await fetch('/api/sports');
+      const response = await fetch("/api/sports");
 
       if (!response.ok) {
-        throw new Error('Failed to fetch sports data');
+        throw new Error("Failed to fetch sports data");
       }
 
       const rawData = await response.text();
@@ -22,14 +22,14 @@ const useSportsData = () => {
 
       setData(parsedData);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
   };
 
   const parsePlaintextSports = (rawText: string): SportsData => {
-    const lines = rawText.split('\n').filter(line => line.trim());
+    const lines = rawText.split("\n").filter((line) => line.trim());
     const leagues: League[] = [];
     let currentLeague: League | null = null;
 
@@ -42,7 +42,7 @@ const useSportsData = () => {
         }
         currentLeague = {
           name: trimmedLine,
-          games: []
+          games: [],
         };
       } else if (currentLeague && isGameLine(trimmedLine)) {
         const game = parseGameLine(trimmedLine);
@@ -58,19 +58,21 @@ const useSportsData = () => {
 
     return {
       leagues,
-      lastUpdated: new Date().toISOString()
+      lastUpdated: new Date().toISOString(),
     };
   };
 
   const isLeagueHeader = (line: string): boolean => {
     const leaguePatterns = [
-      /^(MLB|NFL|NBA|NHL|MLS|WNBA|NWSL|Premier League|Champions League|Europa League|NCAA|La Liga|Serie A|Bundesliga)/i
+      /^(MLB|NFL|NBA|NHL|MLS|WNBA|NWSL|Premier League|Champions League|Europa League|NCAA|La Liga|Serie A|Bundesliga)/i,
     ];
-    return leaguePatterns.some(pattern => pattern.test(line));
+    return leaguePatterns.some((pattern) => pattern.test(line));
   };
 
   const isGameLine = (line: string): boolean => {
-    return line.includes(' - ') || line.includes(' vs ') || /\d+.*\d+/.test(line);
+    return (
+      line.includes(" - ") || line.includes(" vs ") || /\d+.*\d+/.test(line)
+    );
   };
 
   const parseGameLine = (line: string): Game | null => {
@@ -84,15 +86,19 @@ const useSportsData = () => {
 
       return {
         id: `${awayTeam}-${homeTeam}-${Date.now()}`,
-        league: '',
-        homeTeam: homeTeam?.trim() || '',
-        awayTeam: awayTeam?.trim() || '',
+        league: "",
+        homeTeam: homeTeam?.trim() || "",
+        awayTeam: awayTeam?.trim() || "",
         homeScore: parseInt(homeScore),
         awayScore: parseInt(awayScore),
         gameStatus: status.trim(),
-        date: new Date().toISOString().split('T')[0],
-        isLive: status.toLowerCase().includes('live') || /\d+(st|nd|rd|th|:)/.test(status),
-        isCompleted: status.toLowerCase().includes('final') || status.toLowerCase().includes('ft')
+        date: new Date().toISOString().split("T")[0],
+        isLive:
+          status.toLowerCase().includes("live") ||
+          /\d+(st|nd|rd|th|:)/.test(status),
+        isCompleted:
+          status.toLowerCase().includes("final") ||
+          status.toLowerCase().includes("ft"),
       };
     }
 
@@ -102,16 +108,16 @@ const useSportsData = () => {
 
       return {
         id: `${awayTeam}-${homeTeam}-${Date.now()}`,
-        league: '',
+        league: "",
         homeTeam: homeTeam.trim(),
         awayTeam: awayTeam.trim(),
         homeScore: null,
         awayScore: null,
-        gameStatus: 'scheduled',
+        gameStatus: "scheduled",
         startTime: time.trim(),
-        date: new Date().toISOString().split('T')[0],
+        date: new Date().toISOString().split("T")[0],
         isLive: false,
-        isCompleted: false
+        isCompleted: false,
       };
     }
 
@@ -120,8 +126,6 @@ const useSportsData = () => {
 
   useEffect(() => {
     fetchSportsData();
-    const interval = setInterval(fetchSportsData, 60000);
-    return () => clearInterval(interval);
   }, []);
 
   return { data, loading, error, refetch: fetchSportsData };
