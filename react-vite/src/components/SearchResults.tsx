@@ -146,13 +146,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchState, onSearch }) 
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          Search Results for "{query}"
+      <div className="flex items-center justify-between px-6">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          {query}
         </h2>
-        <Badge variant="secondary" className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
-          {results.length} result{results.length !== 1 ? 's' : ''}
-        </Badge>
+
       </div>
 
       <div className="space-y-4">

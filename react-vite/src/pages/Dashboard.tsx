@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '../components/ui/card';
 import TeamSelectionModal from '../components/TeamSelectionModal';
 import TechSelectionModal from '../components/TechSelectionModal';
-import FavoriteTeamsBubbles from '../components/FavoriteTeamsBubbles';
-import FavoriteTechBubbles from '../components/FavoriteTechBubbles';
 import SportsSearch from '../components/SportsSearch';
 import TechSearch from '../components/TechSearch';
 import { useFavoriteTeams } from '../hooks/useFavoriteTeams';
@@ -75,38 +73,16 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Header with Favorite Teams and Tech */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="p-6 space-y-6">
-          <FavoriteTeamsBubbles
-            favoriteTeams={favoriteTeams}
-            onRemoveTeam={handleRemoveTeam}
-            onEditTeams={handleEditTeams}
-          />
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-            <FavoriteTechBubbles
-              favoriteTech={favoriteTech}
-              onRemoveTech={handleRemoveTech}
-              onEditTech={handleEditTech}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Side-by-side Search Interfaces */}
-      <div className="flex h-[calc(100vh-200px)]">
+      {/* Side-by-side Search Interfaces with Integrated Bubbles */}
+      <div className="flex h-screen">
         {/* Left Side - Sports News */}
         <div className="flex-1 border-r border-gray-200 dark:border-gray-700 overflow-y-auto bg-white dark:bg-gray-800">
-          <div className="p-6">
-            <SportsSearch />
-          </div>
+          <SportsSearch onEditTeams={handleEditTeams} />
         </div>
 
         {/* Right Side - Tech News */}
         <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-800">
-          <div className="p-6">
-            <TechSearch />
-          </div>
+          <TechSearch onEditTech={handleEditTech} />
         </div>
       </div>
 
