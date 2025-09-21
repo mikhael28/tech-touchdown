@@ -9,8 +9,10 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import fetch from "node-fetch";
 import exaRoutes from "./routes/exa";
 import authRoutes from "./routes/auth";
+import sportsRoutes from "./routes/sports";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -42,23 +44,75 @@ app.get("/health", (req: Request, res: Response) => {
   res.status(200).json({
     status: "healthy",
     timestamp: new Date().toISOString(),
-    version: require("./package.json").version,
+    version: "1.0.0",
   });
+});
+
+// Jina AI endpoint
+app.post("/api/jina", async (req: Request, res: Response) => {
+  try {
+    const { url } = req.body;
+
+    if (!url) {
+      res.status(400).json({
+        error: {
+          message: "URL is required",
+        },
+      });
+      return;
+    }
+
+    const jinaUrl = `https://r.jina.ai/${url}`;
+    const headers = {
+      Authorization:
+        "Bearer jina_c2e1c121a61e4e3ba0032a5abda74edfDb9wTnY7Bp00uewzE__W2uI5VcgG",
+    };
+
+    const response = await fetch(jinaUrl, { headers });
+
+    if (!response.ok) {
+      throw new Error(
+        `Jina AI API error: ${response.status} ${response.statusText}`
+      );
+    }
+
+    const data = await response.text();
+
+    res.status(200).json({
+      success: true,
+      data: data,
+      url: url,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("Jina AI error:", error);
+    res.status(500).json({
+      error: {
+        message:
+          error instanceof Error
+            ? error.message
+            : "Failed to fetch data from Jina AI",
+      },
+    });
+  }
 });
 
 // API Routes
 app.use("/api/exa", exaRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/sports", sportsRoutes);
 
 // Root endpoint
 app.get("/", (req: Request, res: Response) => {
   res.json({
     message: "Tech Touchdown",
-    version: require("./package.json").version,
+    version: "1.0.0",
     endpoints: {
       health: "/health",
       exa: "/api/exa",
       auth: "/api/auth",
+      sports: "/api/sports",
+      jina: "/api/jina",
       scripts: "/api/scripts",
       frontend_example: "/static/frontend-example.html",
     },
@@ -99,6 +153,7 @@ app.listen(PORT, () => {
   console.log(`🚀 Tech Touchdown API Server running on port ${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🔍 Exa AI API: http://localhost:${PORT}/api/exa`);
+  console.log(`🏈 Sports API: http://localhost:${PORT}/api/sports`);
   console.log(`⚙️  Scripts API: http://localhost:${PORT}/api/scripts`);
 
   // Check for required environment variables
