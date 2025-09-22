@@ -68,8 +68,7 @@ app.post("/api/jina", async (req: Request, res: Response) => {
 
     const jinaUrl = `https://r.jina.ai/${url}`;
     const headers = {
-      Authorization:
-        "Bearer jina_c2e1c121a61e4e3ba0032a5abda74edfDb9wTnY7Bp00uewzE__W2uI5VcgG",
+      Authorization: `Bearer ${process.env.JINA_API_KEY}`,
     };
 
     const response = await fetch(jinaUrl, { headers });

@@ -1,11 +1,11 @@
-import { neon } from '@neondatabase/serverless';
+import { neon } from "@neondatabase/serverless";
 
 // Database connection configuration
 let sql: ReturnType<typeof neon> | null = null;
 
 export const getDatabase = () => {
   if (!sql) {
-    const databaseUrl = process.env.NEON_DATABASE_URL || 'postgresql://neondb_owner:npg_7XKli6cfEDJu@ep-lively-paper-adcgi4jl-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
+    const databaseUrl = process.env.NEON_DATABASE_URL!;
 
     sql = neon(databaseUrl);
   }
@@ -20,7 +20,7 @@ export const testConnection = async (): Promise<boolean> => {
     await sql`SELECT 1 as test`;
     return true;
   } catch (error) {
-    console.error('Database connection test failed:', error);
+    console.error("Database connection test failed:", error);
     return false;
   }
 };
@@ -94,10 +94,10 @@ export const initializeDatabase = async (): Promise<boolean> => {
           EXECUTE FUNCTION update_updated_at_column()
     `;
 
-    console.log('✅ Database tables initialized successfully');
+    console.log("✅ Database tables initialized successfully");
     return true;
   } catch (error) {
-    console.error('❌ Database initialization failed:', error);
+    console.error("❌ Database initialization failed:", error);
     return false;
   }
 };
