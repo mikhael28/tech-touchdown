@@ -78,16 +78,16 @@ export const initializeDatabase = async (): Promise<boolean> => {
     `;
 
     // Create triggers
+    await sql`DROP TRIGGER IF EXISTS update_game_rooms_updated_at ON game_rooms`;
     await sql`
-      DROP TRIGGER IF EXISTS update_game_rooms_updated_at ON game_rooms;
       CREATE TRIGGER update_game_rooms_updated_at
           BEFORE UPDATE ON game_rooms
           FOR EACH ROW
           EXECUTE FUNCTION update_updated_at_column()
     `;
 
+    await sql`DROP TRIGGER IF EXISTS update_chat_messages_updated_at ON chat_messages`;
     await sql`
-      DROP TRIGGER IF EXISTS update_chat_messages_updated_at ON chat_messages;
       CREATE TRIGGER update_chat_messages_updated_at
           BEFORE UPDATE ON chat_messages
           FOR EACH ROW
