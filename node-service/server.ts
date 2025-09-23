@@ -25,9 +25,33 @@ const PORT = process.env.PORT || 3001;
 app.use(helmet());
 
 // CORS configuration for React Vite frontend
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://techtouchdown.com.s3-website.us-east-2.amazonaws.com",
+  "https://tech-touchdown.com",
+  "https://d89yc33sek4xi.cloudfront.net", // Add your custom domain if you have one
+];
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      // For development, allow any localhost origin
+      if (
+        process.env.NODE_ENV === "development" &&
+        origin.includes("localhost")
+      ) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
     optionsSuccessStatus: 200,
   })
