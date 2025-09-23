@@ -41,18 +41,31 @@ export class GitHubAuthService {
 
   public async exchangeCodeForToken(code: string): Promise<string> {
     try {
+      console.log("GitHubAuthService - Exchanging code for token");
+      console.log("GitHubAuthService - API_BASE_URL:", API_BASE_URL);
+      console.log(
+        "GitHubAuthService - GITHUB_REDIRECT_URI:",
+        GITHUB_REDIRECT_URI
+      );
+      console.log("GitHubAuthService - Code:", code);
+
       const response = await axios.post(`${API_BASE_URL}/auth/github`, {
         code,
         redirect_uri: GITHUB_REDIRECT_URI,
       });
 
+      console.log("GitHubAuthService - Response:", response.data);
       const { access_token } = response.data;
       this.accessToken = access_token;
       localStorage.setItem("github_access_token", access_token);
 
       return access_token;
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error exchanging code for token:", error);
+      if (error.response) {
+        console.error("Error response data:", error.response.data);
+        console.error("Error response status:", error.response.status);
+      }
       throw new Error("Failed to authenticate with GitHub");
     }
   }

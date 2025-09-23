@@ -15,6 +15,12 @@ const OAuthCallback: React.FC = () => {
     
     const code = searchParams.get('code');
     const errorParam = searchParams.get('error');
+    
+    // Debug logging
+    console.log('OAuthCallback - Full URL:', window.location.href);
+    console.log('OAuthCallback - Search params:', Object.fromEntries(searchParams.entries()));
+    console.log('OAuthCallback - Code:', code);
+    console.log('OAuthCallback - Error param:', errorParam);
 
     if (errorParam) {
       console.error('OAuth error:', errorParam);
@@ -25,16 +31,22 @@ const OAuthCallback: React.FC = () => {
     }
 
     if (code) {
+      console.log('OAuthCallback - Processing code:', code);
       hasProcessed.current = true;
       handleOAuthCallback(code).then(() => {
         // Redirect to dashboard after successful authentication
         navigate('/');
+      }).catch((error) => {
+        console.error('OAuthCallback - Error in handleOAuthCallback:', error);
+        navigate('/login');
       });
     } else {
+      console.log('OAuthCallback - No code parameter found, redirecting to login');
       hasProcessed.current = true;
       // No code parameter, redirect to login
       navigate('/login');
     }
+    // include handleOAuthCallback in the dependency array?
   }, [searchParams, navigate]);
 
   if (error) {

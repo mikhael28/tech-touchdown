@@ -11,117 +11,84 @@ const useSportsData = () => {
       setLoading(true);
       setError(null);
 
-      const response = await fetch("/api/sports");
+      // Step 1: Fetch data from plaintextsports.com using Jina AI
+      const jinaResponse = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/jina`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ url: "https://plaintextsports.com/" }),
+        }
+      );
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch sports data");
+      if (!jinaResponse.ok) {
+        throw new Error("Failed to fetch sports data from Jina AI");
       }
 
-      const rawData = await response.text();
-      const parsedData = parsePlaintextSports(rawData);
+      const jinaData = await jinaResponse.json();
 
-      setData(parsedData);
+      if (!jinaData.success) {
+        throw new Error("Jina AI request failed");
+      }
+
+      // Step 2: Process the data with OpenAI to extract structured sports data
+      const aiResponse = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/sports/generate`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: `Extract and structure sports game information from this web content: ${jinaData.data}`,
+            maxGames: 50,
+            includeCompleted: true,
+            includeScheduled: true,
+            includeLive: true,
+          }),
+        }
+      );
+
+      if (!aiResponse.ok) {
+        throw new Error("Failed to process sports data with AI");
+      }
+
+      const aiData = await aiResponse.json();
+
+      if (!aiData.success) {
+        throw new Error("AI processing failed");
+      }
+
+      // Parse the AI response and structure it as SportsData
+      const gamesArray = JSON.parse(aiData.data);
+
+      // Group games by league
+      const leaguesMap = new Map<string, Game[]>();
+      gamesArray.forEach((game: Game) => {
+        if (!leaguesMap.has(game.league)) {
+          leaguesMap.set(game.league, []);
+        }
+        leaguesMap.get(game.league)!.push(game);
+      });
+
+      const leagues = Array.from(leaguesMap.entries()).map(([name, games]) => ({
+        name,
+        games,
+      }));
+
+      const sportsData: SportsData = {
+        leagues,
+        lastUpdated: new Date().toISOString(),
+      };
+
+      setData(sportsData);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
-  };
-
-  const parsePlaintextSports = (rawText: string): SportsData => {
-    const lines = rawText.split("\n").filter((line) => line.trim());
-    const leagues: League[] = [];
-    let currentLeague: League | null = null;
-
-    for (const line of lines) {
-      const trimmedLine = line.trim();
-
-      if (isLeagueHeader(trimmedLine)) {
-        if (currentLeague) {
-          leagues.push(currentLeague);
-        }
-        currentLeague = {
-          name: trimmedLine,
-          games: [],
-        };
-      } else if (currentLeague && isGameLine(trimmedLine)) {
-        const game = parseGameLine(trimmedLine);
-        if (game) {
-          currentLeague.games.push(game);
-        }
-      }
-    }
-
-    if (currentLeague) {
-      leagues.push(currentLeague);
-    }
-
-    return {
-      leagues,
-      lastUpdated: new Date().toISOString(),
-    };
-  };
-
-  const isLeagueHeader = (line: string): boolean => {
-    const leaguePatterns = [
-      /^(MLB|NFL|NBA|NHL|MLS|WNBA|NWSL|Premier League|Champions League|Europa League|NCAA|La Liga|Serie A|Bundesliga)/i,
-    ];
-    return leaguePatterns.some((pattern) => pattern.test(line));
-  };
-
-  const isGameLine = (line: string): boolean => {
-    return (
-      line.includes(" - ") || line.includes(" vs ") || /\d+.*\d+/.test(line)
-    );
-  };
-
-  const parseGameLine = (line: string): Game | null => {
-    const scorePattern = /(\w+.*?)\s+(\d+)\s*[-–]\s*(\d+)\s+(.*)/;
-    const upcomingPattern = /(.+?)\s+(?:@|vs)\s+(.+?)\s+(.+)/;
-
-    const scoreMatch = line.match(scorePattern);
-    if (scoreMatch) {
-      const [, teams, awayScore, homeScore, status] = scoreMatch;
-      const [awayTeam, homeTeam] = teams.split(/\s+(?:@|vs)\s+/);
-
-      return {
-        id: `${awayTeam}-${homeTeam}-${Date.now()}`,
-        league: "",
-        homeTeam: homeTeam?.trim() || "",
-        awayTeam: awayTeam?.trim() || "",
-        homeScore: parseInt(homeScore),
-        awayScore: parseInt(awayScore),
-        gameStatus: status.trim(),
-        date: new Date().toISOString().split("T")[0],
-        isLive:
-          status.toLowerCase().includes("live") ||
-          /\d+(st|nd|rd|th|:)/.test(status),
-        isCompleted:
-          status.toLowerCase().includes("final") ||
-          status.toLowerCase().includes("ft"),
-      };
-    }
-
-    const upcomingMatch = line.match(upcomingPattern);
-    if (upcomingMatch) {
-      const [, awayTeam, homeTeam, time] = upcomingMatch;
-
-      return {
-        id: `${awayTeam}-${homeTeam}-${Date.now()}`,
-        league: "",
-        homeTeam: homeTeam.trim(),
-        awayTeam: awayTeam.trim(),
-        homeScore: null,
-        awayScore: null,
-        gameStatus: "scheduled",
-        startTime: time.trim(),
-        date: new Date().toISOString().split("T")[0],
-        isLive: false,
-        isCompleted: false,
-      };
-    }
-
-    return null;
   };
 
   useEffect(() => {

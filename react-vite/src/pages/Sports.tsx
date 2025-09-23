@@ -54,6 +54,7 @@ const Sports = () => {
 
   const handleJinaFetch = async (url: string = 'https://plaintextsports.com/') => {
     const result = await fetchJinaData(url);
+    console.log('result', result);
     if (result) {
       const cleanedData = cleanSportsContent(result.data);
       setJinaData(cleanedData);
@@ -128,12 +129,16 @@ const Sports = () => {
     try {
       // Re-run Jina fetch
       const cleanedData = await handleJinaFetch();
+      console.log('cleanedData', cleanedData);
       // Re-run AI processing if we have Jina data
       if (cleanedData) {
         setProcessingStep('Processing with AI...');
         await handleProcessWithAI(cleanedData);
       }
-    } finally {
+    } catch(e) {
+      console.error('handleRefresh error:', e);
+    }
+      finally {
       setIsRefreshing(false);
       setProcessingStep('');
     }
@@ -235,7 +240,7 @@ const Sports = () => {
             </div>
             <div className="ml-3">
               <h3 className="text-sm font-medium text-red-800 dark:text-red-200">
-                Error loading sports data
+                Error loading sports data {error}
               </h3>
               <div className="mt-2 text-sm text-red-700 dark:text-red-300">
                 {error}

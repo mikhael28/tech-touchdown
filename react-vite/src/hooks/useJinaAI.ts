@@ -23,6 +23,8 @@ const useJinaAI = () => {
         setLoading(true);
         setError(null);
 
+        console.log("fetchJinaData url", url);
+
         const response = await fetch(
           `${import.meta.env.VITE_API_BASE_URL}/jina`,
           {
@@ -33,6 +35,7 @@ const useJinaAI = () => {
             body: JSON.stringify({ url }),
           }
         );
+        console.log("fetchJinaData response", response);
 
         if (!response.ok) {
           const errorData: JinaError = await response.json();
@@ -42,10 +45,12 @@ const useJinaAI = () => {
         const data: JinaResponse = await response.json();
         return data;
       } catch (err) {
+        console.log(err);
         const errorMessage =
           err instanceof Error
             ? err.message
             : "Failed to fetch data from Jina AI";
+        console.error("fetchJinaData error", errorMessage);
         setError(errorMessage);
         return null;
       } finally {
