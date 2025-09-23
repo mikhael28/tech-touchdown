@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent } from '../components/ui/card';
 import TeamSelectionModal from '../components/TeamSelectionModal';
 import TechSelectionModal from '../components/TechSelectionModal';
 import SportsSearch from '../components/SportsSearch';
 import TechSearch from '../components/TechSearch';
-import { useFavoriteTeams } from '../hooks/useFavoriteTeams';
-import { useFavoriteTech } from '../hooks/useFavoriteTech';
+import { useFavoriteTeams, FavoriteTeams } from '../hooks/useFavoriteTeams';
+import { useFavoriteTech, FavoriteTech } from '../hooks/useFavoriteTech';
 
 const Home: React.FC = () => {
   const [showTeamModal, setShowTeamModal] = useState(false);
@@ -17,6 +17,7 @@ const Home: React.FC = () => {
     isLoading: teamsLoading,
     saveFavoriteTeams,
     markQuestionnaireCompleted,
+    saveFavoriteTeamsAndComplete,
     removeTeam,
   } = useFavoriteTeams();
 
@@ -26,34 +27,33 @@ const Home: React.FC = () => {
     isLoading: techLoading,
     saveFavoriteTech,
     markQuestionnaireCompleted: markTechQuestionnaireCompleted,
+    saveFavoriteTechAndComplete,
     removeTech,
   } = useFavoriteTech();
 
   // Show team selection modal if questionnaire not completed
   useEffect(() => {
-    if (!teamsLoading && !isQuestionnaireCompleted) {
+    if (!teamsLoading && !isQuestionnaireCompleted && !showTechModal) {
       setShowTeamModal(true);
     }
-  }, [teamsLoading, isQuestionnaireCompleted]);
+  }, [teamsLoading, isQuestionnaireCompleted, showTechModal]);
 
-  // Show tech selection modal if questionnaire not completed
+  // Show tech selection modal if questionnaire not completed (only after team questionnaire is done)
   useEffect(() => {
-    if (!techLoading && !isTechQuestionnaireCompleted) {
+    if (!techLoading && !isTechQuestionnaireCompleted && isQuestionnaireCompleted && !showTeamModal) {
       setShowTechModal(true);
     }
-  }, [techLoading, isTechQuestionnaireCompleted]);
+  }, [techLoading, isTechQuestionnaireCompleted, isQuestionnaireCompleted, showTeamModal]);
 
-  const handleTeamSelectionComplete = (teams: any) => {
-    saveFavoriteTeams(teams);
-    markQuestionnaireCompleted();
+  const handleTeamSelectionComplete = useCallback((teams: any) => {
+    saveFavoriteTeamsAndComplete(teams);
     setShowTeamModal(false);
-  };
+  }, [saveFavoriteTeamsAndComplete]);
 
-  const handleTechSelectionComplete = (tech: any) => {
-    saveFavoriteTech(tech);
-    markTechQuestionnaireCompleted();
+  const handleTechSelectionComplete = useCallback((tech: any) => {
+    saveFavoriteTechAndComplete(tech);
     setShowTechModal(false);
-  };
+  }, [saveFavoriteTechAndComplete]);
 
   const handleEditTeams = () => {
     setShowTeamModal(true);
@@ -77,12 +77,20 @@ const Home: React.FC = () => {
       <div className="flex h-screen">
         {/* Left Side - Sports News */}
         <div className="flex-1 border-r border-gray-200 dark:border-gray-700 overflow-y-auto bg-white dark:bg-gray-800">
-          <SportsSearch onEditTeams={handleEditTeams} />
+          <SportsSearch 
+            onEditTeams={handleEditTeams}
+            favoriteTeams={favoriteTeams}
+            onRemoveTeam={handleRemoveTeam}
+          />
         </div>
 
         {/* Right Side - Tech News */}
         <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-800">
-          <TechSearch onEditTech={handleEditTech} />
+          <TechSearch 
+            onEditTech={handleEditTech}
+            favoriteTech={favoriteTech}
+            onRemoveTech={handleRemoveTech}
+          />
         </div>
       </div>
 

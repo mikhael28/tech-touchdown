@@ -65,6 +65,20 @@ export const useFavoriteTech = () => {
     }
   };
 
+  const saveFavoriteTechAndComplete = (tech: FavoriteTech) => {
+    try {
+      setFavoriteTech(tech);
+      setIsQuestionnaireCompleted(true);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tech));
+      localStorage.setItem(QUESTIONNAIRE_COMPLETED_KEY, JSON.stringify(true));
+    } catch (error) {
+      console.error(
+        "Error saving favorite tech and marking questionnaire as completed:",
+        error
+      );
+    }
+  };
+
   const removeTech = (category: keyof FavoriteTech, itemShortName: string) => {
     const updatedTech = {
       ...favoriteTech,
@@ -92,6 +106,7 @@ export const useFavoriteTech = () => {
     isLoading,
     saveFavoriteTech,
     markQuestionnaireCompleted,
+    saveFavoriteTechAndComplete,
     removeTech,
     resetQuestionnaire,
   };

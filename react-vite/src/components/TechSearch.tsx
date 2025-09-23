@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import SearchInterface from './SearchInterface';
 import FavoriteTechBubbles from './FavoriteTechBubbles';
-import { useFavoriteTech } from '../hooks/useFavoriteTech';
 import { programmingLanguages, techStacks, industries, companies } from '../data/tech';
 
 interface FavoriteTech {
@@ -13,19 +12,12 @@ interface FavoriteTech {
 
 interface TechSearchProps {
   onEditTech: () => void;
+  favoriteTech: FavoriteTech;
+  onRemoveTech: (category: keyof FavoriteTech, itemShortName: string) => void;
 }
 
-const TechSearch: React.FC<TechSearchProps> = ({ onEditTech }) => {
-  const {
-    favoriteTech,
-    removeTech,
-  } = useFavoriteTech();
-
+const TechSearch: React.FC<TechSearchProps> = ({ onEditTech, favoriteTech, onRemoveTech }) => {
   const [searchQuery, setSearchQuery] = useState('');
-
-  const handleRemoveTech = (category: keyof FavoriteTech, itemShortName: string) => {
-    removeTech(category, itemShortName);
-  };
 
   // Tech item click handler
   const handleTechItemClick = (category: keyof FavoriteTech, itemShortName: string) => {
@@ -53,7 +45,7 @@ const TechSearch: React.FC<TechSearchProps> = ({ onEditTech }) => {
       <div className="p-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
         <FavoriteTechBubbles
           favoriteTech={favoriteTech}
-          onRemoveTech={handleRemoveTech}
+          onRemoveTech={onRemoveTech}
           onEditTech={onEditTech}
           onTechItemClick={handleTechItemClick}
         />

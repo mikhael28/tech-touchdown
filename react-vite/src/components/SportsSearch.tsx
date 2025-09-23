@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import SearchInterface from './SearchInterface';
 import FavoriteTeamsBubbles from './FavoriteTeamsBubbles';
-import { useFavoriteTeams } from '../hooks/useFavoriteTeams';
 import { nfl, nba, mlb, nhl } from '../data/teams';
 
 interface FavoriteTeams {
@@ -13,19 +12,12 @@ interface FavoriteTeams {
 
 interface SportsSearchProps {
   onEditTeams: () => void;
+  favoriteTeams: FavoriteTeams;
+  onRemoveTeam: (sport: keyof FavoriteTeams, teamShortName: string) => void;
 }
 
-const SportsSearch: React.FC<SportsSearchProps> = ({ onEditTeams }) => {
-  const {
-    favoriteTeams,
-    removeTeam,
-  } = useFavoriteTeams();
-
+const SportsSearch: React.FC<SportsSearchProps> = ({ onEditTeams, favoriteTeams, onRemoveTeam }) => {
   const [searchQuery, setSearchQuery] = useState('');
-
-  const handleRemoveTeam = (sport: keyof FavoriteTeams, teamShortName: string) => {
-    removeTeam(sport, teamShortName);
-  };
 
   // Team item click handler
   const handleTeamItemClick = (sport: keyof FavoriteTeams, teamShortName: string) => {
@@ -53,7 +45,7 @@ const SportsSearch: React.FC<SportsSearchProps> = ({ onEditTeams }) => {
       <div className="p-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
         <FavoriteTeamsBubbles
           favoriteTeams={favoriteTeams}
-          onRemoveTeam={handleRemoveTeam}
+          onRemoveTeam={onRemoveTeam}
           onEditTeams={onEditTeams}
           onTeamItemClick={handleTeamItemClick}
         />

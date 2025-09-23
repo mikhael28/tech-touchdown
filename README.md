@@ -12,6 +12,14 @@ The repository for the code implemented during the CascadiaJS Hackathon.
 - Run dev server with `npm run dev`
 - Build bundle with `npm run build`
 
+## Screenshots
+
+<div align="center">
+  <img src="react-vite/public/tech-touchdown-1.png" alt="Tech Touchdown Screenshot 1" width="300" />
+  <img src="react-vite/public/tech-touchdown-2.png" alt="Tech Touchdown Screenshot 2" width="300" />
+  <img src="react-vite/public/tech-touchdown-3.png" alt="Tech Touchdown Screenshot 3" width="300" />
+</div>
+
 `node-service` - Express.js HTTP server, using TypeScript. Includes EXA API & Jina AI integration for sourcing internet data, Neon Serverless Postgres for chatrooms, Twilio for WebRTC audio chat rooms & OpenAI for massaging Markdown into usable JSON.
 
 - Install with `npm install`

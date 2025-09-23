@@ -25,11 +25,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       href: "/sports",
       icon: Trophy,
     },
-    {
-      name: "Fantasy League",
-      href: "/fantasy",
-      icon: Zap,
-    },
+    // {
+    //   name: "Fantasy League",
+    //   href: "/fantasy",
+    //   icon: Zap,
+    // },
     {
       name: "Slideshow",
       href: "/slideshow",

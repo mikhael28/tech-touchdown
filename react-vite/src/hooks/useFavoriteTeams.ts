@@ -65,6 +65,20 @@ export const useFavoriteTeams = () => {
     }
   };
 
+  const saveFavoriteTeamsAndComplete = (teams: FavoriteTeams) => {
+    try {
+      setFavoriteTeams(teams);
+      setIsQuestionnaireCompleted(true);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(teams));
+      localStorage.setItem(QUESTIONNAIRE_COMPLETED_KEY, JSON.stringify(true));
+    } catch (error) {
+      console.error(
+        "Error saving favorite teams and marking questionnaire as completed:",
+        error
+      );
+    }
+  };
+
   const removeTeam = (sport: keyof FavoriteTeams, teamShortName: string) => {
     const updatedTeams = {
       ...favoriteTeams,
@@ -90,6 +104,7 @@ export const useFavoriteTeams = () => {
     isLoading,
     saveFavoriteTeams,
     markQuestionnaireCompleted,
+    saveFavoriteTeamsAndComplete,
     removeTeam,
     resetQuestionnaire,
   };
