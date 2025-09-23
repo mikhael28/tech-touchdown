@@ -24,13 +24,16 @@ const useGameProcessor = () => {
         setLoading(true);
         setError(null);
 
-        const response = await fetch("http://localhost:3001/api/game/process", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ gameId, url }),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/game/process`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ gameId, url }),
+          }
+        );
 
         if (!response.ok) {
           const errorData: ProcessGameError = await response.json();

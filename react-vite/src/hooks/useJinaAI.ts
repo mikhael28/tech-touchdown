@@ -23,13 +23,16 @@ const useJinaAI = () => {
         setLoading(true);
         setError(null);
 
-        const response = await fetch("http://localhost:3001/api/jina", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ url }),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/jina`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ url }),
+          }
+        );
 
         if (!response.ok) {
           const errorData: JinaError = await response.json();

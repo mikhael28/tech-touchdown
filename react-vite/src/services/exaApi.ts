@@ -7,7 +7,7 @@ import {
   SearchFilters,
 } from "../types/exa";
 
-const API_BASE_URL = "http://localhost:3001/api/exa";
+const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/exa`;
 
 class ExaApiService {
   private async makeRequest<T>(

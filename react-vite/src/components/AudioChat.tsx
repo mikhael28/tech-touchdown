@@ -86,8 +86,8 @@ const AudioChat: React.FC<AudioChatProps> = ({
         console.log('🚀 Initializing new Twilio Device for user:', user.login);
 
         // Get access token from backend
-        const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
-        const tokenUrl = `${backendUrl}/api/twilio/access-token`;
+        const backendUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+        const tokenUrl = `${backendUrl}/twilio/access-token`;
         console.log('🔗 Requesting access token from:', tokenUrl);
 
         const response = await fetch(tokenUrl, {

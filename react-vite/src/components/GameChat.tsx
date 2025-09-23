@@ -83,7 +83,7 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
   ];
 
   // API URL from environment or default to localhost
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
 
   // Load messages when component mounts
   useEffect(() => {
@@ -94,7 +94,7 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/chat/games/${gameId}/messages?awayTeam=${encodeURIComponent(awayTeam)}&homeTeam=${encodeURIComponent(homeTeam)}`,
+        `${API_BASE_URL}/chat/games/${gameId}/messages?awayTeam=${encodeURIComponent(awayTeam)}&homeTeam=${encodeURIComponent(homeTeam)}`,
         {
           method: 'GET',
           headers: {
@@ -149,7 +149,7 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
 
       try {
         const response = await fetch(
-          `${API_BASE_URL}/api/chat/games/${gameId}/messages`,
+          `${API_BASE_URL}/chat/games/${gameId}/messages`,
           {
             method: 'POST',
             headers: {

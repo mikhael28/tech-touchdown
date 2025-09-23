@@ -1,13 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Highlight.js theme for code blocks */
+/* Highlight.js theme for code blocks - imports must come first */
 @import 'highlight.js/styles/github.css';
 
 @media (prefers-color-scheme: dark) {
   @import 'highlight.js/styles/github-dark.css';
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {

@@ -1,6 +1,18 @@
 # Tech Touchdown
 
-A modern sports media & tech media website where you can get the latest news from the sports world and software/startup ecosystem. Built with React, TypeScript, and Tailwind CSS.
+**Hacker News + Bleacher Report for Software Engineers**
+
+The ultimate platform for software engineers who are sports fans. Get the latest tech news, startup insights, and sports coverage in one place. Built by developers, for developers.
+
+Built with React, TypeScript, and Tailwind CSS.
+
+## Screenshots
+
+<div align="center">
+  <img src="public/tech-touchdown-1.png" alt="Tech Touchdown Screenshot 1" width="300" />
+  <img src="public/tech-touchdown-2.png" alt="Tech Touchdown Screenshot 2" width="300" />
+  <img src="public/tech-touchdown-3.png" alt="Tech Touchdown Screenshot 3" width="300" />
+</div>
 
 ## Features
 

@@ -1,0 +1,101 @@
+{
+    "name": "Tech Touchdown - Hacker News + Bleacher Report for Software Engineers",
+    "short_name": "Tech Touchdown",
+    "description": "The ultimate platform for software engineers who are sports fans. Get the latest tech news, startup insights, and sports coverage in one place. Built by developers, for developers.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f9fafb",
+    "theme_color": "#1f2937",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "en",
+    "categories": [
+        "news",
+        "sports",
+        "technology",
+        "productivity"
+    ],
+    "icons": [
+        {
+            "src": "/tech-touchdown-1.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/tech-touchdown-2.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/tech-touchdown-3.png",
+            "sizes": "1024x1024",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/tech-touchdown-1.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Tech Touchdown Dashboard"
+        },
+        {
+            "src": "/tech-touchdown-2.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Sports Coverage"
+        },
+        {
+            "src": "/tech-touchdown-3.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Tech & Startup News"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Sports News",
+            "short_name": "Sports",
+            "description": "Latest sports news and analysis",
+            "url": "/sports",
+            "icons": [
+                {
+                    "src": "/tech-touchdown-2.png",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "Tech News",
+            "short_name": "Tech",
+            "description": "Latest tech and startup news",
+            "url": "/",
+            "icons": [
+                {
+                    "src": "/tech-touchdown-3.png",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "Fantasy League",
+            "short_name": "Fantasy",
+            "description": "Developer fantasy sports league",
+            "url": "/fantasy",
+            "icons": [
+                {
+                    "src": "/tech-touchdown-1.png",
+                    "sizes": "96x96"
+                }
+            ]
+        }
+    ],
+    "related_applications": [],
+    "prefer_related_applications": false
+}

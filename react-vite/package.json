@@ -1,7 +1,23 @@
 {
   "name": "tech-touchdown",
   "version": "1.0.0",
-  "description": "A sports media & tech media website where you can get the latest news from the sports world and software/startup ecosystem",
+  "description": "Tech Touchdown - Hacker News + Bleacher Report for Software Engineers. The ultimate platform for software engineers who are sports fans. Get the latest tech news, startup insights, and sports coverage in one place.",
+  "keywords": [
+    "tech news",
+    "sports news",
+    "software engineers",
+    "developers",
+    "startups",
+    "programming",
+    "sports",
+    "tech community",
+    "developer news",
+    "sports tech",
+    "hacker news",
+    "bleacher report"
+  ],
+  "author": "Tech Touchdown Team",
+  "homepage": "https://tech-touchdown.com",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -20,12 +36,10 @@
     "clsx": "^2.1.1",
     "highlight.js": "^11.11.1",
     "lucide-react": "^0.525.0",
+    "marked": "^16.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.7.0",
-    "rehype-highlight": "^7.0.2",
-    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7"
   },

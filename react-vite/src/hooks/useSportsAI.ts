@@ -44,7 +44,7 @@ const useSportsAI = () => {
       console.log(request);
 
       const response = await fetch(
-        "http://localhost:3001/api/sports/generate",
+        `${import.meta.env.VITE_API_BASE_URL}/sports/generate`,
         {
           method: "POST",
           headers: {
