@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 import {
   Mic,
   Square,
@@ -16,21 +16,24 @@ import {
   Edit2,
   Check,
   X,
-} from 'lucide-react';
-import { Button } from '../components/ui/button';
-import Soundboard from '../components/Soundboard';
-import { audioStorage, AudioRecording } from '../services/audioStorage';
-import { AudioMixer, SoundEffect } from '../services/audioMixer';
+  FileText,
+} from "lucide-react";
+import { Button } from "../components/ui/button";
+import Soundboard from "../components/Soundboard";
+import { audioStorage, AudioRecording } from "../services/audioStorage";
+import { AudioMixer, SoundEffect } from "../services/audioMixer";
 import {
   convertBlobToMP3,
   downloadBlob,
   formatFileSize,
   formatDuration,
   EncodingProgress,
-} from '../lib/audioEncoder';
-import WaveSurfer from 'wavesurfer.js';
+} from "../lib/audioEncoder";
+import WaveSurfer from "wavesurfer.js";
+import RightSideDrawer from "../components/RightSideDrawer";
+import ShowPlanningModule from "../components/ShowPlanningModule";
 
-type RecordingState = 'idle' | 'recording' | 'paused' | 'stopped';
+type RecordingState = "idle" | "recording" | "paused" | "stopped";
 
 interface Region {
   start: number;
@@ -40,7 +43,7 @@ interface Region {
 
 const PodcastRecording = () => {
   // Recording state
-  const [recordingState, setRecordingState] = useState<RecordingState>('idle');
+  const [recordingState, setRecordingState] = useState<RecordingState>("idle");
   const [recordingTime, setRecordingTime] = useState(0);
   const [recordedBlob, setRecordedBlob] = useState<Blob | null>(null);
 
@@ -49,18 +52,24 @@ const PodcastRecording = () => {
   const [storageSize, setStorageSize] = useState(0);
 
   // Audio editor state
-  const [selectedRecording, setSelectedRecording] = useState<AudioRecording | null>(null);
+  const [selectedRecording, setSelectedRecording] =
+    useState<AudioRecording | null>(null);
   const [isExporting, setIsExporting] = useState(false);
-  const [exportProgress, setExportProgress] = useState<EncodingProgress | null>(null);
+  const [exportProgress, setExportProgress] = useState<EncodingProgress | null>(
+    null
+  );
 
   // Edit mode
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [editingName, setEditingName] = useState('');
+  const [editingName, setEditingName] = useState("");
 
   // Slicing state
   const [sliceMode, setSliceMode] = useState(false);
   const [sliceStart, setSliceStart] = useState<number | null>(null);
   const [sliceEnd, setSliceEnd] = useState<number | null>(null);
+
+  // Show planning drawer
+  const [showPlanningDrawer, setShowPlanningDrawer] = useState(false);
 
   // Refs
   const audioMixerRef = useRef<AudioMixer | null>(null);
@@ -89,7 +98,7 @@ const PodcastRecording = () => {
       await audioStorage.init();
       await loadRecordings();
     } catch (error) {
-      console.error('Failed to initialize storage:', error);
+      console.error("Failed to initialize storage:", error);
     }
   };
 
@@ -100,7 +109,7 @@ const PodcastRecording = () => {
       const size = await audioStorage.getStorageSize();
       setStorageSize(size);
     } catch (error) {
-      console.error('Failed to load recordings:', error);
+      console.error("Failed to load recordings:", error);
     }
   };
 
@@ -113,9 +122,9 @@ const PodcastRecording = () => {
 
       wavesurferRef.current = WaveSurfer.create({
         container: waveformRef.current,
-        waveColor: '#a855f7',
-        progressColor: '#7c3aed',
-        cursorColor: '#7c3aed',
+        waveColor: "#a855f7",
+        progressColor: "#7c3aed",
+        cursorColor: "#7c3aed",
         barWidth: 2,
         barRadius: 3,
         height: 100,
@@ -141,9 +150,9 @@ const PodcastRecording = () => {
 
       editorWavesurferRef.current = WaveSurfer.create({
         container: editorWaveformRef.current,
-        waveColor: '#3b82f6',
-        progressColor: '#1d4ed8',
-        cursorColor: '#1d4ed8',
+        waveColor: "#3b82f6",
+        progressColor: "#1d4ed8",
+        cursorColor: "#1d4ed8",
         barWidth: 2,
         barRadius: 3,
         height: 120,
@@ -153,7 +162,7 @@ const PodcastRecording = () => {
       editorWavesurferRef.current.load(url);
 
       // Add regions plugin support for slicing
-      editorWavesurferRef.current.on('ready', () => {
+      editorWavesurferRef.current.on("ready", () => {
         // Waveform is ready
       });
     }
@@ -167,7 +176,7 @@ const PodcastRecording = () => {
 
   // Recording timer
   useEffect(() => {
-    if (recordingState === 'recording') {
+    if (recordingState === "recording") {
       timerRef.current = window.setInterval(() => {
         setRecordingTime((prev) => prev + 1);
       }, 1000);
@@ -193,7 +202,7 @@ const PodcastRecording = () => {
 
       // Create media recorder with the mixed stream
       const mediaRecorder = new MediaRecorder(mixedStream, {
-        mimeType: 'audio/webm;codecs=opus',
+        mimeType: "audio/webm;codecs=opus",
       });
 
       audioChunksRef.current = [];
@@ -205,7 +214,7 @@ const PodcastRecording = () => {
       };
 
       mediaRecorder.onstop = () => {
-        const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+        const blob = new Blob(audioChunksRef.current, { type: "audio/webm" });
         setRecordedBlob(blob);
 
         // Cleanup mixer
@@ -217,11 +226,11 @@ const PodcastRecording = () => {
 
       mediaRecorder.start(1000); // Collect data every second
       mediaRecorderRef.current = mediaRecorder;
-      setRecordingState('recording');
+      setRecordingState("recording");
       setRecordingTime(0);
     } catch (error) {
-      console.error('Failed to start recording:', error);
-      alert('Failed to access microphone. Please check permissions.');
+      console.error("Failed to start recording:", error);
+      alert("Failed to access microphone. Please check permissions.");
 
       // Cleanup on error
       if (audioMixerRef.current) {
@@ -232,23 +241,23 @@ const PodcastRecording = () => {
   };
 
   const pauseRecording = () => {
-    if (mediaRecorderRef.current && recordingState === 'recording') {
+    if (mediaRecorderRef.current && recordingState === "recording") {
       mediaRecorderRef.current.pause();
-      setRecordingState('paused');
+      setRecordingState("paused");
     }
   };
 
   const resumeRecording = () => {
-    if (mediaRecorderRef.current && recordingState === 'paused') {
+    if (mediaRecorderRef.current && recordingState === "paused") {
       mediaRecorderRef.current.resume();
-      setRecordingState('recording');
+      setRecordingState("recording");
     }
   };
 
   const stopRecording = () => {
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
-      setRecordingState('stopped');
+      setRecordingState("stopped");
     }
   };
 
@@ -276,16 +285,16 @@ const PodcastRecording = () => {
       await loadRecordings();
       setRecordedBlob(null);
       setRecordingTime(0);
-      setRecordingState('idle');
-      alert('Recording saved successfully!');
+      setRecordingState("idle");
+      alert("Recording saved successfully!");
     } catch (error) {
-      console.error('Failed to save recording:', error);
-      alert('Failed to save recording');
+      console.error("Failed to save recording:", error);
+      alert("Failed to save recording");
     }
   };
 
   const deleteRecording = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this recording?')) return;
+    if (!confirm("Are you sure you want to delete this recording?")) return;
 
     try {
       await audioStorage.deleteRecording(id);
@@ -294,23 +303,23 @@ const PodcastRecording = () => {
         setSelectedRecording(null);
       }
     } catch (error) {
-      console.error('Failed to delete recording:', error);
+      console.error("Failed to delete recording:", error);
     }
   };
 
   const exportAsMP3 = async (recording: AudioRecording) => {
     setIsExporting(true);
-    setExportProgress({ percent: 0, stage: 'Starting...' });
+    setExportProgress({ percent: 0, stage: "Starting..." });
 
     try {
       const mp3Blob = await convertBlobToMP3(recording.blob, setExportProgress);
-      const filename = `${recording.name.replace(/[^a-z0-9]/gi, '_')}.mp3`;
+      const filename = `${recording.name.replace(/[^a-z0-9]/gi, "_")}.mp3`;
       downloadBlob(mp3Blob, filename);
       setIsExporting(false);
       setExportProgress(null);
     } catch (error) {
-      console.error('Failed to export MP3:', error);
-      alert('Failed to export MP3');
+      console.error("Failed to export MP3:", error);
+      alert("Failed to export MP3");
       setIsExporting(false);
       setExportProgress(null);
     }
@@ -328,23 +337,23 @@ const PodcastRecording = () => {
       await audioStorage.updateRecording(editingId, { name: editingName });
       await loadRecordings();
       setEditingId(null);
-      setEditingName('');
+      setEditingName("");
     } catch (error) {
-      console.error('Failed to rename recording:', error);
+      console.error("Failed to rename recording:", error);
     }
   };
 
   const cancelRename = () => {
     setEditingId(null);
-    setEditingName('');
+    setEditingName("");
   };
 
-  const setSliceMarker = (type: 'start' | 'end') => {
+  const setSliceMarker = (type: "start" | "end") => {
     if (!editorWavesurferRef.current) return;
 
     const currentTime = editorWavesurferRef.current.getCurrentTime();
 
-    if (type === 'start') {
+    if (type === "start") {
       setSliceStart(currentTime);
     } else {
       setSliceEnd(currentTime);
@@ -360,35 +369,42 @@ const PodcastRecording = () => {
     if (!selectedRecording || sliceStart === null || sliceEnd === null) return;
 
     if (sliceStart >= sliceEnd) {
-      alert('Start time must be before end time');
+      alert("Start time must be before end time");
       return;
     }
 
     setIsExporting(true);
-    setExportProgress({ percent: 0, stage: 'Preparing slice...' });
+    setExportProgress({ percent: 0, stage: "Preparing slice..." });
 
     try {
-      // For simplicity, we'll export the whole recording
-      // In a production app, you'd actually slice the audio buffer
-      const mp3Blob = await convertBlobToMP3(selectedRecording.blob, setExportProgress);
-      const filename = `${selectedRecording.name.replace(/[^a-z0-9]/gi, '_')}_slice_${sliceStart.toFixed(2)}-${sliceEnd.toFixed(2)}.mp3`;
+      // Actually slice the audio before converting to MP3
+      const mp3Blob = await convertBlobToMP3(
+        selectedRecording.blob,
+        setExportProgress,
+        sliceStart,
+        sliceEnd
+      );
+      const filename = `${selectedRecording.name.replace(
+        /[^a-z0-9]/gi,
+        "_"
+      )}_slice_${sliceStart.toFixed(2)}-${sliceEnd.toFixed(2)}.mp3`;
       downloadBlob(mp3Blob, filename);
       setIsExporting(false);
       setExportProgress(null);
       clearSliceMarkers();
     } catch (error) {
-      console.error('Failed to export slice:', error);
-      alert('Failed to export slice');
+      console.error("Failed to export slice:", error);
+      alert("Failed to export slice");
       setIsExporting(false);
       setExportProgress(null);
     }
   };
 
   const discardRecording = () => {
-    if (confirm('Are you sure you want to discard this recording?')) {
+    if (confirm("Are you sure you want to discard this recording?")) {
       setRecordedBlob(null);
       setRecordingTime(0);
-      setRecordingState('idle');
+      setRecordingState("idle");
     }
   };
 
@@ -404,13 +420,23 @@ const PodcastRecording = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Podcast Studio</h1>
-          <p className="text-muted-foreground">Record, edit, and export your podcast episodes</p>
+          <p className="text-muted-foreground">
+            Record, edit, and export your podcast episodes
+          </p>
         </div>
         <div className="flex items-center space-x-4 text-sm text-muted-foreground">
           <div className="flex items-center space-x-2">
             <HardDrive className="h-4 w-4" />
             <span>{formatFileSize(storageSize)} used</span>
           </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowPlanningDrawer(true)}
+          >
+            <FileText className="mr-2 h-4 w-4" />
+            Show Notes
+          </Button>
           <Button variant="outline" size="sm" onClick={loadRecordings}>
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
@@ -422,7 +448,7 @@ const PodcastRecording = () => {
       <div className="rounded-lg border bg-card p-6">
         <Soundboard
           onPlaySound={handlePlaySound}
-          disabled={recordingState !== 'recording'}
+          disabled={recordingState !== "recording"}
         />
       </div>
 
@@ -434,8 +460,10 @@ const PodcastRecording = () => {
         <div className="mb-4 flex items-center justify-center">
           <div className="flex items-center space-x-3">
             <Clock className="h-6 w-6 text-muted-foreground" />
-            <span className="text-4xl font-mono font-bold">{formatDuration(recordingTime)}</span>
-            {recordingState === 'recording' && (
+            <span className="font-mono text-4xl font-bold">
+              {formatDuration(recordingTime)}
+            </span>
+            {recordingState === "recording" && (
               <span className="flex h-3 w-3">
                 <span className="absolute inline-flex h-3 w-3 animate-ping rounded-full bg-red-400 opacity-75"></span>
                 <span className="relative inline-flex h-3 w-3 rounded-full bg-red-500"></span>
@@ -446,14 +474,18 @@ const PodcastRecording = () => {
 
         {/* Recording Controls */}
         <div className="flex items-center justify-center space-x-3">
-          {recordingState === 'idle' && (
-            <Button onClick={startRecording} size="lg" className="bg-red-500 hover:bg-red-600">
+          {recordingState === "idle" && (
+            <Button
+              onClick={startRecording}
+              size="lg"
+              className="bg-red-500 hover:bg-red-600"
+            >
               <Mic className="mr-2 h-5 w-5" />
               Start Recording
             </Button>
           )}
 
-          {recordingState === 'recording' && (
+          {recordingState === "recording" && (
             <>
               <Button onClick={pauseRecording} variant="outline" size="lg">
                 <Pause className="mr-2 h-5 w-5" />
@@ -466,7 +498,7 @@ const PodcastRecording = () => {
             </>
           )}
 
-          {recordingState === 'paused' && (
+          {recordingState === "paused" && (
             <>
               <Button onClick={resumeRecording} size="lg">
                 <Play className="mr-2 h-5 w-5" />
@@ -479,9 +511,13 @@ const PodcastRecording = () => {
             </>
           )}
 
-          {recordingState === 'stopped' && recordedBlob && (
+          {recordingState === "stopped" && recordedBlob && (
             <>
-              <Button onClick={saveRecording} size="lg" className="bg-green-500 hover:bg-green-600">
+              <Button
+                onClick={saveRecording}
+                size="lg"
+                className="bg-green-500 hover:bg-green-600"
+              >
                 <Save className="mr-2 h-5 w-5" />
                 Save Recording
               </Button>
@@ -496,21 +532,30 @@ const PodcastRecording = () => {
         {/* Live Waveform */}
         {recordedBlob && (
           <div className="mt-6">
-            <h3 className="mb-2 text-sm font-medium text-muted-foreground">Recorded Audio</h3>
-            <div ref={waveformRef} className="rounded border bg-background p-2"></div>
+            <h3 className="mb-2 text-sm font-medium text-muted-foreground">
+              Recorded Audio
+            </h3>
+            <div
+              ref={waveformRef}
+              className="rounded border bg-background p-2"
+            ></div>
           </div>
         )}
       </div>
 
       {/* Saved Recordings Library */}
       <div className="rounded-lg border bg-card p-6">
-        <h2 className="mb-4 text-xl font-semibold">Saved Recordings ({savedRecordings.length})</h2>
+        <h2 className="mb-4 text-xl font-semibold">
+          Saved Recordings ({savedRecordings.length})
+        </h2>
 
         {savedRecordings.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12 text-center">
             <FileAudio className="mb-4 h-12 w-12 text-muted-foreground" />
             <p className="text-muted-foreground">No recordings yet</p>
-            <p className="text-sm text-muted-foreground">Start recording to create your first podcast episode</p>
+            <p className="text-sm text-muted-foreground">
+              Start recording to create your first podcast episode
+            </p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -534,14 +579,22 @@ const PodcastRecording = () => {
                         <Button size="sm" variant="ghost" onClick={saveRename}>
                           <Check className="h-4 w-4" />
                         </Button>
-                        <Button size="sm" variant="ghost" onClick={cancelRename}>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={cancelRename}
+                        >
                           <X className="h-4 w-4" />
                         </Button>
                       </div>
                     ) : (
                       <div className="flex items-center space-x-2">
                         <h3 className="font-medium">{recording.name}</h3>
-                        <Button size="sm" variant="ghost" onClick={() => startRenaming(recording)}>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => startRenaming(recording)}
+                        >
                           <Edit2 className="h-3 w-3" />
                         </Button>
                       </div>
@@ -551,7 +604,9 @@ const PodcastRecording = () => {
                       <span>•</span>
                       <span>{formatFileSize(recording.size)}</span>
                       <span>•</span>
-                      <span>{new Date(recording.createdAt).toLocaleDateString()}</span>
+                      <span>
+                        {new Date(recording.createdAt).toLocaleDateString()}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -575,7 +630,11 @@ const PodcastRecording = () => {
                     <Download className="mr-2 h-4 w-4" />
                     Export MP3
                   </Button>
-                  <Button size="sm" variant="ghost" onClick={() => deleteRecording(recording.id)}>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => deleteRecording(recording.id)}
+                  >
                     <Trash2 className="h-4 w-4 text-red-500" />
                   </Button>
                 </div>
@@ -591,16 +650,24 @@ const PodcastRecording = () => {
           <div className="mb-4 flex items-center justify-between">
             <div>
               <h2 className="text-xl font-semibold">Audio Editor</h2>
-              <p className="text-sm text-muted-foreground">Editing: {selectedRecording.name}</p>
+              <p className="text-sm text-muted-foreground">
+                Editing: {selectedRecording.name}
+              </p>
             </div>
-            <Button variant="outline" onClick={() => setSelectedRecording(null)}>
+            <Button
+              variant="outline"
+              onClick={() => setSelectedRecording(null)}
+            >
               Close Editor
             </Button>
           </div>
 
           {/* Waveform */}
           <div className="mb-4">
-            <div ref={editorWaveformRef} className="rounded border bg-background p-2"></div>
+            <div
+              ref={editorWaveformRef}
+              className="rounded border bg-background p-2"
+            ></div>
           </div>
 
           {/* Playback Controls */}
@@ -614,14 +681,23 @@ const PodcastRecording = () => {
           <div className="space-y-4 rounded border bg-background p-4">
             <h3 className="font-medium">Slice Audio</h3>
             <p className="text-sm text-muted-foreground">
-              Set start and end markers, then export the selected region as a new MP3 file.
+              Set start and end markers, then export the selected region as a
+              new MP3 file.
             </p>
 
             <div className="flex items-center space-x-3">
-              <Button size="sm" variant="outline" onClick={() => setSliceMarker('start')}>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setSliceMarker("start")}
+              >
                 Set Start {sliceStart !== null && `(${sliceStart.toFixed(2)}s)`}
               </Button>
-              <Button size="sm" variant="outline" onClick={() => setSliceMarker('end')}>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setSliceMarker("end")}
+              >
                 Set End {sliceEnd !== null && `(${sliceEnd.toFixed(2)}s)`}
               </Button>
               <Button size="sm" variant="outline" onClick={clearSliceMarkers}>
@@ -631,7 +707,11 @@ const PodcastRecording = () => {
 
             {sliceStart !== null && sliceEnd !== null && (
               <div className="flex items-center space-x-3">
-                <Button onClick={exportSlice} disabled={isExporting} className="bg-green-500 hover:bg-green-600">
+                <Button
+                  onClick={exportSlice}
+                  disabled={isExporting}
+                  className="bg-green-500 hover:bg-green-600"
+                >
                   <Download className="mr-2 h-4 w-4" />
                   Export Slice ({(sliceEnd - sliceStart).toFixed(2)}s)
                 </Button>
@@ -653,12 +733,26 @@ const PodcastRecording = () => {
                   style={{ width: `${exportProgress.percent}%` }}
                 ></div>
               </div>
-              <p className="text-sm text-muted-foreground">{exportProgress.stage}</p>
-              <p className="text-center text-2xl font-bold">{exportProgress.percent}%</p>
+              <p className="text-sm text-muted-foreground">
+                {exportProgress.stage}
+              </p>
+              <p className="text-center text-2xl font-bold">
+                {exportProgress.percent}%
+              </p>
             </div>
           </div>
         </div>
       )}
+
+      {/* Show Planning Drawer */}
+      <RightSideDrawer
+        open={showPlanningDrawer}
+        setOpen={setShowPlanningDrawer}
+        title="Show Planning & Notes"
+        size="xl"
+      >
+        <ShowPlanningModule />
+      </RightSideDrawer>
     </div>
   );
 };
