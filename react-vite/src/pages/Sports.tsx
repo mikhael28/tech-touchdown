@@ -51,6 +51,7 @@ const Sports = () => {
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [lastMajorUpdate, setLastMajorUpdate] = useState<string | null>(null);
+  const [hasInitialized, setHasInitialized] = useState(false);
 
   const handleJinaFetch = async (url: string = 'https://plaintextsports.com/') => {
     const result = await fetchJinaData(url);
@@ -172,29 +173,35 @@ const Sports = () => {
     setTimeout(() => setSelectedGame(null), 300);
   };
 
-  // Load from localStorage on component mount and auto-start if no data
+  // Load from localStorage on component mount and auto-start ONLY on first ever load with no data
   useEffect(() => {
+    // Prevent running on every mount - only run once
+    if (hasInitialized) return;
+
     const savedData = localStorage.getItem('generatedSportsData');
     const savedLastUpdate = localStorage.getItem('lastMajorUpdate');
-    
+
     if (savedLastUpdate) {
       setLastMajorUpdate(savedLastUpdate);
     }
-    
+
     if (savedData) {
       try {
         const parsedData = JSON.parse(savedData);
         setProcessedSportsData(parsedData);
+        setHasInitialized(true);
       } catch (error) {
         console.error('Error parsing saved sports data:', error);
         localStorage.removeItem('generatedSportsData');
         localStorage.removeItem('lastMajorUpdate');
         // Start auto process if saved data is corrupted
         startAutoProcess();
+        setHasInitialized(true);
       }
     } else {
-      // No saved data, start auto process
+      // No saved data, start auto process ONLY on first load
       startAutoProcess();
+      setHasInitialized(true);
     }
 
     // Listen for game updates from the game processor
@@ -219,46 +226,6 @@ const Sports = () => {
       window.removeEventListener('sportsDataUpdated', handleGameUpdate as EventListener);
     };
   }, [selectedGame]);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="space-y-4 p-6">
-        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="ml-3">
-              <h3 className="text-sm font-medium text-red-800 dark:text-red-200">
-                Error loading sports data {error}
-              </h3>
-              <div className="mt-2 text-sm text-red-700 dark:text-red-300">
-                {error}
-              </div>
-              <div className="mt-4">
-                <button
-                  onClick={refetch}
-                  className="bg-red-100 dark:bg-red-800 hover:bg-red-200 dark:hover:bg-red-700 text-red-800 dark:text-red-200 px-3 py-1 rounded text-sm font-medium"
-                >
-                  Try again
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-8 p-6">
@@ -308,7 +275,7 @@ const Sports = () => {
               </p>
             </div>
           </div>
-          
+
           {/* Progress Bar */}
           <div className="mt-4">
             <div className="w-full bg-blue-200 dark:bg-blue-800 rounded-full h-2">
@@ -322,7 +289,7 @@ const Sports = () => {
       )}
 
       {/* Error Display */}
-      {(jinaError || sportsAIError) && (
+      {(error || jinaError || sportsAIError) && (
         <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
           <div className="flex items-center">
             <div className="flex-shrink-0">
@@ -332,14 +299,14 @@ const Sports = () => {
             </div>
             <div className="ml-3">
               <h3 className="text-sm font-medium text-red-800 dark:text-red-200">
-                Error processing sports data
+                {error ? 'Error loading sports data' : 'Error processing sports data'}
               </h3>
               <div className="mt-2 text-sm text-red-700 dark:text-red-300">
-                {jinaError || sportsAIError}
+                {error || jinaError || sportsAIError}
               </div>
               <div className="mt-4">
                 <button
-                  onClick={handleRefresh}
+                  onClick={error ? refetch : handleRefresh}
                   className="bg-red-100 dark:bg-red-800 hover:bg-red-200 dark:hover:bg-red-700 text-red-800 dark:text-red-200 px-3 py-1 rounded text-sm font-medium"
                 >
                   Try again

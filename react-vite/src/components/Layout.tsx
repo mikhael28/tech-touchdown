@@ -1,31 +1,15 @@
 import React, { useState } from "react";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import ThemeToggle from "./ThemeToggle";
 import HeaderMusicPlayer from "./HeaderMusicPlayer";
 import { Button } from "./ui/button";
-import { Menu, User, LogOut } from "lucide-react";
+import { Menu, LogIn, LogOut } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
-import ProtectedRoute from "./ProtectedRoute";
 
 const Layout: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { user, logout, isAuthenticated, isLoading } = useAuth();
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
+  const { user, login, logout, isAuthenticated } = useAuth();
 
   return (
     <div className="flex h-screen bg-background">
@@ -52,26 +36,40 @@ const Layout: React.FC = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            {user && (
-              <div className="flex items-center gap-2">
-                <img
-                  src={user.avatar_url}
-                  alt={user.name || user.login}
-                  className="h-8 w-8 rounded-full"
-                />
-                <span className="hidden sm:block text-sm font-medium">
-                  {user.name || user.login}
-                </span>
-              </div>
+            {isAuthenticated ? (
+              <>
+                {user && (
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={user.avatar_url}
+                      alt={user.name || user.login}
+                      className="h-8 w-8 rounded-full"
+                    />
+                    <span className="hidden sm:block text-sm font-medium">
+                      {user.name || user.login}
+                    </span>
+                  </div>
+                )}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={logout}
+                  title="Sign Out"
+                >
+                  <LogOut className="h-4 w-4" />
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant="default"
+                size="sm"
+                onClick={login}
+                className="gap-2"
+              >
+                <LogIn className="h-4 w-4" />
+                <span>Sign in with GitHub</span>
+              </Button>
             )}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={logout}
-              title="Sign Out"
-            >
-              <LogOut className="h-4 w-4" />
-            </Button>
             <ThemeToggle />
           </div>
         </header>

@@ -179,7 +179,7 @@ const GameChat: React.FC<GameChatProps> = ({ gameId, awayTeam, homeTeam }) => {
         // Fallback to local message handling
         const newMessage: ChatMessage = {
           id: Date.now().toString(),
-          username: user.login,
+          username: user?.login || 'Guest',
           message: message.trim(),
           timestamp: new Date(),
           team: selectedTeam,

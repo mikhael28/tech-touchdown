@@ -5,10 +5,10 @@ import { useAuth } from "../contexts/AuthContext";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 const Profile = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, isAuthenticated } = useAuth();
 
-  if (!user) {
-    return null; // This should not happen due to ProtectedRoute, but just in case
+  if (!isAuthenticated || !user) {
+    return null; // ProtectedRoute handles the redirect
   }
 
   const formatDate = (dateString: string) => {

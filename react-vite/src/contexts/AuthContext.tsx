@@ -26,7 +26,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       // Check if GitHub auth service is properly configured
       if (!githubAuth.getLoginUrl()) {
-        throw new Error('GitHub OAuth not configured');
+        console.warn('GitHub OAuth not configured - running in unauthenticated mode');
+        setAuthState({
+          user: null,
+          isAuthenticated: false,
+          isLoading: false,
+          error: null,
+        });
+        return;
       }
 
       if (githubAuth.isAuthenticated()) {
@@ -45,11 +52,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
     } catch (error) {
       console.error('Auth initialization error:', error);
+      // Don't block the app - just set to unauthenticated state
       setAuthState({
         user: null,
         isAuthenticated: false,
         isLoading: false,
-        error: 'Failed to initialize authentication',
+        error: null,
       });
     }
   };
