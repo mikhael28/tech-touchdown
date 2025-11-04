@@ -18,7 +18,9 @@ import {
   X,
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
+import Soundboard from '../components/Soundboard';
 import { audioStorage, AudioRecording } from '../services/audioStorage';
+import { AudioMixer, SoundEffect } from '../services/audioMixer';
 import {
   convertBlobToMP3,
   downloadBlob,
@@ -61,6 +63,7 @@ const PodcastRecording = () => {
   const [sliceEnd, setSliceEnd] = useState<number | null>(null);
 
   // Refs
+  const audioMixerRef = useRef<AudioMixer | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const timerRef = useRef<number | null>(null);
@@ -72,6 +75,13 @@ const PodcastRecording = () => {
   // Initialize storage and load recordings
   useEffect(() => {
     initializeStorage();
+
+    // Cleanup on unmount
+    return () => {
+      if (audioMixerRef.current) {
+        audioMixerRef.current.cleanup();
+      }
+    };
   }, []);
 
   const initializeStorage = async () => {
@@ -177,8 +187,12 @@ const PodcastRecording = () => {
 
   const startRecording = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorder = new MediaRecorder(stream, {
+      // Initialize audio mixer
+      audioMixerRef.current = new AudioMixer();
+      const mixedStream = await audioMixerRef.current.initialize();
+
+      // Create media recorder with the mixed stream
+      const mediaRecorder = new MediaRecorder(mixedStream, {
         mimeType: 'audio/webm;codecs=opus',
       });
 
@@ -193,7 +207,12 @@ const PodcastRecording = () => {
       mediaRecorder.onstop = () => {
         const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
         setRecordedBlob(blob);
-        stream.getTracks().forEach((track) => track.stop());
+
+        // Cleanup mixer
+        if (audioMixerRef.current) {
+          audioMixerRef.current.cleanup();
+          audioMixerRef.current = null;
+        }
       };
 
       mediaRecorder.start(1000); // Collect data every second
@@ -203,6 +222,12 @@ const PodcastRecording = () => {
     } catch (error) {
       console.error('Failed to start recording:', error);
       alert('Failed to access microphone. Please check permissions.');
+
+      // Cleanup on error
+      if (audioMixerRef.current) {
+        audioMixerRef.current.cleanup();
+        audioMixerRef.current = null;
+      }
     }
   };
 
@@ -224,6 +249,12 @@ const PodcastRecording = () => {
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
       setRecordingState('stopped');
+    }
+  };
+
+  const handlePlaySound = (effect: SoundEffect) => {
+    if (audioMixerRef.current) {
+      audioMixerRef.current.playSoundEffect(effect);
     }
   };
 
@@ -385,6 +416,14 @@ const PodcastRecording = () => {
             Refresh
           </Button>
         </div>
+      </div>
+
+      {/* Soundboard Section */}
+      <div className="rounded-lg border bg-card p-6">
+        <Soundboard
+          onPlaySound={handlePlaySound}
+          disabled={recordingState !== 'recording'}
+        />
       </div>
 
       {/* Recording Section */}
