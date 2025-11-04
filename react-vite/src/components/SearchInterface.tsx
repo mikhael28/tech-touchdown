@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Search as SearchIcon, Filter, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -43,36 +43,40 @@ const SearchInterface: React.FC<SearchInterfaceProps> = ({
 
   const [showFilters, setShowFilters] = useState(false);
   const [searchInput, setSearchInput] = useState('');
+  const hasInitializedRef = useRef(false);
+  const searchTimeoutRef = useRef<number | null>(null);
+  const filtersRef = useRef<SearchFilters>({
+    query: '',
+    numResults: 10,
+    useAutoprompt: true,
+    type: 'neural',
+    includeContent: true,
+    includeHighlights: false,
+    includeSummary: true,
+  });
 
-  useEffect(() => {
-    setTimeout(() => {
-      handleSearch(defaultQuery);
-    }, 1000);
-  }, [defaultQuery]);
-
-  // Effect to handle external search queries (from bubble clicks)
-  useEffect(() => {
-    if (searchQuery && searchQuery !== searchState.query) {
-      handleSearch(searchQuery);
-    }
-  }, [searchQuery]);
-
-  const handleSearch = async (query: string) => {
+  // Memoize handleSearch to prevent unnecessary recreations
+  const handleSearch = useCallback(async (query: string) => {
     if (!query.trim()) return;
 
     const trimmedQuery = query.trim();
-    const updatedFilters = { ...searchState.filters, query: trimmedQuery };
 
-    setSearchState(prev => ({
-      ...prev,
-      isLoading: true,
-      error: null,
-      query: trimmedQuery,
-      filters: updatedFilters
-    }));
+    // Update state to loading and store filters in ref
+    setSearchState(prev => {
+      const updatedFilters = { ...prev.filters, query: trimmedQuery };
+      filtersRef.current = updatedFilters;
+      
+      return {
+        ...prev,
+        isLoading: true,
+        error: null,
+        query: trimmedQuery,
+        filters: updatedFilters
+      };
+    });
 
     try {
-      const response = await exaApi.search(updatedFilters);
+      const response = await exaApi.search(filtersRef.current);
       setSearchState(prev => ({
         ...prev,
         isLoading: false,
@@ -85,7 +89,43 @@ const SearchInterface: React.FC<SearchInterfaceProps> = ({
         error: error instanceof Error ? error.message : 'Search failed',
       }));
     }
-  };
+  }, []);
+
+  // Initial search with defaultQuery (only once on mount)
+  useEffect(() => {
+    if (hasInitializedRef.current) return;
+    
+    // Clear any existing timeout
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
+    }
+    
+    searchTimeoutRef.current = window.setTimeout(() => {
+      if (!hasInitializedRef.current && defaultQuery) {
+        hasInitializedRef.current = true;
+        handleSearch(defaultQuery);
+      }
+    }, 1000);
+
+    return () => {
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
+      }
+    };
+  }, [defaultQuery, handleSearch]);
+
+  // Effect to handle external search queries (from bubble clicks)
+  useEffect(() => {
+    if (searchQuery && searchQuery.trim() && searchQuery !== searchState.query) {
+      // Clear the initial search timeout if it hasn't fired yet
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
+        searchTimeoutRef.current = null;
+        hasInitializedRef.current = true; // Mark as initialized
+      }
+      handleSearch(searchQuery);
+    }
+  }, [searchQuery, handleSearch, searchState.query]);
 
   const handleFilterChange = (key: keyof SearchFilters, value: any) => {
     setSearchState(prev => ({
