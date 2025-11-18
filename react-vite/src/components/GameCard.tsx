@@ -8,9 +8,9 @@ interface GameCardProps {
 
 const GameCard: React.FC<GameCardProps> = ({ game, onGameClick }) => {
   const getStatusColor = (status: string, isLive: boolean, isCompleted: boolean) => {
-    if (isLive) return 'text-red-500';
-    if (isCompleted) return 'text-gray-500';
-    return 'text-blue-500';
+    if (isLive) return 'text-warning font-bold';
+    if (isCompleted) return 'text-muted-foreground';
+    return 'text-primary font-semibold';
   };
 
   const formatScore = (homeScore: number | null, awayScore: number | null) => {
@@ -25,39 +25,39 @@ const GameCard: React.FC<GameCardProps> = ({ game, onGameClick }) => {
   };
 
   return (
-    <div 
-      className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 transition-all ${
-        onGameClick ? 'hover:shadow-md hover:scale-[1.02] cursor-pointer' : 'hover:shadow-md'
+    <div
+      className={`bg-card rounded-lg border border-border p-4 transition-all ${
+        onGameClick ? 'hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02] hover:border-primary/50 cursor-pointer' : 'hover:shadow-md'
       }`}
       onClick={handleClick}
     >
       <div className="flex items-center justify-between mb-2">
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
           {game.league}
         </span>
-        <span className={`text-xs font-medium ${getStatusColor(game.gameStatus, game.isLive, game.isCompleted)}`}>
+        <span className={`text-xs uppercase tracking-wide ${getStatusColor(game.gameStatus, game.isLive, game.isCompleted)}`}>
           {game.gameStatus}
         </span>
       </div>
 
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-900 dark:text-white">
+          <span className="text-sm font-medium text-foreground">
             {game.awayTeam}
           </span>
           {game.awayScore !== null && (
-            <span className="text-sm font-bold text-gray-900 dark:text-white">
+            <span className="text-sm font-bold text-foreground tabular-nums">
               {game.awayScore}
             </span>
           )}
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-900 dark:text-white">
+          <span className="text-sm font-medium text-foreground">
             {game.homeTeam}
           </span>
           {game.homeScore !== null && (
-            <span className="text-sm font-bold text-gray-900 dark:text-white">
+            <span className="text-sm font-bold text-foreground tabular-nums">
               {game.homeScore}
             </span>
           )}
@@ -65,16 +65,16 @@ const GameCard: React.FC<GameCardProps> = ({ game, onGameClick }) => {
       </div>
 
       {game.startTime && !game.isLive && !game.isCompleted && (
-        <div className="mt-2 pt-2 border-t border-gray-100 dark:border-gray-700">
-          <span className="text-xs text-gray-500 dark:text-gray-400">
+        <div className="mt-2 pt-2 border-t border-border">
+          <span className="text-xs text-muted-foreground">
             {game.startTime}
           </span>
         </div>
       )}
 
       {game.broadcast && (
-        <div className="mt-2 pt-2 border-t border-gray-100 dark:border-gray-700">
-          <span className="text-xs text-gray-500 dark:text-gray-400">
+        <div className="mt-2 pt-2 border-t border-border">
+          <span className="text-xs text-muted-foreground">
             📺 {game.broadcast}
           </span>
         </div>

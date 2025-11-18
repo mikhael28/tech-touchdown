@@ -12,7 +12,7 @@ const LeagueSection: React.FC<LeagueSectionProps> = ({ league, onGameClick }) =>
 
   return (
     <div className="mb-8">
-      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">
+      <h2 className="text-xl font-bold text-foreground mb-4 border-b-2 border-primary/30 pb-2">
         {league.name}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
