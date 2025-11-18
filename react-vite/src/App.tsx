@@ -7,6 +7,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Dashboard";
 import Sports from "./pages/Sports";
 import Games from "./pages/Games";
+import Gambling from "./pages/Gambling";
 import FantasyLeague from "./pages/FantasyLeague";
 import Profile from "./pages/Profile";
 import Slideshow from "./pages/Slideshow";
@@ -27,6 +28,7 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="sports" element={<Sports />} />
                 <Route path="games" element={<Games />} />
+                <Route path="gambling" element={<Gambling />} />
                 <Route path="fantasy" element={<FantasyLeague />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="podcast" element={<PodcastRecording />} />
