@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import fetch from "node-fetch";
+import { unifiedSportsApiService } from "../services/unifiedSportsApi";
 
 const router = Router();
 
@@ -227,6 +228,23 @@ Parse every single game mentioned in the data and return them as a JSON array. D
     }
   }
 );
+
+// Get all games from unified sports APIs
+router.get("/games/all", async (req: Request, res: Response): Promise<void> => {
+  try {
+    const result = await unifiedSportsApiService.getAllGames();
+    res.json(result);
+  } catch (error: any) {
+    console.error("Error fetching all games:", error);
+    res.status(500).json({
+      success: false,
+      error: {
+        message: error.message || "Failed to fetch games",
+        code: "GAMES_FETCH_FAILED",
+      },
+    });
+  }
+});
 
 // Health check for sports service
 router.get("/health", (req: Request, res: Response) => {
