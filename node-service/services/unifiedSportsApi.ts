@@ -106,11 +106,13 @@ export class UnifiedSportsApiService {
       if (broadcasts) game.broadcast = broadcasts;
       if (event.links?.[0]?.href) game.url = event.links[0].href;
       if (competition.venue?.fullName) game.venue = competition.venue.fullName;
-      if (homeCompetitor.team.logos?.[0]?.href || homeCompetitor.team.logo) {
-        game.homeTeamLogo = homeCompetitor.team.logos?.[0]?.href || homeCompetitor.team.logo;
+      const homeLogoUrl = homeCompetitor.team.logos?.[0]?.href || homeCompetitor.team.logo;
+      if (homeLogoUrl) {
+        game.homeTeamLogo = homeLogoUrl;
       }
-      if (awayCompetitor.team.logos?.[0]?.href || awayCompetitor.team.logo) {
-        game.awayTeamLogo = awayCompetitor.team.logos?.[0]?.href || awayCompetitor.team.logo;
+      const awayLogoUrl = awayCompetitor.team.logos?.[0]?.href || awayCompetitor.team.logo;
+      if (awayLogoUrl) {
+        game.awayTeamLogo = awayLogoUrl;
       }
 
       return game;
@@ -350,7 +352,7 @@ export class UnifiedSportsApiService {
 
     // Fetch Cricket from TheSportsDB
     try {
-      const today = new Date().toISOString().split('T')[0];
+      const today = new Date().toISOString().split('T')[0] ?? '';
       const cricketData = await sportsDbApiService.getCricketEvents(today);
 
       if (cricketData.events && cricketData.events.length > 0) {
@@ -368,7 +370,7 @@ export class UnifiedSportsApiService {
 
     // Fetch Rugby from TheSportsDB
     try {
-      const today = new Date().toISOString().split('T')[0];
+      const today = new Date().toISOString().split('T')[0] ?? '';
       const rugbyData = await sportsDbApiService.getRugbyEvents(today);
 
       if (rugbyData.events && rugbyData.events.length > 0) {
@@ -386,7 +388,7 @@ export class UnifiedSportsApiService {
 
     // Fetch Tennis from TheSportsDB
     try {
-      const today = new Date().toISOString().split('T')[0];
+      const today = new Date().toISOString().split('T')[0] ?? '';
       const tennisData = await sportsDbApiService.getTennisEvents(today);
 
       if (tennisData.events && tennisData.events.length > 0) {
@@ -404,7 +406,7 @@ export class UnifiedSportsApiService {
 
     // Fetch Golf from TheSportsDB
     try {
-      const today = new Date().toISOString().split('T')[0];
+      const today = new Date().toISOString().split('T')[0] ?? '';
       const golfData = await sportsDbApiService.getGolfEvents(today);
 
       if (golfData.events && golfData.events.length > 0) {
