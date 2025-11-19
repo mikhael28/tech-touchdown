@@ -81,21 +81,6 @@ const Companies: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center gap-3 mb-4">
-            <Building2 className="h-8 w-8 text-primary" />
-            <h1 className="text-4xl font-bold">Sports Tech Companies</h1>
-          </div>
-          <p className="text-lg text-muted-foreground max-w-3xl">
-            A comprehensive database of {allCompanies.length} companies in the
-            sports and technology ecosystem, including media companies, tech
-            startups, professional teams, leagues, and betting platforms.
-            Perfect for software engineers looking to work in sports.
-          </p>
-        </div>
-      </div>
 
       {/* Filters */}
       <div className="border-b bg-card/50">

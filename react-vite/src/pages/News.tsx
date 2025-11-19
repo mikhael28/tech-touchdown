@@ -7,7 +7,7 @@ import TechSearch from '../components/TechSearch';
 import { useFavoriteTeams, FavoriteTeams } from '../hooks/useFavoriteTeams';
 import { useFavoriteTech, FavoriteTech } from '../hooks/useFavoriteTech';
 
-const Home: React.FC = () => {
+const News: React.FC = () => {
   const [showTeamModal, setShowTeamModal] = useState(false);
   const [showTechModal, setShowTechModal] = useState(false);
 
@@ -111,4 +111,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default News;

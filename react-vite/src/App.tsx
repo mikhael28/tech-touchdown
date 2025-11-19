@@ -4,7 +4,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { FantasyLeagueProvider } from "./contexts/FantasyLeagueContext";
 import Layout from "./components/Layout";
-import Home from "./pages/Dashboard";
+import News from "./pages/News";
 import Games from "./pages/Games";
 import Podcast from "./pages/Podcast";
 import PodcastRecording from "./pages/PodcastRecording";
@@ -23,7 +23,8 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/auth/callback" element={<OAuthCallback />} />
               <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
+                <Route index element={<Podcast />} />
+                <Route path="news" element={<News />} />
                 <Route path="sports" element={<Games />} />
                 <Route path="experiments" element={<Experiments />} />
                 <Route path="podcast" element={<Podcast />} />
