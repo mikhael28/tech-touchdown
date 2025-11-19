@@ -4,7 +4,7 @@ import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 import ThemeToggle from "./ThemeToggle";
 import MP3Player from "./MusicPlayer";
-import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search, Zap, Presentation, Mic, Calendar, DollarSign } from "lucide-react";
+import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search, Zap, Presentation, Mic, Calendar, DollarSign, MessageCircle } from "lucide-react";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -34,6 +34,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       name: "Gambling",
       href: "/gambling",
       icon: DollarSign,
+    },
+    {
+      name: "Chat Rooms",
+      href: "/chat",
+      icon: MessageCircle,
     },
     {
       name: "Fantasy League",
