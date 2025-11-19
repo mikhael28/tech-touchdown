@@ -1,0 +1,611 @@
+[
+  {
+    "name": "DraftKings",
+    "url": "https://draftkings.com",
+    "logo": "https://www.draftkings.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting, daily fantasy, and iGaming platform"
+  },
+  {
+    "name": "FanDuel",
+    "url": "https://fanduel.com",
+    "logo": "https://www.fanduel.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting and daily fantasy sports leader (Flutter)"
+  },
+  {
+    "name": "BetMGM",
+    "url": "https://betmgm.com",
+    "logo": "https://www.betmgm.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting and casino platform (MGM/Entain)"
+  },
+  {
+    "name": "Caesars Sportsbook",
+    "url": "https://caesars.com/sportsbook",
+    "logo": "https://www.caesars.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting platform from Caesars Entertainment"
+  },
+  {
+    "name": "PointsBet",
+    "url": "https://pointsbet.com",
+    "logo": "https://www.pointsbet.com/logo.svg",
+    "type": "gambling",
+    "description": "Australian sports betting operator with US presence"
+  },
+  {
+    "name": "Barstool Sportsbook",
+    "url": "https://barstoolsportsbook.com",
+    "logo": "https://www.barstoolsportsbook.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting platform (Penn Entertainment)"
+  },
+  {
+    "name": "WynnBET",
+    "url": "https://wynnbet.com",
+    "logo": "https://www.wynnbet.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting from Wynn Resorts"
+  },
+  {
+    "name": "BetRivers",
+    "url": "https://betrivers.com",
+    "logo": "https://www.betrivers.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting platform (Rush Street Interactive)"
+  },
+  {
+    "name": "FOX Bet",
+    "url": "https://foxbet.com",
+    "logo": "https://www.foxbet.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting platform (Flutter Entertainment)"
+  },
+  {
+    "name": "Unibet",
+    "url": "https://unibet.com",
+    "logo": "https://www.unibet.com/logo.svg",
+    "type": "gambling",
+    "description": "European sports betting operator (Kindred Group)"
+  },
+  {
+    "name": "bet365",
+    "url": "https://bet365.com",
+    "logo": "https://www.bet365.com/logo.svg",
+    "type": "gambling",
+    "description": "Global online gambling company with sports betting"
+  },
+  {
+    "name": "William Hill",
+    "url": "https://williamhill.com",
+    "logo": "https://www.williamhill.com/logo.svg",
+    "type": "gambling",
+    "description": "International bookmaker (Caesars Entertainment)"
+  },
+  {
+    "name": "Betway",
+    "url": "https://betway.com",
+    "logo": "https://www.betway.com/logo.svg",
+    "type": "gambling",
+    "description": "Online sports betting and casino operator"
+  },
+  {
+    "name": "888sport",
+    "url": "https://888sport.com",
+    "logo": "https://www.888sport.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting division of 888 Holdings"
+  },
+  {
+    "name": "Bwin",
+    "url": "https://bwin.com",
+    "logo": "https://www.bwin.com/logo.svg",
+    "type": "gambling",
+    "description": "European sports betting brand (Entain)"
+  },
+  {
+    "name": "Ladbrokes",
+    "url": "https://ladbrokes.com",
+    "logo": "https://www.ladbrokes.com/logo.svg",
+    "type": "gambling",
+    "description": "British bookmaker (Entain)"
+  },
+  {
+    "name": "Coral",
+    "url": "https://coral.co.uk",
+    "logo": "https://www.coral.co.uk/logo.svg",
+    "type": "gambling",
+    "description": "UK bookmaker (Entain)"
+  },
+  {
+    "name": "Paddy Power",
+    "url": "https://paddypower.com",
+    "logo": "https://www.paddypower.com/logo.svg",
+    "type": "gambling",
+    "description": "Irish bookmaker (Flutter Entertainment)"
+  },
+  {
+    "name": "Betfair",
+    "url": "https://betfair.com",
+    "logo": "https://www.betfair.com/logo.svg",
+    "type": "gambling",
+    "description": "Betting exchange platform (Flutter Entertainment)"
+  },
+  {
+    "name": "SkyBet",
+    "url": "https://skybet.com",
+    "logo": "https://www.skybet.com/logo.svg",
+    "type": "gambling",
+    "description": "UK sports betting operator (Flutter Entertainment)"
+  },
+  {
+    "name": "Tipico",
+    "url": "https://tipico.com",
+    "logo": "https://www.tipico.com/logo.svg",
+    "type": "gambling",
+    "description": "German sports betting operator expanding to US"
+  },
+  {
+    "name": "Fanatics Betting & Gaming",
+    "url": "https://fanaticsbetting.com",
+    "logo": "https://www.fanaticsbetting.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting platform from Fanatics"
+  },
+  {
+    "name": "ESPN Bet",
+    "url": "https://espnbet.com",
+    "logo": "https://www.espnbet.com/logo.svg",
+    "type": "gambling",
+    "description": "ESPN-branded sportsbook (Penn Entertainment)"
+  },
+  {
+    "name": "Hard Rock Bet",
+    "url": "https://hardrockbet.com",
+    "logo": "https://www.hardrockbet.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting from Hard Rock International"
+  },
+  {
+    "name": "Circa Sports",
+    "url": "https://circasports.com",
+    "logo": "https://www.circasports.com/logo.svg",
+    "type": "gambling",
+    "description": "Las Vegas-based sportsbook operator"
+  },
+  {
+    "name": "SuperBook Sports",
+    "url": "https://superbook.com",
+    "logo": "https://www.superbook.com/logo.svg",
+    "type": "gambling",
+    "description": "Las Vegas sportsbook with mobile platform"
+  },
+  {
+    "name": "Golden Nugget Online Gaming",
+    "url": "https://goldennuggetcasino.com",
+    "logo": "https://www.goldennuggetcasino.com/logo.svg",
+    "type": "gambling",
+    "description": "Online casino and sports betting (DraftKings)"
+  },
+  {
+    "name": "Bally Bet",
+    "url": "https://ballybet.com",
+    "logo": "https://www.ballybet.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting platform (Bally's Corporation)"
+  },
+  {
+    "name": "Yahoo Fantasy Sports",
+    "url": "https://sports.yahoo.com/fantasy",
+    "logo": "https://s.yimg.com/cv/apiv2/default/yahoo-fantasy.svg",
+    "type": "gambling",
+    "description": "Season-long fantasy sports platform"
+  },
+  {
+    "name": "ESPN Fantasy",
+    "url": "https://fantasy.espn.com",
+    "logo": "https://a.espncdn.com/redesign/assets/img/logos/espn-fantasy.svg",
+    "type": "gambling",
+    "description": "Fantasy sports platform from ESPN"
+  },
+  {
+    "name": "NFL Fantasy",
+    "url": "https://fantasy.nfl.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/fantasy-logo",
+    "type": "gambling",
+    "description": "Official NFL fantasy football platform"
+  },
+  {
+    "name": "CBS Sports Fantasy",
+    "url": "https://cbssports.com/fantasy",
+    "logo": "https://www.cbssports.com/images/fantasy-logo.svg",
+    "type": "gambling",
+    "description": "Fantasy sports platform from CBS"
+  },
+  {
+    "name": "Sleeper",
+    "url": "https://sleeper.com",
+    "logo": "https://www.sleeper.com/logo.svg",
+    "type": "gambling",
+    "description": "Modern fantasy sports and sports betting platform"
+  },
+  {
+    "name": "Underdog Fantasy",
+    "url": "https://underdogfantasy.com",
+    "logo": "https://www.underdogfantasy.com/logo.svg",
+    "type": "gambling",
+    "description": "Daily fantasy and pick'em sports platform"
+  },
+  {
+    "name": "PrizePicks",
+    "url": "https://prizepicks.com",
+    "logo": "https://www.prizepicks.com/logo.svg",
+    "type": "gambling",
+    "description": "Daily fantasy sports pick'em platform"
+  },
+  {
+    "name": "Monkey Knife Fight",
+    "url": "https://monkeyknifefight.com",
+    "logo": "https://www.monkeyknifefight.com/logo.svg",
+    "type": "gambling",
+    "description": "Rapid-play daily fantasy sports"
+  },
+  {
+    "name": "Fliff",
+    "url": "https://fliff.com",
+    "logo": "https://www.fliff.com/logo.svg",
+    "type": "gambling",
+    "description": "Social sportsbook and prediction platform"
+  },
+  {
+    "name": "Betr",
+    "url": "https://betr.app",
+    "logo": "https://www.betr.app/logo.svg",
+    "type": "gambling",
+    "description": "Microbetting and fantasy sports platform"
+  },
+  {
+    "name": "Novig",
+    "url": "https://novig.com",
+    "logo": "https://www.novig.com/logo.svg",
+    "type": "gambling",
+    "description": "Peer-to-peer sports betting exchange"
+  },
+  {
+    "name": "Prophet Exchange",
+    "url": "https://prophet.exchange",
+    "logo": "https://www.prophet.exchange/logo.svg",
+    "type": "gambling",
+    "description": "Crypto-based sports betting exchange"
+  },
+  {
+    "name": "Action Network",
+    "url": "https://actionnetwork.com",
+    "logo": "https://www.actionnetwork.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting news, odds, and tracking platform"
+  },
+  {
+    "name": "Odds Shark",
+    "url": "https://oddsshark.com",
+    "logo": "https://www.oddsshark.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting odds comparison and analysis"
+  },
+  {
+    "name": "Covers",
+    "url": "https://covers.com",
+    "logo": "https://www.covers.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting news, odds, and picks"
+  },
+  {
+    "name": "VSiN (Vegas Stats & Information Network)",
+    "url": "https://vsin.com",
+    "logo": "https://www.vsin.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting broadcast and content network"
+  },
+  {
+    "name": "The Athletic Betting",
+    "url": "https://theathletic.com/betting",
+    "logo": "https://theathletic.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting coverage and analysis"
+  },
+  {
+    "name": "OddsJam",
+    "url": "https://oddsjam.com",
+    "logo": "https://www.oddsjam.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting odds comparison and arbitrage tool"
+  },
+  {
+    "name": "BetQL",
+    "url": "https://betql.co",
+    "logo": "https://www.betql.co/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting analytics and model platform"
+  },
+  {
+    "name": "RotoGrinders",
+    "url": "https://rotogrinders.com",
+    "logo": "https://www.rotogrinders.com/logo.svg",
+    "type": "gambling",
+    "description": "Daily fantasy sports research and tools"
+  },
+  {
+    "name": "FantasyPros",
+    "url": "https://fantasypros.com",
+    "logo": "https://www.fantasypros.com/logo.svg",
+    "type": "gambling",
+    "description": "Fantasy sports advice and analytics platform"
+  },
+  {
+    "name": "4for4 Fantasy Football",
+    "url": "https://4for4.com",
+    "logo": "https://www.4for4.com/logo.svg",
+    "type": "gambling",
+    "description": "Fantasy football rankings and projections"
+  },
+  {
+    "name": "FantasyData",
+    "url": "https://fantasydata.com",
+    "logo": "https://www.fantasydata.com/logo.svg",
+    "type": "gambling",
+    "description": "Fantasy sports data API and analytics"
+  },
+  {
+    "name": "SportsDataIO",
+    "url": "https://sportsdata.io",
+    "logo": "https://www.sportsdata.io/logo.svg",
+    "type": "gambling",
+    "description": "Sports data API for fantasy and betting"
+  },
+  {
+    "name": "The Odds API",
+    "url": "https://the-odds-api.com",
+    "logo": "https://the-odds-api.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting odds API service"
+  },
+  {
+    "name": "BetConstruct",
+    "url": "https://betconstruct.com",
+    "logo": "https://www.betconstruct.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting platform and technology provider"
+  },
+  {
+    "name": "Kambi",
+    "url": "https://kambi.com",
+    "logo": "https://www.kambi.com/logo.svg",
+    "type": "gambling",
+    "description": "B2B sports betting platform provider"
+  },
+  {
+    "name": "SBTech",
+    "url": "https://sbtech.com",
+    "logo": "https://www.sbtech.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting technology platform (DraftKings)"
+  },
+  {
+    "name": "OpenBet",
+    "url": "https://openbet.com",
+    "logo": "https://www.openbet.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting platform technology (SG Digital)"
+  },
+  {
+    "name": "Playtech",
+    "url": "https://playtech.com",
+    "logo": "https://www.playtech.com/logo.svg",
+    "type": "gambling",
+    "description": "Gambling technology and platform provider"
+  },
+  {
+    "name": "Scientific Games",
+    "url": "https://scientificgames.com",
+    "logo": "https://www.scientificgames.com/logo.svg",
+    "type": "gambling",
+    "description": "Gaming technology and sports betting platforms"
+  },
+  {
+    "name": "IGT",
+    "url": "https://igt.com",
+    "logo": "https://www.igt.com/logo.svg",
+    "type": "gambling",
+    "description": "Gaming and lottery technology provider"
+  },
+  {
+    "name": "Everi",
+    "url": "https://everi.com",
+    "logo": "https://www.everi.com/logo.svg",
+    "type": "gambling",
+    "description": "Casino gaming technology and FinTech"
+  },
+  {
+    "name": "GAN",
+    "url": "https://gan.com",
+    "logo": "https://www.gan.com/logo.svg",
+    "type": "gambling",
+    "description": "B2B online gambling software provider"
+  },
+  {
+    "name": "Don Best Sports",
+    "url": "https://donbest.com",
+    "logo": "https://www.donbest.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting odds and data provider"
+  },
+  {
+    "name": "Betradar",
+    "url": "https://betradar.com",
+    "logo": "https://www.betradar.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting data and content (Sportradar)"
+  },
+  {
+    "name": "LSports",
+    "url": "https://lsports.eu",
+    "logo": "https://www.lsports.eu/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting data and odds provider"
+  },
+  {
+    "name": "Betgenius",
+    "url": "https://betgenius.com",
+    "logo": "https://www.betgenius.com/logo.svg",
+    "type": "gambling",
+    "description": "Sports betting data and trading platform (Genius Sports)"
+  },
+  {
+    "name": "Swish Analytics",
+    "url": "https://swishanalytics.com",
+    "logo": "https://www.swishanalytics.com/logo.svg",
+    "type": "gambling",
+    "description": "AI-powered DFS and sports betting analytics"
+  },
+  {
+    "name": "Pikkit",
+    "url": "https://pikkit.com",
+    "logo": "https://www.pikkit.com/logo.svg",
+    "type": "gambling",
+    "description": "Social sports prediction and betting platform"
+  },
+  {
+    "name": "Simplebet",
+    "url": "https://simplebet.io",
+    "logo": "https://www.simplebet.io/logo.svg",
+    "type": "gambling",
+    "description": "Microbetting technology and platform"
+  },
+  {
+    "name": "Entain",
+    "url": "https://entaingroup.com",
+    "logo": "https://www.entaingroup.com/logo.svg",
+    "type": "gambling",
+    "description": "Global sports betting and gaming operator"
+  },
+  {
+    "name": "Flutter Entertainment",
+    "url": "https://flutter.com",
+    "logo": "https://www.flutter.com/logo.svg",
+    "type": "gambling",
+    "description": "Global betting and gaming company (FanDuel, Paddy Power)"
+  },
+  {
+    "name": "Penn Entertainment",
+    "url": "https://pennentertainment.com",
+    "logo": "https://www.pennentertainment.com/logo.svg",
+    "type": "gambling",
+    "description": "Gaming and entertainment company with ESPN Bet"
+  },
+  {
+    "name": "MGM Resorts International",
+    "url": "https://mgmresorts.com",
+    "logo": "https://www.mgmresorts.com/logo.svg",
+    "type": "gambling",
+    "description": "Casino and resort operator with BetMGM"
+  },
+  {
+    "name": "Caesars Entertainment",
+    "url": "https://caesars.com",
+    "logo": "https://www.caesars.com/logo.svg",
+    "type": "gambling",
+    "description": "Casino operator with Caesars Sportsbook"
+  },
+  {
+    "name": "Rush Street Interactive",
+    "url": "https://rushstreetinteractive.com",
+    "logo": "https://www.rushstreetinteractive.com/logo.svg",
+    "type": "gambling",
+    "description": "Online gaming and sports betting operator (BetRivers)"
+  },
+  {
+    "name": "Boyd Gaming",
+    "url": "https://boydgaming.com",
+    "logo": "https://www.boydgaming.com/logo.svg",
+    "type": "gambling",
+    "description": "Casino operator with FanDuel partnership"
+  },
+  {
+    "name": "Red Rock Resorts",
+    "url": "https://redrockresorts.com",
+    "logo": "https://www.redrockresorts.com/logo.svg",
+    "type": "gambling",
+    "description": "Casino operator in Las Vegas market"
+  },
+  {
+    "name": "Maverick Gaming",
+    "url": "https://maverickgaming.com",
+    "logo": "https://www.maverickgaming.com/logo.svg",
+    "type": "gambling",
+    "description": "Gaming operator with potential sportsbook"
+  },
+  {
+    "name": "Full Tilt Poker",
+    "url": "https://fulltilt.com",
+    "logo": "https://www.fulltilt.com/logo.svg",
+    "type": "gambling",
+    "description": "Online poker platform (Flutter Entertainment)"
+  },
+  {
+    "name": "PokerStars",
+    "url": "https://pokerstars.com",
+    "logo": "https://www.pokerstars.com/logo.svg",
+    "type": "gambling",
+    "description": "World's largest online poker platform (Flutter)"
+  },
+  {
+    "name": "BetOnline",
+    "url": "https://betonline.ag",
+    "logo": "https://www.betonline.ag/logo.svg",
+    "type": "gambling",
+    "description": "Online sports betting and casino platform"
+  },
+  {
+    "name": "Bovada",
+    "url": "https://bovada.lv",
+    "logo": "https://www.bovada.lv/logo.svg",
+    "type": "gambling",
+    "description": "Online sports betting and casino"
+  },
+  {
+    "name": "MyBookie",
+    "url": "https://mybookie.ag",
+    "logo": "https://www.mybookie.ag/logo.svg",
+    "type": "gambling",
+    "description": "Online sportsbook platform"
+  },
+  {
+    "name": "Stake",
+    "url": "https://stake.com",
+    "logo": "https://www.stake.com/logo.svg",
+    "type": "gambling",
+    "description": "Crypto sports betting and casino platform"
+  },
+  {
+    "name": "Rollbit",
+    "url": "https://rollbit.com",
+    "logo": "https://www.rollbit.com/logo.svg",
+    "type": "gambling",
+    "description": "Crypto casino and sports betting"
+  },
+  {
+    "name": "CloudBet",
+    "url": "https://cloudbet.com",
+    "logo": "https://www.cloudbet.com/logo.svg",
+    "type": "gambling",
+    "description": "Bitcoin sports betting platform"
+  },
+  {
+    "name": "Nitrogen Sports",
+    "url": "https://nitrogensports.eu",
+    "logo": "https://www.nitrogensports.eu/logo.svg",
+    "type": "gambling",
+    "description": "Bitcoin sportsbook"
+  }
+]

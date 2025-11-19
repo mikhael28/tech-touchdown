@@ -1,0 +1,562 @@
+[
+  {
+    "name": "NFL (National Football League)",
+    "url": "https://nfl.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/u9fltoslqdsyao8cpm0k",
+    "type": "operations",
+    "description": "Professional American football league with extensive tech operations"
+  },
+  {
+    "name": "NBA (National Basketball Association)",
+    "url": "https://nba.com",
+    "logo": "https://cdn.nba.com/logos/leagues/logo-nba.svg",
+    "type": "operations",
+    "description": "Professional basketball league with digital innovation focus"
+  },
+  {
+    "name": "MLB (Major League Baseball)",
+    "url": "https://mlb.com",
+    "logo": "https://www.mlbstatic.com/team-logos/league-on-dark/1.svg",
+    "type": "operations",
+    "description": "Professional baseball league with MLB Advanced Media technology"
+  },
+  {
+    "name": "NHL (National Hockey League)",
+    "url": "https://nhl.com",
+    "logo": "https://cms.nhl.bamgrid.com/images/logos/league-dark/133.svg",
+    "type": "operations",
+    "description": "Professional hockey league with streaming and tech platforms"
+  },
+  {
+    "name": "MLS (Major League Soccer)",
+    "url": "https://mlssoccer.com",
+    "logo": "https://www.mlssoccer.com/logo.svg",
+    "type": "operations",
+    "description": "Professional soccer league with Apple TV streaming partnership"
+  },
+  {
+    "name": "Premier League",
+    "url": "https://premierleague.com",
+    "logo": "https://www.premierleague.com/logo.svg",
+    "type": "operations",
+    "description": "Top English football league with global digital presence"
+  },
+  {
+    "name": "La Liga",
+    "url": "https://laliga.com",
+    "logo": "https://www.laliga.com/logo.svg",
+    "type": "operations",
+    "description": "Spanish football league with tech innovation initiatives"
+  },
+  {
+    "name": "UEFA",
+    "url": "https://uefa.com",
+    "logo": "https://www.uefa.com/logo.svg",
+    "type": "operations",
+    "description": "European football governing body with Champions League tech"
+  },
+  {
+    "name": "FIFA",
+    "url": "https://fifa.com",
+    "logo": "https://www.fifa.com/logo.svg",
+    "type": "operations",
+    "description": "International football federation with World Cup technology"
+  },
+  {
+    "name": "NCAA",
+    "url": "https://ncaa.com",
+    "logo": "https://www.ncaa.com/logo.svg",
+    "type": "operations",
+    "description": "College athletics governing body with digital platforms"
+  },
+  {
+    "name": "PGA Tour",
+    "url": "https://pgatour.com",
+    "logo": "https://www.pgatour.com/logo.svg",
+    "type": "operations",
+    "description": "Professional golf tour with ShotLink tracking technology"
+  },
+  {
+    "name": "LPGA",
+    "url": "https://lpga.com",
+    "logo": "https://www.lpga.com/logo.svg",
+    "type": "operations",
+    "description": "Women's professional golf with digital platforms"
+  },
+  {
+    "name": "ATP Tour",
+    "url": "https://atptour.com",
+    "logo": "https://www.atptour.com/logo.svg",
+    "type": "operations",
+    "description": "Men's professional tennis with Hawk-Eye technology"
+  },
+  {
+    "name": "WTA",
+    "url": "https://wtatennis.com",
+    "logo": "https://www.wtatennis.com/logo.svg",
+    "type": "operations",
+    "description": "Women's professional tennis tour with streaming platforms"
+  },
+  {
+    "name": "Formula 1",
+    "url": "https://formula1.com",
+    "logo": "https://www.formula1.com/logo.svg",
+    "type": "operations",
+    "description": "Premier motorsport with extensive data and telemetry systems"
+  },
+  {
+    "name": "NASCAR",
+    "url": "https://nascar.com",
+    "logo": "https://www.nascar.com/logo.svg",
+    "type": "operations",
+    "description": "Stock car racing with race control and timing technology"
+  },
+  {
+    "name": "IndyCar",
+    "url": "https://indycar.com",
+    "logo": "https://www.indycar.com/logo.svg",
+    "type": "operations",
+    "description": "Open-wheel racing series with timing and scoring tech"
+  },
+  {
+    "name": "UFC (Ultimate Fighting Championship)",
+    "url": "https://ufc.com",
+    "logo": "https://www.ufc.com/logo.svg",
+    "type": "operations",
+    "description": "MMA organization with streaming and digital platforms (Endeavor)"
+  },
+  {
+    "name": "WWE (World Wrestling Entertainment)",
+    "url": "https://wwe.com",
+    "logo": "https://www.wwe.com/logo.svg",
+    "type": "operations",
+    "description": "Sports entertainment with Peacock streaming partnership (TKO)"
+  },
+  {
+    "name": "WTA",
+    "url": "https://olympics.com",
+    "logo": "https://www.olympics.com/logo.svg",
+    "type": "operations",
+    "description": "International Olympic Committee with streaming and technology"
+  },
+  {
+    "name": "Big Ten Conference",
+    "url": "https://bigten.org",
+    "logo": "https://www.bigten.org/logo.svg",
+    "type": "operations",
+    "description": "College athletic conference with Big Ten Network"
+  },
+  {
+    "name": "SEC (Southeastern Conference)",
+    "url": "https://secsports.com",
+    "logo": "https://www.secsports.com/logo.svg",
+    "type": "operations",
+    "description": "College athletic conference with ESPN partnership"
+  },
+  {
+    "name": "ACC (Atlantic Coast Conference)",
+    "url": "https://theacc.com",
+    "logo": "https://www.theacc.com/logo.svg",
+    "type": "operations",
+    "description": "College athletic conference with ACC Network"
+  },
+  {
+    "name": "Pac-12 Conference",
+    "url": "https://pac-12.com",
+    "logo": "https://www.pac-12.com/logo.svg",
+    "type": "operations",
+    "description": "College athletic conference with Pac-12 Network"
+  },
+  {
+    "name": "Madison Square Garden Sports",
+    "url": "https://msgsports.com",
+    "logo": "https://www.msgsports.com/logo.svg",
+    "type": "operations",
+    "description": "Sports and entertainment company operating MSG venues"
+  },
+  {
+    "name": "AEG (Anschutz Entertainment Group)",
+    "url": "https://aegworldwide.com",
+    "logo": "https://www.aegworldwide.com/logo.svg",
+    "type": "operations",
+    "description": "Global sports and entertainment company with venues and teams"
+  },
+  {
+    "name": "Oak View Group",
+    "url": "https://oakviewgroup.com",
+    "logo": "https://www.oakviewgroup.com/logo.svg",
+    "type": "operations",
+    "description": "Arena development and management company with tech focus"
+  },
+  {
+    "name": "Legends",
+    "url": "https://legends.net",
+    "logo": "https://www.legends.net/logo.svg",
+    "type": "operations",
+    "description": "Premium experiences, hospitality, and technology for venues"
+  },
+  {
+    "name": "ASM Global",
+    "url": "https://asmglobal.com",
+    "logo": "https://www.asmglobal.com/logo.svg",
+    "type": "operations",
+    "description": "Venue and event management company with technology platform"
+  },
+  {
+    "name": "Learfield",
+    "url": "https://learfield.com",
+    "logo": "https://www.learfield.com/logo.svg",
+    "type": "operations",
+    "description": "College sports marketing and multimedia rights management"
+  },
+  {
+    "name": "IMG Academy",
+    "url": "https://imgacademy.com",
+    "logo": "https://www.imgacademy.com/logo.svg",
+    "type": "operations",
+    "description": "Sports training and education campus with technology (Endeavor)"
+  },
+  {
+    "name": "PGL Esports",
+    "url": "https://pglesports.com",
+    "logo": "https://www.pglesports.com/logo.svg",
+    "type": "operations",
+    "description": "Esports tournament organizer with production technology"
+  },
+  {
+    "name": "ESL Gaming",
+    "url": "https://eslgaming.com",
+    "logo": "https://www.eslgaming.com/logo.svg",
+    "type": "operations",
+    "description": "Global esports company with tournament platforms"
+  },
+  {
+    "name": "Riot Games",
+    "url": "https://riotgames.com",
+    "logo": "https://www.riotgames.com/logo.svg",
+    "type": "operations",
+    "description": "Game developer and esports league operator (Tencent)"
+  },
+  {
+    "name": "Activision Blizzard Esports",
+    "url": "https://activisionblizzardesports.com",
+    "logo": "https://www.activisionblizzardesports.com/logo.svg",
+    "type": "operations",
+    "description": "Esports division with Overwatch and Call of Duty leagues"
+  },
+  {
+    "name": "Live Nation Sports",
+    "url": "https://livenation.com",
+    "logo": "https://www.livenation.com/logo.svg",
+    "type": "operations",
+    "description": "Live events and ticketing with sports partnerships"
+  },
+  {
+    "name": "Populous",
+    "url": "https://populous.com",
+    "logo": "https://www.populous.com/logo.svg",
+    "type": "operations",
+    "description": "Sports architecture and stadium design with tech integration"
+  },
+  {
+    "name": "HNTB Sports",
+    "url": "https://hntb.com/sports",
+    "logo": "https://www.hntb.com/logo.svg",
+    "type": "operations",
+    "description": "Sports facility design and engineering"
+  },
+  {
+    "name": "SoFi Stadium",
+    "url": "https://sofistadium.com",
+    "logo": "https://www.sofistadium.com/logo.svg",
+    "type": "operations",
+    "description": "State-of-the-art stadium with advanced technology infrastructure"
+  },
+  {
+    "name": "Allegiant Stadium",
+    "url": "https://allegiantstadium.com",
+    "logo": "https://www.allegiantstadium.com/logo.svg",
+    "type": "operations",
+    "description": "Modern stadium with smart building technology"
+  },
+  {
+    "name": "Mercedes-Benz Stadium",
+    "url": "https://mercedesbenzstadium.com",
+    "logo": "https://www.mercedesbenzstadium.com/logo.svg",
+    "type": "operations",
+    "description": "LEED Platinum stadium with innovative fan technology"
+  },
+  {
+    "name": "Levi's Stadium",
+    "url": "https://levisstadium.com",
+    "logo": "https://www.levisstadium.com/logo.svg",
+    "type": "operations",
+    "description": "Smart stadium with Wi-Fi and mobile technology"
+  },
+  {
+    "name": "AT&T Stadium",
+    "url": "https://attstadium.com",
+    "logo": "https://www.attstadium.com/logo.svg",
+    "type": "operations",
+    "description": "Cowboys stadium with massive video board and tech"
+  },
+  {
+    "name": "US Bank Stadium",
+    "url": "https://usbankstadium.com",
+    "logo": "https://www.usbankstadium.com/logo.svg",
+    "type": "operations",
+    "description": "Vikings stadium with modern technology infrastructure"
+  },
+  {
+    "name": "Climate Pledge Arena",
+    "url": "https://climatepledgearena.com",
+    "logo": "https://www.climatepledgearena.com/logo.svg",
+    "type": "operations",
+    "description": "Sustainable arena with cutting-edge technology (Amazon)"
+  },
+  {
+    "name": "Chase Center",
+    "url": "https://chasecenter.com",
+    "logo": "https://www.chasecenter.com/logo.svg",
+    "type": "operations",
+    "description": "Warriors arena with state-of-the-art tech infrastructure"
+  },
+  {
+    "name": "Little Caesars Arena",
+    "url": "https://littlecaesarsarena.com",
+    "logo": "https://www.littlecaesarsarena.com/logo.svg",
+    "type": "operations",
+    "description": "Multi-purpose arena with modern technology"
+  },
+  {
+    "name": "T-Mobile Arena",
+    "url": "https://t-mobilearena.com",
+    "logo": "https://www.t-mobilearena.com/logo.svg",
+    "type": "operations",
+    "description": "Las Vegas arena with advanced fan experience tech"
+  },
+  {
+    "name": "Fiserv Forum",
+    "url": "https://fiservforum.com",
+    "logo": "https://www.fiservforum.com/logo.svg",
+    "type": "operations",
+    "description": "Bucks arena with smart building technology"
+  },
+  {
+    "name": "Barclays Center",
+    "url": "https://barclayscenter.com",
+    "logo": "https://www.barclayscenter.com/logo.svg",
+    "type": "operations",
+    "description": "Brooklyn arena with digital fan engagement"
+  },
+  {
+    "name": "Capital One Arena",
+    "url": "https://capitalonearena.com",
+    "logo": "https://www.capitalonearena.com/logo.svg",
+    "type": "operations",
+    "description": "DC arena with technology upgrades"
+  },
+  {
+    "name": "Rocket Mortgage FieldHouse",
+    "url": "https://rocketmortgagefieldhouse.com",
+    "logo": "https://www.rocketmortgagefieldhouse.com/logo.svg",
+    "type": "operations",
+    "description": "Cleveland arena with modern technology"
+  },
+  {
+    "name": "Footprint Center",
+    "url": "https://footprintcenter.com",
+    "logo": "https://www.footprintcenter.com/logo.svg",
+    "type": "operations",
+    "description": "Phoenix arena with sustainable technology"
+  },
+  {
+    "name": "Ball Arena",
+    "url": "https://ballarena.com",
+    "logo": "https://www.ballarena.com/logo.svg",
+    "type": "operations",
+    "description": "Denver arena for Nuggets and Avalanche"
+  },
+  {
+    "name": "Wells Fargo Center",
+    "url": "https://wellsfargocenterphilly.com",
+    "logo": "https://www.wellsfargocenterphilly.com/logo.svg",
+    "type": "operations",
+    "description": "Philadelphia arena with Comcast Spectacor technology"
+  },
+  {
+    "name": "American Airlines Center",
+    "url": "https://americanairlinescenter.com",
+    "logo": "https://www.americanairlinescenter.com/logo.svg",
+    "type": "operations",
+    "description": "Dallas arena for Mavericks and Stars"
+  },
+  {
+    "name": "Scotiabank Arena",
+    "url": "https://scotiabankarena.com",
+    "logo": "https://www.scotiabankarena.com/logo.svg",
+    "type": "operations",
+    "description": "Toronto arena with MLSE Digital technology"
+  },
+  {
+    "name": "United Center",
+    "url": "https://unitedcenter.com",
+    "logo": "https://www.unitedcenter.com/logo.svg",
+    "type": "operations",
+    "description": "Chicago arena for Bulls and Blackhawks"
+  },
+  {
+    "name": "Madison Square Garden",
+    "url": "https://msg.com",
+    "logo": "https://www.msg.com/logo.svg",
+    "type": "operations",
+    "description": "Iconic NYC venue with extensive technology infrastructure"
+  },
+  {
+    "name": "Wembley Stadium",
+    "url": "https://wembleystadium.com",
+    "logo": "https://www.wembleystadium.com/logo.svg",
+    "type": "operations",
+    "description": "London's iconic stadium with modern tech"
+  },
+  {
+    "name": "Camp Nou",
+    "url": "https://fcbarcelona.com/camp-nou",
+    "logo": "https://www.fcbarcelona.com/logo.svg",
+    "type": "operations",
+    "description": "Barcelona's stadium undergoing tech transformation"
+  },
+  {
+    "name": "Santiago Bernabéu",
+    "url": "https://realmadrid.com/bernabeu",
+    "logo": "https://www.realmadrid.com/logo.svg",
+    "type": "operations",
+    "description": "Real Madrid stadium with retractable roof and tech"
+  },
+  {
+    "name": "Allianz Arena",
+    "url": "https://allianz-arena.com",
+    "logo": "https://www.allianz-arena.com/logo.svg",
+    "type": "operations",
+    "description": "Bayern Munich stadium with LED facade technology"
+  },
+  {
+    "name": "Tottenham Hotspur Stadium",
+    "url": "https://tottenhamhotspur.com/stadium",
+    "logo": "https://www.tottenhamhotspur.com/logo.svg",
+    "type": "operations",
+    "description": "Modern stadium with retractable pitch and technology"
+  },
+  {
+    "name": "Endeavor",
+    "url": "https://endeavorco.com",
+    "logo": "https://www.endeavorco.com/logo.svg",
+    "type": "operations",
+    "description": "Sports and entertainment conglomerate with UFC, IMG, and more"
+  },
+  {
+    "name": "Liberty Media",
+    "url": "https://libertymedia.com",
+    "logo": "https://www.libertymedia.com/logo.svg",
+    "type": "operations",
+    "description": "Media company owning Formula 1 and other sports assets"
+  },
+  {
+    "name": "RedBird Capital",
+    "url": "https://redbirdcap.com",
+    "logo": "https://www.redbirdcap.com/logo.svg",
+    "type": "operations",
+    "description": "Private equity with sports investments (AC Milan, Fenway)"
+  },
+  {
+    "name": "Silver Lake Partners",
+    "url": "https://silverlake.com",
+    "logo": "https://www.silverlake.com/logo.svg",
+    "type": "operations",
+    "description": "Tech investor with stakes in City Football Group and more"
+  },
+  {
+    "name": "Dapper Labs",
+    "url": "https://dapperlabs.com",
+    "logo": "https://www.dapperlabs.com/logo.svg",
+    "type": "tech",
+    "description": "NFT and blockchain company behind NBA Top Shot"
+  },
+  {
+    "name": "Sorare",
+    "url": "https://sorare.com",
+    "logo": "https://www.sorare.com/logo.svg",
+    "type": "tech",
+    "description": "NFT fantasy sports platform with global leagues"
+  },
+  {
+    "name": "NFL Players Association",
+    "url": "https://nflpa.com",
+    "logo": "https://www.nflpa.com/logo.svg",
+    "type": "operations",
+    "description": "Players union with licensing and technology operations"
+  },
+  {
+    "name": "NBA Players Association",
+    "url": "https://nbpa.com",
+    "logo": "https://www.nbpa.com/logo.svg",
+    "type": "operations",
+    "description": "Players union with digital platform and licensing"
+  },
+  {
+    "name": "MLB Players Association",
+    "url": "https://mlbplayers.com",
+    "logo": "https://www.mlbplayers.com/logo.svg",
+    "type": "operations",
+    "description": "Players union with licensing operations"
+  },
+  {
+    "name": "PGA of America",
+    "url": "https://pga.com",
+    "logo": "https://www.pga.com/logo.svg",
+    "type": "operations",
+    "description": "Golf association with coaching and technology platforms"
+  },
+  {
+    "name": "USGA (United States Golf Association)",
+    "url": "https://usga.org",
+    "logo": "https://www.usga.org/logo.svg",
+    "type": "operations",
+    "description": "Golf governing body with handicap and scoring systems"
+  },
+  {
+    "name": "USTA (United States Tennis Association)",
+    "url": "https://usta.com",
+    "logo": "https://www.usta.com/logo.svg",
+    "type": "operations",
+    "description": "Tennis organization with tournament technology and apps"
+  },
+  {
+    "name": "USA Track & Field",
+    "url": "https://usatf.org",
+    "logo": "https://www.usatf.org/logo.svg",
+    "type": "operations",
+    "description": "Track and field governing body with timing systems"
+  },
+  {
+    "name": "US Soccer",
+    "url": "https://ussoccer.com",
+    "logo": "https://www.ussoccer.com/logo.svg",
+    "type": "operations",
+    "description": "Soccer federation with digital platforms and streaming"
+  },
+  {
+    "name": "USA Basketball",
+    "url": "https://usab.com",
+    "logo": "https://www.usab.com/logo.svg",
+    "type": "operations",
+    "description": "Basketball governing body for Team USA"
+  },
+  {
+    "name": "USA Hockey",
+    "url": "https://usahockey.com",
+    "logo": "https://www.usahockey.com/logo.svg",
+    "type": "operations",
+    "description": "Hockey governing body with registration systems"
+  }
+]

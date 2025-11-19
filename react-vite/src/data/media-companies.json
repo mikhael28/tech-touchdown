@@ -1,0 +1,289 @@
+[
+  {
+    "name": "ESPN",
+    "url": "https://espn.com",
+    "logo": "https://a.espncdn.com/redesign/assets/img/logos/espn-logo-white.svg",
+    "type": "media",
+    "description": "Leading sports media brand with digital platforms, streaming, and broadcast"
+  },
+  {
+    "name": "Fox Sports",
+    "url": "https://foxsports.com",
+    "logo": "https://b.fssta.com/uploads/application/marketing/logo.svg",
+    "type": "media",
+    "description": "Major sports broadcasting network with digital and streaming services"
+  },
+  {
+    "name": "NBC Sports",
+    "url": "https://nbcsports.com",
+    "logo": "https://nb.com/img/nbc-logo.svg",
+    "type": "media",
+    "description": "Sports media division of NBCUniversal with Peacock streaming"
+  },
+  {
+    "name": "CBS Sports",
+    "url": "https://cbssports.com",
+    "logo": "https://www.cbssports.com/images/cbssports-logo.svg",
+    "type": "media",
+    "description": "Sports news, scores, and streaming platform under Paramount"
+  },
+  {
+    "name": "The Athletic",
+    "url": "https://theathletic.com",
+    "logo": "https://theathletic.com/logo.svg",
+    "type": "media",
+    "description": "Subscription-based sports journalism platform (New York Times Company)"
+  },
+  {
+    "name": "Bleacher Report",
+    "url": "https://bleacherreport.com",
+    "logo": "https://bleacherreport.com/logo.svg",
+    "type": "media",
+    "description": "Sports news and highlights platform (Warner Bros. Discovery)"
+  },
+  {
+    "name": "Sports Illustrated",
+    "url": "https://si.com",
+    "logo": "https://www.si.com/logo.svg",
+    "type": "media",
+    "description": "Iconic sports media brand with digital and print presence"
+  },
+  {
+    "name": "DAZN",
+    "url": "https://dazn.com",
+    "logo": "https://www.dazn.com/logo.svg",
+    "type": "media",
+    "description": "Global sports streaming platform and OTT service"
+  },
+  {
+    "name": "Barstool Sports",
+    "url": "https://barstoolsports.com",
+    "logo": "https://www.barstoolsports.com/logo.svg",
+    "type": "media",
+    "description": "Digital sports media company with podcast and video content"
+  },
+  {
+    "name": "The Ringer",
+    "url": "https://theringer.com",
+    "logo": "https://www.theringer.com/logo.svg",
+    "type": "media",
+    "description": "Sports and pop culture website with podcasts (Spotify)"
+  },
+  {
+    "name": "Yahoo Sports",
+    "url": "https://sports.yahoo.com",
+    "logo": "https://s.yimg.com/cv/apiv2/default/yahoo-sports.svg",
+    "type": "media",
+    "description": "Sports news, scores, and fantasy sports platform"
+  },
+  {
+    "name": "FanDuel TV",
+    "url": "https://fanduel.com/tv",
+    "logo": "https://www.fanduel.com/logo.svg",
+    "type": "media",
+    "description": "Sports betting focused media network and streaming service"
+  },
+  {
+    "name": "Sky Sports",
+    "url": "https://skysports.com",
+    "logo": "https://www.skysports.com/logo.svg",
+    "type": "media",
+    "description": "UK's leading sports broadcaster with digital platforms"
+  },
+  {
+    "name": "TSN",
+    "url": "https://tsn.ca",
+    "logo": "https://www.tsn.ca/logo.svg",
+    "type": "media",
+    "description": "Canada's leading sports network with streaming services"
+  },
+  {
+    "name": "beIN SPORTS",
+    "url": "https://beinsports.com",
+    "logo": "https://www.beinsports.com/logo.svg",
+    "type": "media",
+    "description": "Global sports network with focus on international coverage"
+  },
+  {
+    "name": "Overtime",
+    "url": "https://overtime.tv",
+    "logo": "https://overtime.tv/logo.svg",
+    "type": "media",
+    "description": "Digital sports media company targeting Gen Z audience"
+  },
+  {
+    "name": "SB Nation",
+    "url": "https://sbnation.com",
+    "logo": "https://www.sbnation.com/logo.svg",
+    "type": "media",
+    "description": "Sports blogging network under Vox Media"
+  },
+  {
+    "name": "Stadium",
+    "url": "https://watchstadium.com",
+    "logo": "https://watchstadium.com/logo.svg",
+    "type": "media",
+    "description": "Multi-platform sports network focused on digital distribution"
+  },
+  {
+    "name": "MLB Network",
+    "url": "https://mlb.com/network",
+    "logo": "https://www.mlb.com/mlb-network-logo.svg",
+    "type": "media",
+    "description": "24/7 baseball network and streaming service"
+  },
+  {
+    "name": "NBA TV",
+    "url": "https://nba.com/nbatv",
+    "logo": "https://www.nba.com/nbatv-logo.svg",
+    "type": "media",
+    "description": "Official NBA television network and streaming platform"
+  },
+  {
+    "name": "NFL Network",
+    "url": "https://nfl.com/network",
+    "logo": "https://www.nfl.com/network-logo.svg",
+    "type": "media",
+    "description": "NFL-owned television network and digital platform"
+  },
+  {
+    "name": "NHL Network",
+    "url": "https://nhl.com/network",
+    "logo": "https://www.nhl.com/network-logo.svg",
+    "type": "media",
+    "description": "Official NHL network with streaming and broadcast"
+  },
+  {
+    "name": "ESPN+",
+    "url": "https://plus.espn.com",
+    "logo": "https://a.espncdn.com/redesign/assets/img/logos/espn-plus.svg",
+    "type": "media",
+    "description": "ESPN's premium streaming service with exclusive content"
+  },
+  {
+    "name": "Fubo",
+    "url": "https://fubo.tv",
+    "logo": "https://www.fubo.tv/logo.svg",
+    "type": "media",
+    "description": "Sports-first live TV streaming platform"
+  },
+  {
+    "name": "WAVE.tv",
+    "url": "https://wave.tv",
+    "logo": "https://wave.tv/logo.svg",
+    "type": "media",
+    "description": "Next-gen sports media platform for live events"
+  },
+  {
+    "name": "FloSports",
+    "url": "https://flosports.tv",
+    "logo": "https://www.flosports.tv/logo.svg",
+    "type": "media",
+    "description": "Premium sports streaming for niche and Olympic sports"
+  },
+  {
+    "name": "One37pm",
+    "url": "https://one37pm.com",
+    "logo": "https://one37pm.com/logo.svg",
+    "type": "media",
+    "description": "Sports and culture media platform by Michael Rubin"
+  },
+  {
+    "name": "Minute Media",
+    "url": "https://minutemedia.com",
+    "logo": "https://www.minutemedia.com/logo.svg",
+    "type": "media",
+    "description": "Global digital sports media company with multiple brands"
+  },
+  {
+    "name": "The Score",
+    "url": "https://thescore.com",
+    "logo": "https://www.thescore.com/logo.svg",
+    "type": "media",
+    "description": "Mobile-first sports media and betting app"
+  },
+  {
+    "name": "USA Today Sports",
+    "url": "https://usatoday.com/sports",
+    "logo": "https://www.usatoday.com/logo.svg",
+    "type": "media",
+    "description": "Major sports news division with digital platforms"
+  },
+  {
+    "name": "Turner Sports",
+    "url": "https://turnersports.com",
+    "logo": "https://www.turnersports.com/logo.svg",
+    "type": "media",
+    "description": "Warner Bros. Discovery sports division with TNT and streaming"
+  },
+  {
+    "name": "Amazon Prime Video Sports",
+    "url": "https://amazon.com/primevideo/sports",
+    "logo": "https://m.media-amazon.com/images/G/01/digital/video/logo.svg",
+    "type": "media",
+    "description": "Amazon's sports streaming with NFL Thursday Night Football"
+  },
+  {
+    "name": "Apple TV+ Sports",
+    "url": "https://tv.apple.com/sports",
+    "logo": "https://www.apple.com/tv/logo.svg",
+    "type": "media",
+    "description": "Apple's sports streaming with MLS Season Pass"
+  },
+  {
+    "name": "Paramount+ Sports",
+    "url": "https://paramountplus.com/sports",
+    "logo": "https://www.paramountplus.com/logo.svg",
+    "type": "media",
+    "description": "CBS sports streaming on Paramount+ platform"
+  },
+  {
+    "name": "Peacock Sports",
+    "url": "https://peacocktv.com/sports",
+    "logo": "https://www.peacocktv.com/logo.svg",
+    "type": "media",
+    "description": "NBCUniversal sports streaming service"
+  },
+  {
+    "name": "Sportscenter",
+    "url": "https://espn.com/sportscenter",
+    "logo": "https://a.espncdn.com/redesign/assets/img/logos/sportscenter.svg",
+    "type": "media",
+    "description": "ESPN's flagship sports news program and brand"
+  },
+  {
+    "name": "House of Highlights",
+    "url": "https://houseofhighlights.com",
+    "logo": "https://www.houseofhighlights.com/logo.svg",
+    "type": "media",
+    "description": "Social-first sports highlight platform (Bleacher Report)"
+  },
+  {
+    "name": "Uninterrupted",
+    "url": "https://uninterrupted.com",
+    "logo": "https://www.uninterrupted.com/logo.svg",
+    "type": "media",
+    "description": "Athlete empowerment media company (LeBron James)"
+  },
+  {
+    "name": "Players Tribune",
+    "url": "https://theplayerstribune.com",
+    "logo": "https://www.theplayerstribune.com/logo.svg",
+    "type": "media",
+    "description": "Athlete-first storytelling platform"
+  },
+  {
+    "name": "B/R Football",
+    "url": "https://bleacherreport.com/football",
+    "logo": "https://bleacherreport.com/br-football-logo.svg",
+    "type": "media",
+    "description": "Global football (soccer) content brand"
+  },
+  {
+    "name": "Complex Sports",
+    "url": "https://complex.com/sports",
+    "logo": "https://www.complex.com/logo.svg",
+    "type": "media",
+    "description": "Youth culture and sports media brand"
+  }
+]

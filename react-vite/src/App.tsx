@@ -13,6 +13,7 @@ import FantasyLeague from "./pages/FantasyLeague";
 import Profile from "./pages/Profile";
 import Slideshow from "./pages/Slideshow";
 import PodcastRecording from "./pages/PodcastRecording";
+import Companies from "./pages/Companies";
 import LoginPage from "./components/LoginPage";
 import OAuthCallback from "./pages/OAuthCallback";
 
@@ -35,6 +36,7 @@ function App() {
                 <Route path="profile" element={<Profile />} />
                 <Route path="podcast" element={<PodcastRecording />} />
                 <Route path="slideshow" element={<Slideshow />} />
+                <Route path="companies" element={<Companies />} />
               </Route>
             </Routes>
           </Router>

@@ -1,0 +1,625 @@
+[
+  {
+    "name": "Fanatics",
+    "url": "https://fanatics.com",
+    "logo": "https://www.fanatics.com/logo.svg",
+    "type": "tech",
+    "description": "Sports merchandise and e-commerce platform with tech infrastructure"
+  },
+  {
+    "name": "Sportradar",
+    "url": "https://sportradar.com",
+    "logo": "https://www.sportradar.com/logo.svg",
+    "type": "tech",
+    "description": "Sports data, analytics, and content platform provider"
+  },
+  {
+    "name": "Stats Perform",
+    "url": "https://statsperform.com",
+    "logo": "https://www.statsperform.com/logo.svg",
+    "type": "tech",
+    "description": "AI-powered sports data and analytics company"
+  },
+  {
+    "name": "Genius Sports",
+    "url": "https://geniussports.com",
+    "logo": "https://www.geniussports.com/logo.svg",
+    "type": "tech",
+    "description": "Sports data and technology platform for leagues and betting"
+  },
+  {
+    "name": "Hudl",
+    "url": "https://hudl.com",
+    "logo": "https://www.hudl.com/logo.svg",
+    "type": "tech",
+    "description": "Video analysis and performance platform for teams and athletes"
+  },
+  {
+    "name": "Catapult Sports",
+    "url": "https://catapultsports.com",
+    "logo": "https://www.catapultsports.com/logo.svg",
+    "type": "tech",
+    "description": "Wearable technology and analytics for athlete performance"
+  },
+  {
+    "name": "Whoop",
+    "url": "https://whoop.com",
+    "logo": "https://www.whoop.com/logo.svg",
+    "type": "tech",
+    "description": "Wearable fitness and recovery tracking for athletes"
+  },
+  {
+    "name": "Strava",
+    "url": "https://strava.com",
+    "logo": "https://www.strava.com/logo.svg",
+    "type": "tech",
+    "description": "Social fitness network and tracking platform"
+  },
+  {
+    "name": "Peloton",
+    "url": "https://onepeloton.com",
+    "logo": "https://www.onepeloton.com/logo.svg",
+    "type": "tech",
+    "description": "Connected fitness platform with live and on-demand classes"
+  },
+  {
+    "name": "TrainingPeaks",
+    "url": "https://trainingpeaks.com",
+    "logo": "https://www.trainingpeaks.com/logo.svg",
+    "type": "tech",
+    "description": "Training and coaching platform for endurance athletes"
+  },
+  {
+    "name": "TeamSnap",
+    "url": "https://teamsnap.com",
+    "logo": "https://www.teamsnap.com/logo.svg",
+    "type": "tech",
+    "description": "Sports team management and communication software"
+  },
+  {
+    "name": "SportsEngine",
+    "url": "https://sportsengine.com",
+    "logo": "https://www.sportsengine.com/logo.svg",
+    "type": "tech",
+    "description": "Youth sports management platform (NBC Sports)"
+  },
+  {
+    "name": "Second Spectrum",
+    "url": "https://secondspectrum.com",
+    "logo": "https://www.secondspectrum.com/logo.svg",
+    "type": "tech",
+    "description": "AI-powered sports tracking and analytics (Genius Sports)"
+  },
+  {
+    "name": "StatMuse",
+    "url": "https://statmuse.com",
+    "logo": "https://www.statmuse.com/logo.svg",
+    "type": "tech",
+    "description": "AI-powered sports stats and conversational search"
+  },
+  {
+    "name": "Kinduct",
+    "url": "https://kinduct.com",
+    "logo": "https://www.kinduct.com/logo.svg",
+    "type": "tech",
+    "description": "Athlete management system for professional sports"
+  },
+  {
+    "name": "FORM",
+    "url": "https://formswim.com",
+    "logo": "https://www.formswim.com/logo.svg",
+    "type": "tech",
+    "description": "Smart swimming goggles with heads-up display"
+  },
+  {
+    "name": "HomeCourt",
+    "url": "https://homecourt.ai",
+    "logo": "https://www.homecourt.ai/logo.svg",
+    "type": "tech",
+    "description": "AI basketball training app with shot tracking"
+  },
+  {
+    "name": "GameChanger",
+    "url": "https://gc.com",
+    "logo": "https://www.gc.com/logo.svg",
+    "type": "tech",
+    "description": "Youth sports live streaming and scoring app (DICK'S Sporting Goods)"
+  },
+  {
+    "name": "Zwift",
+    "url": "https://zwift.com",
+    "logo": "https://www.zwift.com/logo.svg",
+    "type": "tech",
+    "description": "Virtual cycling and running platform with gamification"
+  },
+  {
+    "name": "Rapsodo",
+    "url": "https://rapsodo.com",
+    "logo": "https://www.rapsodo.com/logo.svg",
+    "type": "tech",
+    "description": "Sports analytics and tracking devices for baseball, golf, and more"
+  },
+  {
+    "name": "TrackMan",
+    "url": "https://trackman.com",
+    "logo": "https://www.trackman.com/logo.svg",
+    "type": "tech",
+    "description": "Ball tracking technology for golf and baseball"
+  },
+  {
+    "name": "Kitman Labs",
+    "url": "https://kitmanlabs.com",
+    "logo": "https://www.kitmanlabs.com/logo.svg",
+    "type": "tech",
+    "description": "Intelligence platform for athlete health and performance"
+  },
+  {
+    "name": "INFLCR",
+    "url": "https://inflcr.com",
+    "logo": "https://www.inflcr.com/logo.svg",
+    "type": "tech",
+    "description": "Athlete brand building and NIL compliance platform"
+  },
+  {
+    "name": "Opendorse",
+    "url": "https://opendorse.com",
+    "logo": "https://www.opendorse.com/logo.svg",
+    "type": "tech",
+    "description": "Athlete marketing and NIL monetization platform"
+  },
+  {
+    "name": "Teamworks",
+    "url": "https://teamworks.com",
+    "logo": "https://www.teamworks.com/logo.svg",
+    "type": "tech",
+    "description": "Operating system for sports teams and organizations"
+  },
+  {
+    "name": "CoachNow",
+    "url": "https://coachnow.io",
+    "logo": "https://www.coachnow.io/logo.svg",
+    "type": "tech",
+    "description": "Remote coaching and feedback platform"
+  },
+  {
+    "name": "ShotTracker",
+    "url": "https://shottracker.com",
+    "logo": "https://www.shottracker.com/logo.svg",
+    "type": "tech",
+    "description": "Basketball analytics and tracking technology"
+  },
+  {
+    "name": "PlaySight",
+    "url": "https://playsight.com",
+    "logo": "https://www.playsight.com/logo.svg",
+    "type": "tech",
+    "description": "SmartCourt technology for multi-sport video analysis"
+  },
+  {
+    "name": "SwingVision",
+    "url": "https://swingvision.com",
+    "logo": "https://www.swingvision.com/logo.svg",
+    "type": "tech",
+    "description": "AI tennis app for tracking, analysis, and line calling"
+  },
+  {
+    "name": "OnForm",
+    "url": "https://onform.com",
+    "logo": "https://www.onform.com/logo.svg",
+    "type": "tech",
+    "description": "Video coaching and analysis app for all sports"
+  },
+  {
+    "name": "Zone7",
+    "url": "https://zone7.ai",
+    "logo": "https://www.zone7.ai/logo.svg",
+    "type": "tech",
+    "description": "AI-powered injury prediction and prevention platform"
+  },
+  {
+    "name": "Motus Global",
+    "url": "https://motusglobal.com",
+    "logo": "https://www.motusglobal.com/logo.svg",
+    "type": "tech",
+    "description": "Wearable sensors for baseball pitchers and injury prevention"
+  },
+  {
+    "name": "VERT",
+    "url": "https://myvert.com",
+    "logo": "https://www.myvert.com/logo.svg",
+    "type": "tech",
+    "description": "Wearable jump tracking device for athletes"
+  },
+  {
+    "name": "Blast Motion",
+    "url": "https://blastmotion.com",
+    "logo": "https://www.blastmotion.com/logo.svg",
+    "type": "tech",
+    "description": "Sensor technology for baseball, golf, and softball"
+  },
+  {
+    "name": "Dartfish",
+    "url": "https://dartfish.com",
+    "logo": "https://www.dartfish.com/logo.svg",
+    "type": "tech",
+    "description": "Video analysis software for sports performance"
+  },
+  {
+    "name": "SportsCode",
+    "url": "https://sportscode.com",
+    "logo": "https://www.sportscode.com/logo.svg",
+    "type": "tech",
+    "description": "Video analysis and coding software (Hudl)"
+  },
+  {
+    "name": "ChyronHego",
+    "url": "https://chyronhego.com",
+    "logo": "https://www.chyronhego.com/logo.svg",
+    "type": "tech",
+    "description": "Broadcast graphics and sports data integration"
+  },
+  {
+    "name": "Hawk-Eye Innovations",
+    "url": "https://hawkeyeinnovations.com",
+    "logo": "https://www.hawkeyeinnovations.com/logo.svg",
+    "type": "tech",
+    "description": "Ball tracking and officiating technology (Sony)"
+  },
+  {
+    "name": "ChampTrack",
+    "url": "https://champtrack.com",
+    "logo": "https://www.champtrack.com/logo.svg",
+    "type": "tech",
+    "description": "Athlete performance monitoring and GPS tracking"
+  },
+  {
+    "name": "STATSports",
+    "url": "https://statsports.com",
+    "logo": "https://www.statsports.com/logo.svg",
+    "type": "tech",
+    "description": "GPS performance tracking for elite athletes"
+  },
+  {
+    "name": "Playermaker",
+    "url": "https://playermaker.com",
+    "logo": "https://www.playermaker.com/logo.svg",
+    "type": "tech",
+    "description": "Wearable soccer sensors and performance analytics"
+  },
+  {
+    "name": "Orreco",
+    "url": "https://orreco.com",
+    "logo": "https://www.orreco.com/logo.svg",
+    "type": "tech",
+    "description": "Biomarker analytics and athlete optimization"
+  },
+  {
+    "name": "Output Sports",
+    "url": "https://outputsports.com",
+    "logo": "https://www.outputsports.com/logo.svg",
+    "type": "tech",
+    "description": "Force plate technology and strength analytics"
+  },
+  {
+    "name": "Nextiles",
+    "url": "https://nextiles.tech",
+    "logo": "https://www.nextiles.tech/logo.svg",
+    "type": "tech",
+    "description": "Smart fabric sensors for athlete biomechanics"
+  },
+  {
+    "name": "VSI",
+    "url": "https://vsisports.com",
+    "logo": "https://www.vsisports.com/logo.svg",
+    "type": "tech",
+    "description": "Venue management and event technology software"
+  },
+  {
+    "name": "Ticketmaster",
+    "url": "https://ticketmaster.com",
+    "logo": "https://www.ticketmaster.com/logo.svg",
+    "type": "tech",
+    "description": "Ticketing platform for sports and live events"
+  },
+  {
+    "name": "SeatGeek",
+    "url": "https://seatgeek.com",
+    "logo": "https://www.seatgeek.com/logo.svg",
+    "type": "tech",
+    "description": "Mobile ticketing and marketplace platform"
+  },
+  {
+    "name": "Vivid Seats",
+    "url": "https://vividseats.com",
+    "logo": "https://www.vividseats.com/logo.svg",
+    "type": "tech",
+    "description": "Online ticket marketplace for sports events"
+  },
+  {
+    "name": "StubHub",
+    "url": "https://stubhub.com",
+    "logo": "https://www.stubhub.com/logo.svg",
+    "type": "tech",
+    "description": "Ticket exchange and resale marketplace"
+  },
+  {
+    "name": "Ticketmaster Presence",
+    "url": "https://presence.ticketmaster.com",
+    "logo": "https://presence.ticketmaster.com/logo.svg",
+    "type": "tech",
+    "description": "Digital ticketing and access control platform"
+  },
+  {
+    "name": "Shift4",
+    "url": "https://shift4.com",
+    "logo": "https://www.shift4.com/logo.svg",
+    "type": "tech",
+    "description": "Payment processing for sports venues and stadiums"
+  },
+  {
+    "name": "VenueNext",
+    "url": "https://venuenext.com",
+    "logo": "https://www.venuenext.com/logo.svg",
+    "type": "tech",
+    "description": "Mobile ordering and fan engagement platform"
+  },
+  {
+    "name": "Appetize",
+    "url": "https://appetize.com",
+    "logo": "https://www.appetize.com/logo.svg",
+    "type": "tech",
+    "description": "Point-of-sale and concessions technology for venues"
+  },
+  {
+    "name": "Levy Restaurants",
+    "url": "https://levyrestaurants.com",
+    "logo": "https://www.levyrestaurants.com/logo.svg",
+    "type": "operations",
+    "description": "Stadium food service with ordering technology (Compass Group)"
+  },
+  {
+    "name": "AXS",
+    "url": "https://axs.com",
+    "logo": "https://www.axs.com/logo.svg",
+    "type": "tech",
+    "description": "Digital ticketing and fan engagement platform"
+  },
+  {
+    "name": "Fortress",
+    "url": "https://fortress.com",
+    "logo": "https://www.fortress.com/logo.svg",
+    "type": "tech",
+    "description": "Ticketing and access control for sports venues"
+  },
+  {
+    "name": "Paciolan",
+    "url": "https://paciolan.com",
+    "logo": "https://www.paciolan.com/logo.svg",
+    "type": "tech",
+    "description": "Ticketing system for college athletics (Learfield)"
+  },
+  {
+    "name": "StellarAlgo",
+    "url": "https://stellaralgo.com",
+    "logo": "https://www.stellaralgo.com/logo.svg",
+    "type": "tech",
+    "description": "Fan engagement and insights platform for teams"
+  },
+  {
+    "name": "Satisfi Labs",
+    "url": "https://satisfilabs.com",
+    "logo": "https://www.satisfilabs.com/logo.svg",
+    "type": "tech",
+    "description": "AI chatbots and conversational marketing for sports"
+  },
+  {
+    "name": "SidelineHD",
+    "url": "https://sidelinehd.com",
+    "logo": "https://www.sidelinehd.com/logo.svg",
+    "type": "tech",
+    "description": "Live streaming and camera systems for sports"
+  },
+  {
+    "name": "PixellotSports",
+    "url": "https://pixellot.tv",
+    "logo": "https://www.pixellot.tv/logo.svg",
+    "type": "tech",
+    "description": "Automated sports video production and streaming"
+  },
+  {
+    "name": "WSC Sports",
+    "url": "https://wscsports.com",
+    "logo": "https://www.wscsports.com/logo.svg",
+    "type": "tech",
+    "description": "AI-powered sports video highlights and clips"
+  },
+  {
+    "name": "Clipping",
+    "url": "https://clippingtv.com",
+    "logo": "https://www.clippingtv.com/logo.svg",
+    "type": "tech",
+    "description": "Automated highlight generation for sports content"
+  },
+  {
+    "name": "Tagboard",
+    "url": "https://tagboard.com",
+    "logo": "https://www.tagboard.com/logo.svg",
+    "type": "tech",
+    "description": "Social media curation for sports broadcasts"
+  },
+  {
+    "name": "KORE Software",
+    "url": "https://koresoftware.com",
+    "logo": "https://www.koresoftware.com/logo.svg",
+    "type": "tech",
+    "description": "CRM and ticketing platform for sports organizations"
+  },
+  {
+    "name": "Tradable Bits",
+    "url": "https://tradablebits.com",
+    "logo": "https://www.tradablebits.com/logo.svg",
+    "type": "tech",
+    "description": "Fan engagement and data platform for sports teams"
+  },
+  {
+    "name": "Greenfly",
+    "url": "https://greenfly.com",
+    "logo": "https://www.greenfly.com/logo.svg",
+    "type": "tech",
+    "description": "Visual content management for sports and entertainment"
+  },
+  {
+    "name": "Daktronics",
+    "url": "https://daktronics.com",
+    "logo": "https://www.daktronics.com/logo.svg",
+    "type": "tech",
+    "description": "Scoreboards, displays, and control systems for sports"
+  },
+  {
+    "name": "Infront Sports",
+    "url": "https://infrontsports.com",
+    "logo": "https://www.infrontsports.com/logo.svg",
+    "type": "tech",
+    "description": "Sports marketing, media, and technology platform"
+  },
+  {
+    "name": "IMG Arena",
+    "url": "https://imgarena.com",
+    "logo": "https://www.imgarena.com/logo.svg",
+    "type": "tech",
+    "description": "Official live sports data for betting (Endeavor)"
+  },
+  {
+    "name": "Deltatre",
+    "url": "https://deltatre.com",
+    "logo": "https://www.deltatre.com/logo.svg",
+    "type": "tech",
+    "description": "Digital sports video platform and OTT solutions"
+  },
+  {
+    "name": "StreamAMG",
+    "url": "https://streamamg.com",
+    "logo": "https://www.streamamg.com/logo.svg",
+    "type": "tech",
+    "description": "OTT and streaming solutions for sports organizations"
+  },
+  {
+    "name": "MediaKind",
+    "url": "https://mediakind.com",
+    "logo": "https://www.mediakind.com/logo.svg",
+    "type": "tech",
+    "description": "Video infrastructure for sports broadcasting"
+  },
+  {
+    "name": "EVS Broadcast",
+    "url": "https://evs.com",
+    "logo": "https://www.evs.com/logo.svg",
+    "type": "tech",
+    "description": "Live video production technology for sports"
+  },
+  {
+    "name": "PlayOn! Sports",
+    "url": "https://playonsports.com",
+    "logo": "https://www.playonsports.com/logo.svg",
+    "type": "tech",
+    "description": "High school sports streaming network"
+  },
+  {
+    "name": "LeagueApps",
+    "url": "https://leagueapps.com",
+    "logo": "https://www.leagueapps.com/logo.svg",
+    "type": "tech",
+    "description": "Software for youth and recreational sports leagues"
+  },
+  {
+    "name": "Active Network",
+    "url": "https://active.com",
+    "logo": "https://www.active.com/logo.svg",
+    "type": "tech",
+    "description": "Registration and management for sports events"
+  },
+  {
+    "name": "RunSignup",
+    "url": "https://runsignup.com",
+    "logo": "https://www.runsignup.com/logo.svg",
+    "type": "tech",
+    "description": "Race registration and management platform"
+  },
+  {
+    "name": "Athlinks",
+    "url": "https://athlinks.com",
+    "logo": "https://www.athlinks.com/logo.svg",
+    "type": "tech",
+    "description": "Endurance race results and athlete profiles"
+  },
+  {
+    "name": "BlueSombrero",
+    "url": "https://bluesombrero.com",
+    "logo": "https://www.bluesombrero.com/logo.svg",
+    "type": "tech",
+    "description": "Youth sports league management software"
+  },
+  {
+    "name": "Stack Sports",
+    "url": "https://stacksports.com",
+    "logo": "https://www.stacksports.com/logo.svg",
+    "type": "tech",
+    "description": "Sports registration and team management platform"
+  },
+  {
+    "name": "Jersey Watch",
+    "url": "https://jerseywatch.com",
+    "logo": "https://www.jerseywatch.com/logo.svg",
+    "type": "tech",
+    "description": "Uniform and apparel management for sports teams"
+  },
+  {
+    "name": "SquadLocker",
+    "url": "https://squadlocker.com",
+    "logo": "https://www.squadlocker.com/logo.svg",
+    "type": "tech",
+    "description": "Online team stores and uniform ordering"
+  },
+  {
+    "name": "RosterBot",
+    "url": "https://rosterbot.com",
+    "logo": "https://www.rosterbot.com/logo.svg",
+    "type": "tech",
+    "description": "Youth sports scheduling and communication"
+  },
+  {
+    "name": "Upper Hand",
+    "url": "https://upperhand.com",
+    "logo": "https://www.upperhand.com/logo.svg",
+    "type": "tech",
+    "description": "Business management software for sports facilities"
+  },
+  {
+    "name": "EZFacility",
+    "url": "https://ezfacility.com",
+    "logo": "https://www.ezfacility.com/logo.svg",
+    "type": "tech",
+    "description": "Management software for sports and fitness facilities"
+  },
+  {
+    "name": "Jonas Sports",
+    "url": "https://jonassports.com",
+    "logo": "https://www.jonassports.com/logo.svg",
+    "type": "tech",
+    "description": "Software for golf courses and sports complexes"
+  },
+  {
+    "name": "CourtReserve",
+    "url": "https://courtreserve.com",
+    "logo": "https://www.courtreserve.com/logo.svg",
+    "type": "tech",
+    "description": "Court booking and facility management software"
+  },
+  {
+    "name": "PlayTime Scheduler",
+    "url": "https://playtimescheduler.com",
+    "logo": "https://www.playtimescheduler.com/logo.svg",
+    "type": "tech",
+    "description": "Sports facility scheduling and management"
+  }
+]
