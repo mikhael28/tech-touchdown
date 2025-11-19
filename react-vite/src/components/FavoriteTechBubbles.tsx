@@ -29,25 +29,25 @@ interface FavoriteTech {
 const techConfig = {
   languages: {
     items: programmingLanguages,
-    color: "bg-blue-500",
+    color: "bg-primary",
     label: "Languages",
     icon: "💻",
   },
   stacks: {
     items: techStacks,
-    color: "bg-green-500",
+    color: "bg-accent",
     label: "Stacks",
     icon: "⚡",
   },
   industries: {
     items: industries,
-    color: "bg-purple-500",
+    color: "bg-purple",
     label: "Industries",
     icon: "🏢",
   },
   companies: {
     items: companies,
-    color: "bg-orange-500",
+    color: "bg-secondary",
     label: "Companies",
     icon: "🚀",
   },

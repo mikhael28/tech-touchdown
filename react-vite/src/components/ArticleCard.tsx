@@ -21,7 +21,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, variant = 'default' 
   };
 
   const getCategoryColor = (category: string) => {
-    return category === 'sports' ? 'bg-blue-500' : 'bg-green-500';
+    // Sports = Primary (Electric Blue), Tech = Accent (Neon Green), Default = Purple
+    if (category === 'sports') return 'bg-primary';
+    if (category === 'tech' || category === 'technology') return 'bg-accent';
+    return 'bg-purple';
   };
 
   if (variant === 'compact') {

@@ -72,12 +72,12 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-background">
       {/* Side-by-side Search Interfaces with Integrated Bubbles */}
       <div className="flex h-screen">
         {/* Left Side - Sports News */}
-        <div className="flex-1 border-r border-gray-200 dark:border-gray-700 overflow-y-auto bg-white dark:bg-gray-800">
-          <SportsSearch 
+        <div className="flex-1 border-r border-border overflow-y-auto bg-card">
+          <SportsSearch
             onEditTeams={handleEditTeams}
             favoriteTeams={favoriteTeams}
             onRemoveTeam={handleRemoveTeam}
@@ -85,8 +85,8 @@ const Home: React.FC = () => {
         </div>
 
         {/* Right Side - Tech News */}
-        <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-800">
-          <TechSearch 
+        <div className="flex-1 overflow-y-auto bg-card">
+          <TechSearch
             onEditTech={handleEditTech}
             favoriteTech={favoriteTech}
             onRemoveTech={handleRemoveTech}

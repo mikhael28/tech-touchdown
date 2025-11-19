@@ -19,10 +19,10 @@ interface FavoriteTeams {
 }
 
 const sportConfig = {
-  nfl: { teams: nfl, color: "bg-blue-500", label: "NFL" },
-  nba: { teams: nba, color: "bg-orange-500", label: "NBA" },
-  mlb: { teams: mlb, color: "bg-green-500", label: "MLB" },
-  nhl: { teams: nhl, color: "bg-red-500", label: "NHL" },
+  nfl: { teams: nfl, color: "bg-primary", label: "NFL" },
+  nba: { teams: nba, color: "bg-secondary", label: "NBA" },
+  mlb: { teams: mlb, color: "bg-accent", label: "MLB" },
+  nhl: { teams: nhl, color: "bg-warning", label: "NHL" },
 } as const;
 
 const FavoriteTeamsBubbles: React.FC<FavoriteTeamsBubblesProps> = ({

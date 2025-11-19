@@ -28,18 +28,18 @@ const Games = () => {
 
   const getStatusBadge = (game: Game) => {
     const statusColors: Record<GameStatus, string> = {
-      scheduled: 'bg-gray-500',
-      live: 'bg-red-500 animate-pulse',
-      in_progress: 'bg-red-500 animate-pulse',
-      completed: 'bg-green-600',
-      final: 'bg-green-600',
-      postponed: 'bg-yellow-600',
-      cancelled: 'bg-gray-600',
-      halftime: 'bg-orange-500',
+      scheduled: 'bg-primary',
+      live: 'bg-warning animate-pulse',
+      in_progress: 'bg-warning animate-pulse',
+      completed: 'bg-accent',
+      final: 'bg-accent',
+      postponed: 'bg-gold',
+      cancelled: 'bg-muted',
+      halftime: 'bg-secondary',
     };
 
     return (
-      <Badge className={`${statusColors[game.gameStatus]} text-white`}>
+      <Badge className={`${statusColors[game.gameStatus]} text-white font-semibold`}>
         {game.gameStatus === 'in_progress' ? 'LIVE' : game.gameStatus.toUpperCase()}
       </Badge>
     );
@@ -102,14 +102,14 @@ const Games = () => {
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-bold text-foreground">
             Live Sports Games
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
+          <p className="text-muted-foreground mt-1">
             Real-time scores from multiple sports leagues
           </p>
           {data?.lastUpdated && (
-            <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
+            <p className="text-sm text-muted-foreground mt-1">
               Last updated: {new Date(data.lastUpdated).toLocaleString()}
             </p>
           )}
@@ -137,44 +137,44 @@ const Games = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
+        <Card className="border-primary/30">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Total Games</p>
-                <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                <p className="text-sm text-muted-foreground">Total Games</p>
+                <p className="text-3xl font-bold text-foreground">
                   {getTotalGames()}
                 </p>
               </div>
-              <Trophy className="h-8 w-8 text-blue-500" />
+              <Trophy className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-warning/30">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Live Now</p>
-                <p className="text-3xl font-bold text-red-500">
+                <p className="text-sm text-muted-foreground">Live Now</p>
+                <p className="text-3xl font-bold text-warning">
                   {getLiveGames()}
                 </p>
               </div>
-              <div className="h-8 w-8 bg-red-500 rounded-full animate-pulse" />
+              <div className="h-8 w-8 bg-warning rounded-full animate-pulse" />
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-accent/30">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Leagues</p>
-                <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                <p className="text-sm text-muted-foreground">Leagues</p>
+                <p className="text-3xl font-bold text-foreground">
                   {data?.leagues.length || 0}
                 </p>
               </div>
-              <Filter className="h-8 w-8 text-green-500" />
+              <Filter className="h-8 w-8 text-accent" />
             </div>
           </CardContent>
         </Card>
@@ -185,13 +185,13 @@ const Games = () => {
         <CardContent className="pt-6">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 League
               </label>
               <select
                 value={selectedLeague}
                 onChange={(e) => setSelectedLeague(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-input rounded-lg bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-primary"
               >
                 <option value="all">All Leagues</option>
                 {getUniqueLeagues().map((league) => (
@@ -203,13 +203,13 @@ const Games = () => {
             </div>
 
             <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Status
               </label>
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value as GameStatus | 'all')}
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-input rounded-lg bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-primary"
               >
                 <option value="all">All Statuses</option>
                 <option value="live">Live</option>
@@ -228,15 +228,15 @@ const Games = () => {
 
       {/* Error Display */}
       {error && (
-        <Card className="border-red-500 bg-red-50 dark:bg-red-900/20">
+        <Card className="border-destructive bg-destructive/10">
           <CardContent className="pt-6">
             <div className="flex items-start gap-3">
-              <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+              <AlertCircle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
               <div className="flex-1">
-                <h3 className="font-semibold text-red-900 dark:text-red-200">
+                <h3 className="font-semibold text-destructive">
                   Error Loading Games
                 </h3>
-                <p className="text-sm text-red-700 dark:text-red-300 mt-1">{error}</p>
+                <p className="text-sm text-destructive/80 mt-1">{error}</p>
               </div>
               <Button variant="outline" size="sm" onClick={clearError}>
                 Dismiss
@@ -249,8 +249,8 @@ const Games = () => {
       {/* Loading State */}
       {loading && !data && (
         <div className="flex items-center justify-center py-12">
-          <RefreshCw className="h-8 w-8 animate-spin text-blue-500" />
-          <span className="ml-3 text-gray-600 dark:text-gray-400">
+          <RefreshCw className="h-8 w-8 animate-spin text-primary" />
+          <span className="ml-3 text-muted-foreground">
             Loading games...
           </span>
         </div>
@@ -260,8 +260,8 @@ const Games = () => {
       {!loading && filteredLeagues.length === 0 && (
         <Card>
           <CardContent className="py-12 text-center">
-            <Trophy className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-            <p className="text-gray-600 dark:text-gray-400">
+            <Trophy className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+            <p className="text-muted-foreground">
               No games found matching your filters
             </p>
           </CardContent>
@@ -281,18 +281,18 @@ const Games = () => {
               {league.games.map((game) => (
                 <div
                   key={game.id}
-                  className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  className="border border-border rounded-lg p-4 hover:bg-muted/50 hover:border-primary/30 transition-all"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                       {getStatusBadge(game)}
                       {game.period && (
-                        <span className="text-sm text-gray-600 dark:text-gray-400">
+                        <span className="text-sm text-muted-foreground font-medium">
                           {game.period}
                         </span>
                       )}
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-sm text-muted-foreground">
                       {formatTime(game.startTime)}
                     </div>
                   </div>
@@ -308,13 +308,13 @@ const Games = () => {
                         />
                       )}
                       <div className="flex-1">
-                        <p className="font-semibold text-gray-900 dark:text-white">
+                        <p className="font-semibold text-foreground">
                           {game.awayTeam}
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Away</p>
+                        <p className="text-sm text-muted-foreground">Away</p>
                       </div>
                       {game.awayScore !== null && (
-                        <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                        <p className="text-2xl font-bold text-foreground tabular-nums">
                           {game.awayScore}
                         </p>
                       )}
@@ -330,13 +330,13 @@ const Games = () => {
                         />
                       )}
                       <div className="flex-1">
-                        <p className="font-semibold text-gray-900 dark:text-white">
+                        <p className="font-semibold text-foreground">
                           {game.homeTeam}
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Home</p>
+                        <p className="text-sm text-muted-foreground">Home</p>
                       </div>
                       {game.homeScore !== null && (
-                        <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                        <p className="text-2xl font-bold text-foreground tabular-nums">
                           {game.homeScore}
                         </p>
                       )}
@@ -344,7 +344,7 @@ const Games = () => {
                   </div>
 
                   {/* Additional Info */}
-                  <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
+                  <div className="mt-3 pt-3 border-t border-border flex items-center justify-between text-sm text-muted-foreground">
                     <div className="flex items-center gap-4">
                       {game.venue && <span>{game.venue}</span>}
                       {game.broadcast && <span>📺 {game.broadcast}</span>}
