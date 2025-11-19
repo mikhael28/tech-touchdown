@@ -4,7 +4,7 @@ import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 import ThemeToggle from "./ThemeToggle";
 import MP3Player from "./MusicPlayer";
-import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search, Mic, Building2, Clipboard, Headphones, Radio, Newspaper } from "lucide-react";
+import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search, Mic, Building2, Clipboard, Headphones, Radio } from "lucide-react";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -23,11 +23,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     {
       name: "News",
       href: "/news",
-      icon: Newspaper,
-    },
-    {
-      name: "Sports",
-      href: "/sports",
       icon: Trophy,
     },
     {
@@ -39,11 +34,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       name: "Experiments",
       href: "/experiments",
       icon: Clipboard,
-    },
-    {
-      name: "Podcast",
-      href: "/podcast",
-      icon: Headphones,
     },
     {
       name: "Podcast Studio",
@@ -113,10 +103,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
 
           {/* Footer */}
           <div className="border-t p-4 space-y-4">
-            {/* Music Player */}
-            <div className="flex justify-center">
-              <MP3Player />
-            </div>
+
             
             <div className="space-y-2">
               <div className="flex items-center justify-between">

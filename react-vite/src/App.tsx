@@ -23,7 +23,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/auth/callback" element={<OAuthCallback />} />
               <Route path="/" element={<Layout />}>
-                <Route index element={<Podcast />} />
+                <Route index element={<Games />} />
                 <Route path="news" element={<News />} />
                 <Route path="sports" element={<Games />} />
                 <Route path="experiments" element={<Experiments />} />
