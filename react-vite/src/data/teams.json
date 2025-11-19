@@ -1,0 +1,450 @@
+[
+  {
+    "name": "New York Yankees",
+    "url": "https://yankees.com",
+    "logo": "https://www.mlbstatic.com/team-logos/147.svg",
+    "type": "team",
+    "description": "MLB team with extensive tech and digital operations"
+  },
+  {
+    "name": "Los Angeles Dodgers",
+    "url": "https://dodgers.com",
+    "logo": "https://www.mlbstatic.com/team-logos/119.svg",
+    "type": "team",
+    "description": "MLB team with innovative fan engagement technology"
+  },
+  {
+    "name": "Boston Red Sox",
+    "url": "https://redsox.com",
+    "logo": "https://www.mlbstatic.com/team-logos/111.svg",
+    "type": "team",
+    "description": "MLB team with Fenway Sports Group technology division"
+  },
+  {
+    "name": "Golden State Warriors",
+    "url": "https://warriors.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team leading in technology and analytics innovation"
+  },
+  {
+    "name": "Los Angeles Lakers",
+    "url": "https://lakers.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team with strong digital and tech presence"
+  },
+  {
+    "name": "Dallas Cowboys",
+    "url": "https://dallascowboys.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/ctnyoktxegveubvvdg3e",
+    "type": "team",
+    "description": "NFL's most valuable franchise with AT&T Stadium technology"
+  },
+  {
+    "name": "New England Patriots",
+    "url": "https://patriots.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/moyfxx3dq5pio4aiftnc",
+    "type": "team",
+    "description": "NFL team with Kraft Sports + Entertainment tech division"
+  },
+  {
+    "name": "San Francisco 49ers",
+    "url": "https://49ers.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/dxibuyxbk0b9ua5ih9hn",
+    "type": "team",
+    "description": "NFL team with Levi's Stadium smart venue technology"
+  },
+  {
+    "name": "Manchester United",
+    "url": "https://manutd.com",
+    "logo": "https://assets.manutd.com/AssetPicker/images/0/0/16/126/1110838/MU_Corp_B_2x1646818833474.png",
+    "type": "team",
+    "description": "Global soccer club with extensive digital operations"
+  },
+  {
+    "name": "Real Madrid",
+    "url": "https://realmadrid.com",
+    "logo": "https://www.realmadrid.com/logo.svg",
+    "type": "team",
+    "description": "Spanish football club with Microsoft technology partnership"
+  },
+  {
+    "name": "FC Barcelona",
+    "url": "https://fcbarcelona.com",
+    "logo": "https://www.fcbarcelona.com/logo.svg",
+    "type": "team",
+    "description": "Spanish football club with Barça Innovation Hub"
+  },
+  {
+    "name": "Liverpool FC",
+    "url": "https://liverpoolfc.com",
+    "logo": "https://www.liverpoolfc.com/logo.svg",
+    "type": "team",
+    "description": "Premier League club with Fenway Sports Group tech"
+  },
+  {
+    "name": "Manchester City",
+    "url": "https://mancity.com",
+    "logo": "https://www.mancity.com/logo.svg",
+    "type": "team",
+    "description": "Premier League club with City Football Group technology"
+  },
+  {
+    "name": "Chelsea FC",
+    "url": "https://chelseafc.com",
+    "logo": "https://www.chelseafc.com/logo.svg",
+    "type": "team",
+    "description": "Premier League club with advanced analytics division"
+  },
+  {
+    "name": "Toronto Maple Leafs",
+    "url": "https://mapleleafs.com",
+    "logo": "https://cms.nhl.bamgrid.com/images/logos/current/TOR_logo.svg",
+    "type": "team",
+    "description": "NHL team with MLSE Digital Labs"
+  },
+  {
+    "name": "Montreal Canadiens",
+    "url": "https://canadiens.com",
+    "logo": "https://cms.nhl.bamgrid.com/images/logos/current/MTL_logo.svg",
+    "type": "team",
+    "description": "NHL's most storied franchise with modern tech infrastructure"
+  },
+  {
+    "name": "Chicago Bulls",
+    "url": "https://bulls.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team with United Center technology operations"
+  },
+  {
+    "name": "Miami Heat",
+    "url": "https://heat.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team with innovative digital fan experience"
+  },
+  {
+    "name": "Seattle Seahawks",
+    "url": "https://seahawks.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/gcytzwpjdzbpwnwxincg",
+    "type": "team",
+    "description": "NFL team with Lumen Field smart stadium tech"
+  },
+  {
+    "name": "Green Bay Packers",
+    "url": "https://packers.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/gppfvr7n8gljgjaqux2x",
+    "type": "team",
+    "description": "Community-owned NFL team with tech modernization"
+  },
+  {
+    "name": "Atlanta Falcons",
+    "url": "https://atlantafalcons.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/d8m7hzpsbrl6pnqht8op",
+    "type": "team",
+    "description": "NFL team with Mercedes-Benz Stadium technology showcase"
+  },
+  {
+    "name": "Los Angeles Rams",
+    "url": "https://therams.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/bcats77pqc0mwp3zziau",
+    "type": "team",
+    "description": "NFL team with SoFi Stadium advanced tech infrastructure"
+  },
+  {
+    "name": "Los Angeles Chargers",
+    "url": "https://chargers.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/dhfidtn8jrumakbogeu4",
+    "type": "team",
+    "description": "NFL team sharing SoFi Stadium technology"
+  },
+  {
+    "name": "Philadelphia Eagles",
+    "url": "https://eagles.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/puhrqgj71gobgdkdo6uq",
+    "type": "team",
+    "description": "NFL team with Lincoln Financial Field tech innovations"
+  },
+  {
+    "name": "Pittsburgh Steelers",
+    "url": "https://steelers.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/xujg9t3t4u5nmjgr54wx",
+    "type": "team",
+    "description": "NFL team with Heinz Field digital operations"
+  },
+  {
+    "name": "New York Knicks",
+    "url": "https://nba.com/knicks",
+    "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team with MSG Sports technology"
+  },
+  {
+    "name": "Brooklyn Nets",
+    "url": "https://nets.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team with Barclays Center technology platform"
+  },
+  {
+    "name": "Houston Rockets",
+    "url": "https://rockets.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team known for analytics-driven approach"
+  },
+  {
+    "name": "Phoenix Suns",
+    "url": "https://suns.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team with Footprint Center technology"
+  },
+  {
+    "name": "Milwaukee Bucks",
+    "url": "https://bucks.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team with Fiserv Forum advanced technology"
+  },
+  {
+    "name": "Atlanta Braves",
+    "url": "https://braves.com",
+    "logo": "https://www.mlbstatic.com/team-logos/144.svg",
+    "type": "team",
+    "description": "MLB team with Truist Park mixed-use development tech"
+  },
+  {
+    "name": "Chicago Cubs",
+    "url": "https://cubs.com",
+    "logo": "https://www.mlbstatic.com/team-logos/112.svg",
+    "type": "team",
+    "description": "MLB team with Wrigley Field technology upgrades"
+  },
+  {
+    "name": "New York Mets",
+    "url": "https://mets.com",
+    "logo": "https://www.mlbstatic.com/team-logos/121.svg",
+    "type": "team",
+    "description": "MLB team with Cohen-backed technology investments"
+  },
+  {
+    "name": "Houston Astros",
+    "url": "https://astros.com",
+    "logo": "https://www.mlbstatic.com/team-logos/117.svg",
+    "type": "team",
+    "description": "MLB team known for analytics and technology innovation"
+  },
+  {
+    "name": "San Diego Padres",
+    "url": "https://padres.com",
+    "logo": "https://www.mlbstatic.com/team-logos/135.svg",
+    "type": "team",
+    "description": "MLB team with Petco Park digital experiences"
+  },
+  {
+    "name": "Seattle Mariners",
+    "url": "https://mariners.com",
+    "logo": "https://www.mlbstatic.com/team-logos/136.svg",
+    "type": "team",
+    "description": "MLB team with T-Mobile Park technology"
+  },
+  {
+    "name": "Toronto Blue Jays",
+    "url": "https://bluejays.com",
+    "logo": "https://www.mlbstatic.com/team-logos/141.svg",
+    "type": "team",
+    "description": "MLB team with Rogers Communications technology"
+  },
+  {
+    "name": "Tampa Bay Buccaneers",
+    "url": "https://buccaneers.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/v8uqiualryypwqgvwcih",
+    "type": "team",
+    "description": "NFL team with Raymond James Stadium technology"
+  },
+  {
+    "name": "Kansas City Chiefs",
+    "url": "https://chiefs.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/ujshjqvmnxce8m4obmvs",
+    "type": "team",
+    "description": "NFL team with Arrowhead Stadium tech infrastructure"
+  },
+  {
+    "name": "Buffalo Bills",
+    "url": "https://buffalobills.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/giphcy6ie9mxbnldntsf",
+    "type": "team",
+    "description": "NFL team building new stadium with modern technology"
+  },
+  {
+    "name": "Denver Nuggets",
+    "url": "https://nuggets.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA champions with Ball Arena technology"
+  },
+  {
+    "name": "LA Clippers",
+    "url": "https://clippers.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team building Intuit Dome with cutting-edge tech"
+  },
+  {
+    "name": "Portland Trail Blazers",
+    "url": "https://trailblazers.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team with Moda Center digital operations"
+  },
+  {
+    "name": "Sacramento Kings",
+    "url": "https://kings.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team with Golden 1 Center smart arena technology"
+  },
+  {
+    "name": "Cleveland Cavaliers",
+    "url": "https://cavs.com",
+    "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
+    "type": "team",
+    "description": "NBA team with Rock Entertainment Group tech"
+  },
+  {
+    "name": "Washington Commanders",
+    "url": "https://commanders.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/od8w9edtkojwucqtm5cs",
+    "type": "team",
+    "description": "NFL team with new ownership and tech modernization"
+  },
+  {
+    "name": "Baltimore Ravens",
+    "url": "https://ravens.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/ucsdijmddsqcj1i9tddd",
+    "type": "team",
+    "description": "NFL team with M&T Bank Stadium technology"
+  },
+  {
+    "name": "Cincinnati Bengals",
+    "url": "https://bengals.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/okxpteoliyayufypqalq",
+    "type": "team",
+    "description": "NFL team with Paycor Stadium tech infrastructure"
+  },
+  {
+    "name": "Minnesota Vikings",
+    "url": "https://vikings.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/teguylrnqqmfcwxvcmmz",
+    "type": "team",
+    "description": "NFL team with U.S. Bank Stadium technology"
+  },
+  {
+    "name": "Detroit Lions",
+    "url": "https://detroitlions.com",
+    "logo": "https://static.www.nfl.com/image/private/f_auto/league/ocvxwnapdvwevupe4tpr",
+    "type": "team",
+    "description": "NFL team with Ford Field operations"
+  },
+  {
+    "name": "New York Rangers",
+    "url": "https://rangers.com",
+    "logo": "https://cms.nhl.bamgrid.com/images/logos/current/NYR_logo.svg",
+    "type": "team",
+    "description": "NHL team with MSG Sports technology"
+  },
+  {
+    "name": "Tampa Bay Lightning",
+    "url": "https://lightning.nhl.com",
+    "logo": "https://cms.nhl.bamgrid.com/images/logos/current/TBL_logo.svg",
+    "type": "team",
+    "description": "NHL team with Amalie Arena technology"
+  },
+  {
+    "name": "Vegas Golden Knights",
+    "url": "https://goldenknights.com",
+    "logo": "https://cms.nhl.bamgrid.com/images/logos/current/VGK_logo.svg",
+    "type": "team",
+    "description": "NHL team with T-Mobile Arena cutting-edge tech"
+  },
+  {
+    "name": "Colorado Avalanche",
+    "url": "https://avalanche.nhl.com",
+    "logo": "https://cms.nhl.bamgrid.com/images/logos/current/COL_logo.svg",
+    "type": "team",
+    "description": "NHL champions with Ball Arena technology"
+  },
+  {
+    "name": "Florida Panthers",
+    "url": "https://panthers.nhl.com",
+    "logo": "https://cms.nhl.bamgrid.com/images/logos/current/FLA_logo.svg",
+    "type": "team",
+    "description": "NHL team with FLA Live Arena technology"
+  },
+  {
+    "name": "Los Angeles FC",
+    "url": "https://lafc.com",
+    "logo": "https://www.lafc.com/logo.svg",
+    "type": "team",
+    "description": "MLS team with BMO Stadium technology and innovation"
+  },
+  {
+    "name": "Atlanta United",
+    "url": "https://atlutd.com",
+    "logo": "https://www.atlutd.com/logo.svg",
+    "type": "team",
+    "description": "MLS team with Mercedes-Benz Stadium tech"
+  },
+  {
+    "name": "Seattle Sounders",
+    "url": "https://soundersfc.com",
+    "logo": "https://www.soundersfc.com/logo.svg",
+    "type": "team",
+    "description": "MLS team with Lumen Field technology"
+  },
+  {
+    "name": "Inter Miami CF",
+    "url": "https://intermiamicf.com",
+    "logo": "https://www.intermiamicf.com/logo.svg",
+    "type": "team",
+    "description": "MLS team co-owned by David Beckham with tech focus"
+  },
+  {
+    "name": "Paris Saint-Germain",
+    "url": "https://psg.fr",
+    "logo": "https://www.psg.fr/logo.svg",
+    "type": "team",
+    "description": "French football club with global digital presence"
+  },
+  {
+    "name": "Bayern Munich",
+    "url": "https://fcbayern.com",
+    "logo": "https://www.fcbayern.com/logo.svg",
+    "type": "team",
+    "description": "German football club with SAP technology partnership"
+  },
+  {
+    "name": "Juventus",
+    "url": "https://juventus.com",
+    "logo": "https://www.juventus.com/logo.svg",
+    "type": "team",
+    "description": "Italian football club with digital innovation focus"
+  },
+  {
+    "name": "Arsenal FC",
+    "url": "https://arsenal.com",
+    "logo": "https://www.arsenal.com/logo.svg",
+    "type": "team",
+    "description": "Premier League club with Emirates Stadium technology"
+  },
+  {
+    "name": "Tottenham Hotspur",
+    "url": "https://tottenhamhotspur.com",
+    "logo": "https://www.tottenhamhotspur.com/logo.svg",
+    "type": "team",
+    "description": "Premier League club with state-of-the-art stadium tech"
+  }
+]

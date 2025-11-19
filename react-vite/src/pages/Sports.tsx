@@ -5,6 +5,7 @@ import useJinaAI from '../hooks/useJinaAI';
 import useSportsAI from '../hooks/useSportsAI';
 import LeagueSection from '../components/LeagueSection';
 import GameDetailDrawer from '../components/GameDetailDrawer';
+import SportsChatOverlay from '../components/SportsChatOverlay';
 import { Game } from '../types/sports';
 
 // Utility function to clean and filter Jina API content for sports data
@@ -386,6 +387,9 @@ const Sports = () => {
         isOpen={isDrawerOpen}
         onClose={handleCloseDrawer}
       />
+
+      {/* Sports Chat Overlay */}
+      <SportsChatOverlay />
     </div>
   );
 };
