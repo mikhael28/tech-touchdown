@@ -4,7 +4,7 @@ import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 import ThemeToggle from "./ThemeToggle";
 import MP3Player from "./MusicPlayer";
-import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search, Flask, Presentation, Mic, Calendar, DollarSign, Building2 } from "lucide-react";
+import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search, Mic, Building2, Clipboard, Headphones, Radio } from "lucide-react";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -26,16 +26,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       icon: Trophy,
     },
     {
-      name: "Games",
-      href: "/games",
-      icon: Calendar,
-    },
-    {
-      name: "Gambling",
-      href: "/gambling",
-      icon: DollarSign,
-    },
-    {
       name: "Companies",
       href: "/companies",
       icon: Building2,
@@ -43,17 +33,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     {
       name: "Experiments",
       href: "/experiments",
-      icon: Flask,
+      icon: Clipboard,
+    },
+    {
+      name: "Podcast",
+      href: "/podcast",
+      icon: Headphones,
     },
     {
       name: "Podcast Studio",
-      href: "/podcast",
-      icon: Mic,
-    },
-    {
-      name: "Slideshow",
-      href: "/slideshow",
-      icon: Presentation,
+      href: "/podcast-studio",
+      icon: Radio,
     },
   ];
 

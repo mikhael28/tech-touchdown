@@ -5,12 +5,16 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { RefreshCw, AlertCircle, Filter, Clock, Trophy } from 'lucide-react';
+import GameDetailDrawer from '../components/GameDetailDrawer';
+import SportsChatOverlay from '../components/SportsChatOverlay';
 
 const Games = () => {
   const { data, loading, error, fetchGames, clearError } = useAllGames();
   const [selectedLeague, setSelectedLeague] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<GameStatus | 'all'>('all');
   const [autoRefresh, setAutoRefresh] = useState(false);
+  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
     fetchGames();
@@ -25,6 +29,28 @@ const Games = () => {
 
     return () => clearInterval(interval);
   }, [autoRefresh, fetchGames]);
+
+  // Listen for game updates from the game processor
+  useEffect(() => {
+    const handleGameUpdate = (event: CustomEvent) => {
+      const { updatedGame } = event.detail;
+      console.log('Game updated:', updatedGame);
+      
+      // Refresh games data when a game is updated
+      fetchGames();
+      
+      // Update the selected game if it's the same game that was updated
+      if (selectedGame && selectedGame.id === updatedGame.id) {
+        setSelectedGame(updatedGame);
+      }
+    };
+
+    window.addEventListener('sportsDataUpdated', handleGameUpdate as EventListener);
+    
+    return () => {
+      window.removeEventListener('sportsDataUpdated', handleGameUpdate as EventListener);
+    };
+  }, [selectedGame, fetchGames]);
 
   const getStatusBadge = (game: Game) => {
     const statusColors: Record<GameStatus, string> = {
@@ -93,6 +119,17 @@ const Games = () => {
         total + league.games.filter(game => game.isLive).length,
       0
     );
+  };
+
+  const handleGameClick = (game: Game) => {
+    setSelectedGame(game);
+    setIsDrawerOpen(true);
+  };
+
+  const handleCloseDrawer = () => {
+    setIsDrawerOpen(false);
+    // Small delay to allow drawer to close before clearing selected game
+    setTimeout(() => setSelectedGame(null), 300);
   };
 
   const filteredLeagues = filterGames();
@@ -281,7 +318,8 @@ const Games = () => {
               {league.games.map((game) => (
                 <div
                   key={game.id}
-                  className="border border-border rounded-lg p-4 hover:bg-muted/50 hover:border-primary/30 transition-all"
+                  onClick={() => handleGameClick(game)}
+                  className="border border-border rounded-lg p-4 hover:bg-muted/50 hover:border-primary/30 transition-all cursor-pointer"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -359,6 +397,16 @@ const Games = () => {
           </CardContent>
         </Card>
       ))}
+
+      {/* Game Detail Drawer */}
+      <GameDetailDrawer
+        game={selectedGame}
+        isOpen={isDrawerOpen}
+        onClose={handleCloseDrawer}
+      />
+
+      {/* Sports Chat Overlay */}
+      <SportsChatOverlay />
     </div>
   );
 };

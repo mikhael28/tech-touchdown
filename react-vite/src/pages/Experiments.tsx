@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
-import { Flask, Zap, AlertTriangle } from 'lucide-react';
+import { ClipboardCheck, Zap, AlertTriangle, DollarSign } from 'lucide-react';
 import FantasyLeague from './FantasyLeague';
+import Gambling from './Gambling';
 
-type ExperimentId = 'fantasy-league' | 'future-experiment-1' | 'future-experiment-2';
+type ExperimentId = 'fantasy-league' | 'gambling' | 'future-experiment-1';
 
 interface Experiment {
   id: ExperimentId;
@@ -26,17 +27,18 @@ const experiments: Experiment[] = [
     component: FantasyLeague,
   },
   {
+    id: 'gambling',
+    name: 'Betting Dashboard',
+    description: 'Real-time odds and betting lines across major sports. Simulated odds for entertainment purposes.',
+    icon: DollarSign,
+    status: 'active',
+    component: Gambling,
+  },
+  {
     id: 'future-experiment-1',
     name: 'Coming Soon',
     description: 'More experimental features will appear here as they are developed.',
-    icon: Flask,
-    status: 'coming-soon',
-  },
-  {
-    id: 'future-experiment-2',
-    name: 'Future Feature',
-    description: 'Placeholder for additional experimental functionality.',
-    icon: Flask,
+    icon: ClipboardCheck,
     status: 'coming-soon',
   },
 ];
@@ -54,7 +56,7 @@ const Experiments: React.FC = () => {
         <div>
           <div className="flex items-center gap-3 mb-2">
             <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl">
-              <Flask className="w-6 h-6 text-white" />
+              <ClipboardCheck className="w-6 h-6 text-white" />
             </div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Experiments
@@ -137,7 +139,7 @@ const Experiments: React.FC = () => {
       ) : (
         <Card>
           <CardContent className="p-12 text-center">
-            <Flask className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+            <ClipboardCheck className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
             <h3 className="text-xl font-semibold mb-2">Coming Soon</h3>
             <p className="text-muted-foreground">
               This experimental feature is currently in development.
