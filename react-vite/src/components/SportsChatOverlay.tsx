@@ -6,11 +6,13 @@ import ChatInput from './ChatInput';
 import ChatUserList from './ChatUserList';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { Hash, Users, X, MessageCircle } from 'lucide-react';
+import { Hash, Users, X, MessageCircle, LogIn } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const SportsChatOverlay: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [rooms, setRooms] = useState<ChatRoom[]>([]);
   const [activeRoomId, setActiveRoomId] = useState<string | null>(null);
@@ -116,6 +118,54 @@ const SportsChatOverlay: React.FC = () => {
     }
   }, [messages, activeRoomId]);
 
+  // Simulate real-time messages from other users
+  useEffect(() => {
+    if (!isOpen || !activeRoomId) return;
+
+    const demoUsernames = ['SportsFan42', 'GameWatcher', 'BallDontLie', 'CoachKiller', 'StatNerd', 'HoopsDreams'];
+    const demoMessages = [
+      'That last play was insane! 🔥',
+      'Anyone else watching this game?',
+      'The refs are really letting them play tonight',
+      'Can\'t believe they made that comeback',
+      'This is going to be a great series',
+      'Defense is looking solid tonight',
+      'That was a questionable call...',
+      'MVP performance right there 👏',
+      'This game is going down to the wire!',
+    ];
+
+    const interval = setInterval(() => {
+      // 30% chance of a new message every 10 seconds
+      if (Math.random() > 0.7) {
+        const randomUsername = demoUsernames[Math.floor(Math.random() * demoUsernames.length)];
+        const randomMessage = demoMessages[Math.floor(Math.random() * demoMessages.length)];
+
+        const newMessage: ChatMessageType = {
+          id: `msg-sim-${Date.now()}`,
+          roomId: activeRoomId,
+          userId: `sim-${randomUsername}`,
+          username: randomUsername,
+          message: randomMessage,
+          messageType: 'text',
+          role: 'user',
+          isEdited: false,
+          isDeleted: false,
+          reactions: [],
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        };
+
+        setMessages((prev) => ({
+          ...prev,
+          [activeRoomId]: [...(prev[activeRoomId] || []), newMessage],
+        }));
+      }
+    }, 10000); // Check every 10 seconds
+
+    return () => clearInterval(interval);
+  }, [isOpen, activeRoomId]);
+
   const activeRoom = rooms.find((r) => r.id === activeRoomId);
   const roomMessages = activeRoomId ? messages[activeRoomId] || [] : [];
   const roomOnlineUsers = activeRoomId ? onlineUsers[activeRoomId] || [] : [];
@@ -201,20 +251,6 @@ const SportsChatOverlay: React.FC = () => {
     });
   };
 
-  if (!isAuthenticated) {
-    return (
-      <Button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 rounded-full h-14 w-14 shadow-lg z-40"
-        size="icon"
-        disabled
-        title="Sign in to use chat"
-      >
-        <MessageCircle className="h-6 w-6" />
-      </Button>
-    );
-  }
-
   return (
     <>
       {/* Floating Chat Button */}
@@ -223,6 +259,7 @@ const SportsChatOverlay: React.FC = () => {
           onClick={() => setIsOpen(true)}
           className="fixed bottom-6 right-6 rounded-full h-14 w-14 shadow-lg z-40 bg-primary hover:bg-primary/90"
           size="icon"
+          title={isAuthenticated ? "Open chat" : "View chat (sign in to participate)"}
         >
           <MessageCircle className="h-6 w-6" />
         </Button>
@@ -299,12 +336,31 @@ const SportsChatOverlay: React.FC = () => {
 
             {/* Input */}
             <div className="border-t">
-              <ChatInput
-                onSendMessage={handleSendMessage}
-                replyingTo={replyingTo}
-                onCancelReply={() => setReplyingTo(null)}
-                placeholder={`Message #${activeRoom?.name || 'chat'}`}
-              />
+              {isAuthenticated ? (
+                <ChatInput
+                  onSendMessage={handleSendMessage}
+                  replyingTo={replyingTo}
+                  onCancelReply={() => setReplyingTo(null)}
+                  placeholder={`Message #${activeRoom?.name || 'chat'}`}
+                />
+              ) : (
+                <div className="p-4 bg-muted/50 flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <LogIn className="h-4 w-4" />
+                    <span>Sign in to join the conversation</span>
+                  </div>
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      setIsOpen(false);
+                      navigate('/login');
+                    }}
+                    className="ml-2"
+                  >
+                    Sign In
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>

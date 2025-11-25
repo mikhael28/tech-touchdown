@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import PodcastSidebar from "./PodcastSidebar";
 import PersistentFooterPlayer from "./PersistentFooterPlayer";
+import SportsChyron from "./SportsChyron";
 import ThemeToggle from "./ThemeToggle";
 import HeaderMusicPlayer from "./HeaderMusicPlayer";
 import { Button } from "./ui/button";
@@ -176,8 +177,8 @@ const Layout: React.FC = () => {
 
           {/* Page content with podcast sidebar */}
           <div className="flex flex-1 overflow-hidden">
-            {/* Main page content - add bottom padding on mobile for persistent footer */}
-            <main className="flex-1 overflow-auto pb-20 lg:pb-0">
+            {/* Main page content - add bottom padding for chyron (10vh) + mobile footer player (5rem) */}
+            <main className="flex-1 overflow-auto pb-[calc(10vh+5rem)] lg:pb-[10vh]">
               <Outlet />
             </main>
 
@@ -198,10 +199,13 @@ const Layout: React.FC = () => {
           onEnded={() => setIsPlaying(false)}
         />
 
-        {/* Persistent Footer Player - visible on mobile/small screens */}
-        <div className="lg:hidden">
+        {/* Persistent Footer Player - visible on mobile/small screens, positioned above chyron */}
+        <div className="lg:hidden fixed bottom-[10vh] left-0 right-0 z-50">
           <PersistentFooterPlayer />
         </div>
+
+        {/* Sports News Chyron - always visible at bottom */}
+        <SportsChyron />
       </div>
     </AudioContext.Provider>
   );

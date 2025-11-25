@@ -15,7 +15,7 @@ const OAuthCallback: React.FC = () => {
     
     const code = searchParams.get('code');
     const errorParam = searchParams.get('error');
-    
+    console.log('OAuthCallback - GitHub Client Secret:', import.meta.env.VITE_GITHUB_CLIENT_SECRET);
     // Debug logging
     console.log('OAuthCallback - Full URL:', window.location.href);
     console.log('OAuthCallback - Search params:', Object.fromEntries(searchParams.entries()));

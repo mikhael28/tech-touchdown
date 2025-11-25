@@ -17,6 +17,7 @@ import twilioRoutes from "./routes/twilio";
 import twimlRoutes from "./routes/twiml";
 import gameChatRoutes from "./routes/gameChat";
 import blogRoutes from "./routes/blog";
+import newsRoutes from "./routes/news";
 import { initializeDatabase, testConnection } from "./lib/database";
 
 const app = express();
@@ -283,6 +284,7 @@ app.use("/api/twilio", twilioRoutes);
 app.use("/api/twiml", twimlRoutes);
 app.use("/api/chat", gameChatRoutes);
 app.use("/api/blog", blogRoutes);
+app.use("/api/news", newsRoutes);
 
 // Root endpoint
 app.get("/", (req: Request, res: Response) => {
@@ -299,6 +301,7 @@ app.get("/", (req: Request, res: Response) => {
       jina: "/api/jina",
       scripts: "/api/scripts",
       blog: "/api/blog",
+      news: "/api/news",
       frontend_example: "/static/frontend-example.html",
     },
     links: {
@@ -339,6 +342,7 @@ app.listen(PORT, async () => {
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🔍 Exa AI API: http://localhost:${PORT}/api/exa`);
   console.log(`🏈 Sports API: http://localhost:${PORT}/api/sports`);
+  console.log(`📰 News API: http://localhost:${PORT}/api/news`);
   console.log(`📞 Twilio API: http://localhost:${PORT}/api/twilio`);
   console.log(`🎵 TwiML API: http://localhost:${PORT}/api/twiml`);
   console.log(`💬 Game Chat API: http://localhost:${PORT}/api/chat`);
