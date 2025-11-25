@@ -17,6 +17,7 @@
     "bleacher report"
   ],
   "author": "Tech Touchdown Team",
+  "license": "AGPL-3.0-or-later",
   "homepage": "https://tech-touchdown.com",
   "scripts": {
     "dev": "vite",

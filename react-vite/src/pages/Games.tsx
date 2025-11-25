@@ -4,13 +4,18 @@ import { Game, GameStatus } from '../types/sports';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
-import { RefreshCw, AlertCircle, Filter, Clock, Trophy } from 'lucide-react';
+import { RefreshCw, AlertCircle, Clock, Trophy, X } from 'lucide-react';
 import GameDetailDrawer from '../components/GameDetailDrawer';
 import SportsChatOverlay from '../components/SportsChatOverlay';
 
+const STORAGE_KEY = 'tech-touchdown-selected-leagues';
+
 const Games = () => {
   const { data, loading, error, fetchGames, clearError } = useAllGames();
-  const [selectedLeague, setSelectedLeague] = useState<string>('all');
+  const [selectedLeagues, setSelectedLeagues] = useState<string[]>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  });
   const [selectedStatus, setSelectedStatus] = useState<GameStatus | 'all'>('all');
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
@@ -19,6 +24,10 @@ const Games = () => {
   useEffect(() => {
     fetchGames();
   }, [fetchGames]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedLeagues));
+  }, [selectedLeagues]);
 
   useEffect(() => {
     if (!autoRefresh) return;
@@ -65,7 +74,7 @@ const Games = () => {
     };
 
     return (
-      <Badge className={`${statusColors[game.gameStatus]} text-white font-semibold`}>
+      <Badge className={`${statusColors[game.gameStatus]} text-white font-semibold text-xs py-0 px-2`}>
         {game.gameStatus === 'in_progress' ? 'LIVE' : game.gameStatus.toUpperCase()}
       </Badge>
     );
@@ -86,17 +95,33 @@ const Games = () => {
     return data.leagues.map(league => league.name).sort();
   };
 
+  const toggleLeague = (league: string) => {
+    setSelectedLeagues(prev => {
+      if (prev.includes(league)) {
+        return prev.filter(l => l !== league);
+      } else {
+        return [...prev, league];
+      }
+    });
+  };
+
+  const clearLeagueFilters = () => {
+    setSelectedLeagues([]);
+  };
+
   const filterGames = () => {
     if (!data?.leagues) return [];
 
     let filteredLeagues = data.leagues;
 
-    if (selectedLeague !== 'all') {
+    // Filter by selected leagues (if any are selected)
+    if (selectedLeagues.length > 0) {
       filteredLeagues = filteredLeagues.filter(
-        league => league.name === selectedLeague
+        league => selectedLeagues.includes(league.name)
       );
     }
 
+    // Filter by status
     if (selectedStatus !== 'all') {
       filteredLeagues = filteredLeagues.map(league => ({
         ...league,
@@ -135,19 +160,16 @@ const Games = () => {
   const filteredLeagues = filterGames();
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 space-y-4">
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">
+          <h1 className="text-2xl font-bold text-foreground">
             Live Sports Games
           </h1>
-          <p className="text-muted-foreground mt-1">
-            Real-time scores from multiple sports leagues
-          </p>
           {data?.lastUpdated && (
-            <p className="text-sm text-muted-foreground mt-1">
-              Last updated: {new Date(data.lastUpdated).toLocaleString()}
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Last updated: {new Date(data.lastUpdated).toLocaleTimeString()}
             </p>
           )}
         </div>
@@ -156,62 +178,64 @@ const Games = () => {
           <Button
             onClick={() => setAutoRefresh(!autoRefresh)}
             variant={autoRefresh ? 'default' : 'outline'}
-            className="flex items-center gap-2"
+            size="sm"
+            className="flex items-center gap-1.5"
           >
-            <Clock className="h-4 w-4" />
-            {autoRefresh ? 'Auto-Refresh ON' : 'Auto-Refresh OFF'}
+            <Clock className="h-3.5 w-3.5" />
+            {autoRefresh ? 'Auto ON' : 'Auto OFF'}
           </Button>
           <Button
             onClick={fetchGames}
             disabled={loading}
-            className="flex items-center gap-2"
+            size="sm"
+            className="flex items-center gap-1.5"
           >
-            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`h-3.5 w-3.5 ${loading ? 'animate-spin' : ''}`} />
             Refresh
           </Button>
         </div>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-3">
         <Card className="border-primary/30">
-          <CardContent className="pt-6">
+          <CardContent className="p-3">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground">Total Games</p>
-                <p className="text-3xl font-bold text-foreground">
+                <p className="text-xs text-muted-foreground">Games</p>
+                <p className="text-xl font-bold text-foreground">
                   {getTotalGames()}
                 </p>
               </div>
-              <Trophy className="h-8 w-8 text-primary" />
+              <Trophy className="h-5 w-5 text-primary" />
             </div>
           </CardContent>
         </Card>
 
         <Card className="border-warning/30">
-          <CardContent className="pt-6">
+          <CardContent className="p-3">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground">Live Now</p>
-                <p className="text-3xl font-bold text-warning">
+                <p className="text-xs text-muted-foreground">Live</p>
+                <p className="text-xl font-bold text-warning">
                   {getLiveGames()}
                 </p>
               </div>
-              <div className="h-8 w-8 bg-warning rounded-full animate-pulse" />
+              <div className="h-5 w-5 bg-warning rounded-full animate-pulse" />
             </div>
           </CardContent>
         </Card>
 
         <Card className="border-accent/30">
-          <CardContent className="pt-6">
+          <CardContent className="p-3">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground">Leagues</p>
-                <p className="text-3xl font-bold text-foreground">
+                <p className="text-xs text-muted-foreground">Leagues</p>
+                <p className="text-xl font-bold text-foreground">
                   {data?.leagues.length || 0}
                 </p>
               </div>
-              <Filter className="h-8 w-8 text-accent" />
+              <Trophy className="h-5 w-5 text-accent" />
             </div>
           </CardContent>
         </Card>
@@ -219,36 +243,57 @@ const Games = () => {
 
       {/* Filters */}
       <Card>
-        <CardContent className="pt-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-foreground mb-2">
-                League
-              </label>
-              <select
-                value={selectedLeague}
-                onChange={(e) => setSelectedLeague(e.target.value)}
-                className="w-full px-4 py-2 border border-input rounded-lg bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-primary"
-              >
-                <option value="all">All Leagues</option>
-                {getUniqueLeagues().map((league) => (
-                  <option key={league} value={league}>
-                    {league}
-                  </option>
-                ))}
-              </select>
+        <CardContent className="p-3">
+          <div className="space-y-3">
+            {/* League Badges */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-xs font-medium text-muted-foreground">
+                  LEAGUES {selectedLeagues.length > 0 && `(${selectedLeagues.length} selected)`}
+                </label>
+                {selectedLeagues.length > 0 && (
+                  <Button
+                    onClick={clearLeagueFilters}
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 text-xs px-2"
+                  >
+                    <X className="h-3 w-3 mr-1" />
+                    Clear
+                  </Button>
+                )}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {getUniqueLeagues().map((league) => {
+                  const isSelected = selectedLeagues.includes(league);
+                  return (
+                    <Badge
+                      key={league}
+                      onClick={() => toggleLeague(league)}
+                      className={`cursor-pointer transition-all text-xs py-1 px-3 ${
+                        isSelected
+                          ? 'bg-primary text-primary-foreground hover:bg-primary/90'
+                          : 'bg-muted text-muted-foreground hover:bg-muted/70'
+                      }`}
+                    >
+                      {league}
+                    </Badge>
+                  );
+                })}
+              </div>
             </div>
 
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-foreground mb-2">
-                Status
+            {/* Status Filter */}
+            <div className="flex items-center gap-2">
+              <label className="text-xs font-medium text-muted-foreground whitespace-nowrap">
+                STATUS:
               </label>
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value as GameStatus | 'all')}
-                className="w-full px-4 py-2 border border-input rounded-lg bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-primary"
+                className="flex-1 px-3 py-1.5 text-xs border border-input rounded-md bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-primary"
               >
-                <option value="all">All Statuses</option>
+                <option value="all">All</option>
                 <option value="live">Live</option>
                 <option value="in_progress">In Progress</option>
                 <option value="scheduled">Scheduled</option>
@@ -266,16 +311,13 @@ const Games = () => {
       {/* Error Display */}
       {error && (
         <Card className="border-destructive bg-destructive/10">
-          <CardContent className="pt-6">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
+          <CardContent className="p-3">
+            <div className="flex items-start gap-2">
+              <AlertCircle className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" />
               <div className="flex-1">
-                <h3 className="font-semibold text-destructive">
-                  Error Loading Games
-                </h3>
-                <p className="text-sm text-destructive/80 mt-1">{error}</p>
+                <p className="text-sm text-destructive">{error}</p>
               </div>
-              <Button variant="outline" size="sm" onClick={clearError}>
+              <Button variant="outline" size="sm" onClick={clearError} className="h-6 text-xs">
                 Dismiss
               </Button>
             </div>
@@ -285,9 +327,9 @@ const Games = () => {
 
       {/* Loading State */}
       {loading && !data && (
-        <div className="flex items-center justify-center py-12">
-          <RefreshCw className="h-8 w-8 animate-spin text-primary" />
-          <span className="ml-3 text-muted-foreground">
+        <div className="flex items-center justify-center py-8">
+          <RefreshCw className="h-6 w-6 animate-spin text-primary" />
+          <span className="ml-2 text-sm text-muted-foreground">
             Loading games...
           </span>
         </div>
@@ -296,9 +338,9 @@ const Games = () => {
       {/* Games Display */}
       {!loading && filteredLeagues.length === 0 && (
         <Card>
-          <CardContent className="py-12 text-center">
-            <Trophy className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-            <p className="text-muted-foreground">
+          <CardContent className="py-8 text-center">
+            <Trophy className="h-10 w-10 mx-auto text-muted-foreground mb-3" />
+            <p className="text-sm text-muted-foreground">
               No games found matching your filters
             </p>
           </CardContent>
@@ -307,74 +349,74 @@ const Games = () => {
 
       {filteredLeagues.map((league) => (
         <Card key={league.name}>
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between">
+          <CardHeader className="p-3 pb-2">
+            <CardTitle className="flex items-center justify-between text-base">
               <span>{league.name}</span>
-              <Badge variant="outline">{league.games.length} games</Badge>
+              <Badge variant="outline" className="text-xs">{league.games.length}</Badge>
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="p-3 pt-0">
+            <div className="space-y-2">
               {league.games.map((game) => (
                 <div
                   key={game.id}
                   onClick={() => handleGameClick(game)}
-                  className="border border-border rounded-lg p-4 hover:bg-muted/50 hover:border-primary/30 transition-all cursor-pointer"
+                  className="border border-border rounded-lg p-3 hover:bg-muted/50 hover:border-primary/30 transition-all cursor-pointer"
                 >
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       {getStatusBadge(game)}
                       {game.period && (
-                        <span className="text-sm text-muted-foreground font-medium">
+                        <span className="text-xs text-muted-foreground font-medium">
                           {game.period}
                         </span>
                       )}
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-xs text-muted-foreground">
                       {formatTime(game.startTime)}
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3">
                     {/* Away Team */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2">
                       {game.awayTeamLogo && (
                         <img
                           src={game.awayTeamLogo}
                           alt={game.awayTeam}
-                          className="h-8 w-8 object-contain"
+                          className="h-6 w-6 object-contain flex-shrink-0"
                         />
                       )}
-                      <div className="flex-1">
-                        <p className="font-semibold text-foreground">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-sm text-foreground truncate">
                           {game.awayTeam}
                         </p>
-                        <p className="text-sm text-muted-foreground">Away</p>
+                        <p className="text-xs text-muted-foreground">Away</p>
                       </div>
                       {game.awayScore !== null && (
-                        <p className="text-2xl font-bold text-foreground tabular-nums">
+                        <p className="text-xl font-bold text-foreground tabular-nums">
                           {game.awayScore}
                         </p>
                       )}
                     </div>
 
                     {/* Home Team */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2">
                       {game.homeTeamLogo && (
                         <img
                           src={game.homeTeamLogo}
                           alt={game.homeTeam}
-                          className="h-8 w-8 object-contain"
+                          className="h-6 w-6 object-contain flex-shrink-0"
                         />
                       )}
-                      <div className="flex-1">
-                        <p className="font-semibold text-foreground">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-sm text-foreground truncate">
                           {game.homeTeam}
                         </p>
-                        <p className="text-sm text-muted-foreground">Home</p>
+                        <p className="text-xs text-muted-foreground">Home</p>
                       </div>
                       {game.homeScore !== null && (
-                        <p className="text-2xl font-bold text-foreground tabular-nums">
+                        <p className="text-xl font-bold text-foreground tabular-nums">
                           {game.homeScore}
                         </p>
                       )}
@@ -382,15 +424,14 @@ const Games = () => {
                   </div>
 
                   {/* Additional Info */}
-                  <div className="mt-3 pt-3 border-t border-border flex items-center justify-between text-sm text-muted-foreground">
-                    <div className="flex items-center gap-4">
-                      {game.venue && <span>{game.venue}</span>}
-                      {game.broadcast && <span>📺 {game.broadcast}</span>}
+                  {(game.venue || game.broadcast) && (
+                    <div className="mt-2 pt-2 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
+                      <div className="flex items-center gap-3 flex-1 min-w-0">
+                        {game.venue && <span className="truncate">{game.venue}</span>}
+                        {game.broadcast && <span className="truncate">📺 {game.broadcast}</span>}
+                      </div>
                     </div>
-                    {game.source && (
-                      <span className="text-xs">Source: {game.source}</span>
-                    )}
-                  </div>
+                  )}
                 </div>
               ))}
             </div>

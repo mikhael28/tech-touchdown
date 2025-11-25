@@ -43,5 +43,6 @@
     "api-server",
     "exa-ai"
   ],
-  "author": "Tech Touchdown"
+  "author": "Tech Touchdown",
+  "license": "AGPL-3.0-or-later"
 }

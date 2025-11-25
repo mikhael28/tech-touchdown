@@ -31,3 +31,13 @@ The repository for the code implemented during the CascadiaJS Hackathon.
 
 - `bun install` to install
 - `npx expo start` to run the local dev server
+
+## License
+
+This project is licensed under the GNU Affero General Public License v3.0 or later (AGPL-3.0-or-later). See the [LICENSE](LICENSE) file for details.
+
+**What this means:**
+- You're free to use, modify, and distribute this software
+- If you modify this code and run it as a web service, you must make your modified source code available
+- Any derivative works must also be licensed under AGPL-3.0-or-later
+- This ensures that improvements to the software benefit the entire community

@@ -85,6 +85,144 @@ export interface ESPNScoreboardResponse {
   events: ESPNEvent[];
 }
 
+export interface ESPNGameSummary {
+  boxscore?: {
+    teams: Array<{
+      team: {
+        id: string;
+        displayName: string;
+        abbreviation: string;
+      };
+      statistics: Array<{
+        name: string;
+        displayValue: string;
+        label?: string;
+      }>;
+    }>;
+    players?: Array<{
+      team: {
+        id: string;
+        displayName: string;
+      };
+      statistics: Array<{
+        name: string;
+        displayName: string;
+        shortDisplayName?: string;
+        descriptions?: string[];
+        athletes: Array<{
+          athlete: {
+            id: string;
+            displayName: string;
+            shortName: string;
+            position?: {
+              abbreviation: string;
+            };
+            headshot?: {
+              href: string;
+            };
+          };
+          stats: string[];
+        }>;
+      }>;
+    }>;
+  };
+  drives?: {
+    previous?: Array<{
+      id: string;
+      description: string;
+      team: {
+        name: string;
+        abbreviation: string;
+      };
+      start: {
+        yardLine: number;
+        text: string;
+      };
+      end: {
+        yardLine: number;
+        text: string;
+      };
+      plays: number;
+      yards: number;
+      result: string;
+    }>;
+  };
+  leaders?: Array<{
+    name: string;
+    displayName: string;
+    leaders: Array<{
+      displayValue: string;
+      athlete: {
+        id: string;
+        displayName: string;
+        shortName: string;
+        headshot?: {
+          href: string;
+        };
+      };
+    }>;
+  }>;
+  header?: {
+    competitions: Array<{
+      competitors: Array<{
+        id: string;
+        team: {
+          displayName: string;
+          logo: string;
+        };
+        score: string;
+        records?: Array<{
+          summary: string;
+        }>;
+      }>;
+    }>;
+  };
+}
+
+export interface ESPNPlayByPlay {
+  drives?: {
+    previous?: Array<{
+      id: string;
+      description: string;
+      team: {
+        name: string;
+        abbreviation: string;
+      };
+      start: {
+        period: number;
+        clock: {
+          displayValue: string;
+        };
+        yardLine: number;
+        text: string;
+      };
+      end: {
+        period: number;
+        clock: {
+          displayValue: string;
+        };
+        yardLine: number;
+        text: string;
+      };
+      plays: Array<{
+        id: string;
+        type: {
+          text: string;
+        };
+        text: string;
+        scoreValue?: number;
+        statYardage?: number;
+        start?: {
+          yardLine: number;
+        };
+        end?: {
+          yardLine: number;
+        };
+      }>;
+    }>;
+  };
+}
+
 export class ESPNApiService {
   private readonly baseUrl = 'https://site.api.espn.com/apis/site/v2/sports';
 
@@ -158,6 +296,40 @@ export class ESPNApiService {
 
   async getNCAABasketballScoreboard(): Promise<ESPNScoreboardResponse> {
     return this.getScoreboard('basketball', 'mens-college-basketball');
+  }
+
+  async getGameSummary(sport: string, league: string, gameId: string): Promise<ESPNGameSummary> {
+    try {
+      const url = `${this.baseUrl}/${sport}/${league}/summary`;
+      const response = await axios.get<ESPNGameSummary>(url, {
+        params: { event: gameId },
+        timeout: 15000,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; TechTouchdown/1.0)',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching ESPN game summary for ${gameId}:`, error);
+      throw new Error(`Failed to fetch game summary from ESPN`);
+    }
+  }
+
+  async getPlayByPlay(sport: string, league: string, gameId: string): Promise<ESPNPlayByPlay> {
+    try {
+      const url = `${this.baseUrl}/${sport}/${league}/playbyplay`;
+      const response = await axios.get<ESPNPlayByPlay>(url, {
+        params: { event: gameId },
+        timeout: 15000,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; TechTouchdown/1.0)',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching ESPN play-by-play for ${gameId}:`, error);
+      throw new Error(`Failed to fetch play-by-play from ESPN`);
+    }
   }
 }
 

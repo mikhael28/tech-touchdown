@@ -13,6 +13,7 @@ import Experiments from "./pages/Experiments";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import BlogEditor from "./pages/BlogEditor";
+import Radio from "./pages/Radio";
 import LoginPage from "./components/LoginPage";
 import OAuthCallback from "./pages/OAuthCallback";
 
@@ -29,6 +30,7 @@ function App() {
                 <Route index element={<Games />} />
                 <Route path="news" element={<News />} />
                 <Route path="sports" element={<Games />} />
+                <Route path="radio" element={<Radio />} />
                 <Route path="experiments" element={<Experiments />} />
                 <Route path="podcast" element={<Podcast />} />
                 <Route path="podcast-studio" element={<PodcastRecording />} />

@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import RightSideDrawer from './RightSideDrawer';
-import LeftSideDrawer from './LeftSideDrawer';
 import { useJinaContent } from '../hooks/useJinaContent';
 import useGameProcessor from '../hooks/useGameProcessor';
-import ExternalIframe from './ExternalIframe';
-import GameChat from './GameChat';
+import AdvancedStats from './AdvancedStats';
+import RadioPlayer from './RadioPlayer';
 import { Game } from '../types/sports';
-import { RefreshCw, BarChart3 } from 'lucide-react';
+import { RefreshCw, Radio } from 'lucide-react';
+import { getStationsByTeam, getNationalStations } from '../data/radioStations';
 
 interface GameDetailDrawerProps {
   game: Game | null;
@@ -17,9 +17,30 @@ interface GameDetailDrawerProps {
 const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClose }) => {
   const { content, loading, error, fetchContent, clearContent } = useJinaContent();
   const { processGame, loading: processingGame, error: processingError } = useGameProcessor();
-  const [isAdvancedStatsOpen, setIsAdvancedStatsOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showRadio, setShowRadio] = useState(true);
   const isFetchingRef = useRef(false);
+
+  // Get relevant radio stations for the game
+  const getRelevantStations = () => {
+    if (!game) return [];
+    
+    const homeTeamStations = getStationsByTeam(game.homeTeam);
+    const awayTeamStations = getStationsByTeam(game.awayTeam);
+    const nationalStations = getNationalStations().filter(s => 
+      s.leagues.includes(game.league)
+    );
+    
+    // Combine and deduplicate
+    const allStations = [...homeTeamStations, ...awayTeamStations, ...nationalStations];
+    const uniqueStations = allStations.filter((station, index, self) =>
+      index === self.findIndex((s) => s.id === station.id)
+    );
+    
+    return uniqueStations;
+  };
+
+  const relevantStations = getRelevantStations();
 
   const handleRefreshGame = useCallback(async () => {
     if (!game?.id || !game?.url) return;
@@ -234,31 +255,59 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
                   Currently in: {game.period}
                 </div>
               )}
-
-              {/* Advanced Stats Button */}
-              {game.url && (
-                <div className="flex justify-center mt-3">
-                  <button
-                    onClick={() => setIsAdvancedStatsOpen(true)}
-                    className="flex items-center px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-md transition-colors"
-                  >
-                    <BarChart3 className="h-3 w-3 mr-1.5" />
-                    View Advanced Stats
-                  </button>
-                </div>
-              )}
             </div>
           </div>
         )}
 
-        {/* Game Chat */}
+        {/* Advanced Stats Section */}
         {game && (
-          <div className="flex-1 min-h-0">
-            <GameChat 
-              gameId={game.id} 
-              awayTeam={game.awayTeam} 
-              homeTeam={game.homeTeam} 
-            />
+          <div className="mt-6">
+            <AdvancedStats game={game} />
+          </div>
+        )}
+
+        {/* Radio Stations Section */}
+        {relevantStations.length > 0 && (
+          <div className="mt-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <Radio className="w-5 h-5 text-blue-500" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  Listen Live
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowRadio(!showRadio)}
+                className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                {showRadio ? 'Hide' : 'Show'}
+              </button>
+            </div>
+
+            {showRadio && (
+              <div className="space-y-3">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  Tune in to live sports radio coverage for this game:
+                </p>
+                
+                <div className="grid gap-4">
+                  {relevantStations.slice(0, 6).map(station => (
+                    <RadioPlayer key={station.id} station={station} />
+                  ))}
+                </div>
+
+                {relevantStations.length > 6 && (
+                  <div className="text-center mt-4">
+                    <a
+                      href="/radio"
+                      className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      View all {relevantStations.length} stations →
+                    </a>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -266,45 +315,19 @@ const GameDetailDrawer: React.FC<GameDetailDrawerProps> = ({ game, isOpen, onClo
   };
 
   return (
-    <>
-      <RightSideDrawer
-        open={isOpen}
-        setOpen={onClose}
-        title={game ? `${game.awayTeam} vs ${game.homeTeam}` : 'Game Details'}
-        size="xl"
-      >
-        <div className="h-full flex flex-col">
-          {/* Content Area */}
-          <div className="flex-1 overflow-hidden">
-            {renderContent()}
-          </div>
+    <RightSideDrawer
+      open={isOpen}
+      setOpen={onClose}
+      title={game ? `${game.awayTeam} vs ${game.homeTeam}` : 'Game Details'}
+      size="xl"
+    >
+      <div className="h-full flex flex-col">
+        {/* Content Area */}
+        <div className="flex-1 overflow-y-auto">
+          {renderContent()}
         </div>
-      </RightSideDrawer>
-
-      {/* Advanced Stats Left Side Drawer */}
-      {game && (
-        <LeftSideDrawer
-          open={isAdvancedStatsOpen}
-          setOpen={setIsAdvancedStatsOpen}
-          title="Advanced Stats"
-          size="lg"
-        >
-          <div className="h-full">
-            {game.url ? (
-              <ExternalIframe url={game.url} />
-            ) : (
-              <div className="text-center py-12">
-                <div className="text-gray-500 dark:text-gray-400">
-                  <BarChart3 className="mx-auto h-12 w-12 mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No stats available</h3>
-                  <p>Advanced statistics are not available for this game</p>
-                </div>
-              </div>
-            )}
-          </div>
-        </LeftSideDrawer>
-      )}
-    </>
+      </div>
+    </RightSideDrawer>
   );
 };
 

@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 import ThemeToggle from "./ThemeToggle";
-import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search, Mic, Building2, Clipboard, Headphones, Radio, BookOpen } from "lucide-react";
+import SidebarRadioList from "./SidebarRadioList";
+import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search, Mic, Building2, Clipboard, Headphones, Radio, BookOpen, Podcast as PodcastIcon } from "lucide-react";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -25,6 +26,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       icon: Trophy,
     },
     {
+      name: "Radio",
+      href: "/radio",
+      icon: Radio,
+    },
+    {
       name: "Blog",
       href: "/blog",
       icon: BookOpen,
@@ -42,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     {
       name: "Podcast Studio",
       href: "/podcast-studio",
-      icon: Radio,
+      icon: PodcastIcon,
     },
   ];
 
@@ -78,7 +84,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 space-y-1 px-3 py-4">
+          <nav className="space-y-1 px-3 py-4">
             {navigation.map((item) => {
               // Support nested routes: highlight if current path starts with the nav item's href
               const isActive = item.href === '/' 
@@ -107,6 +113,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
               );
             })}
           </nav>
+
+          {/* Radio Station List - Scrollable Middle Section */}
+          <div className="flex-1 overflow-y-auto px-3">
+            <SidebarRadioList />
+          </div>
 
           {/* Footer */}
           <div className="border-t p-4 space-y-4">

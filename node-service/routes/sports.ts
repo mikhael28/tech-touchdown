@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import fetch from "node-fetch";
 import { unifiedSportsApiService } from "../services/unifiedSportsApi";
+import { espnApiService } from "../services/espnApi";
 
 const router = Router();
 
@@ -241,6 +242,92 @@ router.get("/games/all", async (req: Request, res: Response): Promise<void> => {
       error: {
         message: error.message || "Failed to fetch games",
         code: "GAMES_FETCH_FAILED",
+      },
+    });
+  }
+});
+
+// Get advanced stats for a specific game
+router.get("/games/:gameId/stats", async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { gameId } = req.params;
+    const { sport, league } = req.query;
+
+    if (!gameId || !sport || !league || typeof sport !== 'string' || typeof league !== 'string') {
+      res.status(400).json({
+        success: false,
+        error: {
+          message: "Game ID parameter and sport/league query parameters are required",
+          code: "MISSING_PARAMETERS",
+        },
+      });
+      return;
+    }
+
+    // Map league names to ESPN API format
+    const leagueMap: Record<string, { sport: string; league: string }> = {
+      'NFL': { sport: 'football', league: 'nfl' },
+      'NBA': { sport: 'basketball', league: 'nba' },
+      'WNBA': { sport: 'basketball', league: 'wnba' },
+      'MLB': { sport: 'baseball', league: 'mlb' },
+      'NHL': { sport: 'hockey', league: 'nhl' },
+      'MLS': { sport: 'soccer', league: 'usa.1' },
+      'Premier League': { sport: 'soccer', league: 'eng.1' },
+      'Champions League': { sport: 'soccer', league: 'uefa.champions' },
+      'La Liga': { sport: 'soccer', league: 'esp.1' },
+      'Serie A': { sport: 'soccer', league: 'ita.1' },
+      'Bundesliga': { sport: 'soccer', league: 'ger.1' },
+      'NCAA Football': { sport: 'football', league: 'college-football' },
+      'NCAA Basketball': { sport: 'basketball', league: 'mens-college-basketball' },
+    };
+
+    const espnParams: { sport: string; league: string } = leagueMap[league] || { sport, league };
+
+    // Fetch both summary and play-by-play data
+    const [summary, playByPlay] = await Promise.allSettled([
+      espnApiService.getGameSummary(espnParams.sport, espnParams.league, gameId),
+      espnApiService.getPlayByPlay(espnParams.sport, espnParams.league, gameId),
+    ]);
+
+    const response: any = {
+      success: true,
+      data: {
+        gameId,
+        sport: espnParams.sport,
+        league: espnParams.league,
+      },
+    };
+
+    if (summary.status === 'fulfilled') {
+      response.data.summary = summary.value;
+    } else {
+      console.error('Error fetching game summary:', summary.reason);
+      response.errors = response.errors || [];
+      response.errors.push({
+        source: 'summary',
+        message: 'Failed to fetch game summary',
+      });
+    }
+
+    if (playByPlay.status === 'fulfilled') {
+      response.data.playByPlay = playByPlay.value;
+    } else {
+      console.error('Error fetching play-by-play:', playByPlay.reason);
+      response.errors = response.errors || [];
+      response.errors.push({
+        source: 'playByPlay',
+        message: 'Failed to fetch play-by-play data',
+      });
+    }
+
+    res.json(response);
+  } catch (error: any) {
+    console.error("Error fetching game stats:", error);
+    res.status(500).json({
+      success: false,
+      error: {
+        message: error.message || "Failed to fetch game stats",
+        code: "GAME_STATS_FETCH_FAILED",
       },
     });
   }
