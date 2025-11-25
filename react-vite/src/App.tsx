@@ -10,6 +10,9 @@ import Podcast from "./pages/Podcast";
 import PodcastRecording from "./pages/PodcastRecording";
 import Companies from "./pages/Companies";
 import Experiments from "./pages/Experiments";
+import BlogList from "./pages/BlogList";
+import BlogPost from "./pages/BlogPost";
+import BlogEditor from "./pages/BlogEditor";
 import LoginPage from "./components/LoginPage";
 import OAuthCallback from "./pages/OAuthCallback";
 
@@ -30,6 +33,12 @@ function App() {
                 <Route path="podcast" element={<Podcast />} />
                 <Route path="podcast-studio" element={<PodcastRecording />} />
                 <Route path="companies" element={<Companies />} />
+                <Route path="blog">
+                  <Route index element={<BlogList />} />
+                  <Route path="new" element={<BlogEditor />} />
+                  <Route path=":slug" element={<BlogPost />} />
+                  <Route path=":slug/edit" element={<BlogEditor />} />
+                </Route>
               </Route>
             </Routes>
           </Router>

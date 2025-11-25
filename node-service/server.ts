@@ -16,6 +16,7 @@ import sportsRoutes from "./routes/sports";
 import twilioRoutes from "./routes/twilio";
 import twimlRoutes from "./routes/twiml";
 import gameChatRoutes from "./routes/gameChat";
+import blogRoutes from "./routes/blog";
 import { initializeDatabase, testConnection } from "./lib/database";
 
 const app = express();
@@ -29,7 +30,8 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://techtouchdown.com.s3-website.us-east-2.amazonaws.com",
   "https://tech-touchdown.com",
-  "https://d89yc33sek4xi.cloudfront.net", // Add your custom domain if you have one
+  "https://d89yc33sek4xi.cloudfront.net", 
+  "https://sports.expatriaonline.com"
 ];
 
 app.use(
@@ -280,6 +282,7 @@ app.use("/api/sports", sportsRoutes);
 app.use("/api/twilio", twilioRoutes);
 app.use("/api/twiml", twimlRoutes);
 app.use("/api/chat", gameChatRoutes);
+app.use("/api/blog", blogRoutes);
 
 // Root endpoint
 app.get("/", (req: Request, res: Response) => {
@@ -295,6 +298,7 @@ app.get("/", (req: Request, res: Response) => {
       twiml: "/api/twiml",
       jina: "/api/jina",
       scripts: "/api/scripts",
+      blog: "/api/blog",
       frontend_example: "/static/frontend-example.html",
     },
     links: {
@@ -338,6 +342,7 @@ app.listen(PORT, async () => {
   console.log(`📞 Twilio API: http://localhost:${PORT}/api/twilio`);
   console.log(`🎵 TwiML API: http://localhost:${PORT}/api/twiml`);
   console.log(`💬 Game Chat API: http://localhost:${PORT}/api/chat`);
+  console.log(`📝 Blog API: http://localhost:${PORT}/api/blog`);
   console.log(`⚙️  Scripts API: http://localhost:${PORT}/api/scripts`);
 
   // Initialize database if NEON_DATABASE_URL is provided
