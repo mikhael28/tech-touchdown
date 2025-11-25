@@ -32,9 +32,13 @@ const SportsChyron: React.FC = () => {
     const fetchHeadlines = async () => {
       try {
         const response = await newsService.getSportsHeadlines();
+        console.log('Sports headlines response:', response);
+        
         if (response.success && response.articles.length > 0) {
+          console.log(`✅ Loaded ${response.articles.length} headlines from ${response.source}`);
           setHeadlines(response.articles);
         } else {
+          console.warn('⚠️ No articles returned from API, using fallback headlines');
           // Use fallback headlines if API returns nothing
           setHeadlines([
             {
@@ -60,7 +64,7 @@ const SportsChyron: React.FC = () => {
           ]);
         }
       } catch (error) {
-        console.error('Error fetching headlines:', error);
+        console.error('❌ Error fetching headlines:', error);
         // Keep existing fallback headlines on error
       } finally {
         setIsLoading(false);

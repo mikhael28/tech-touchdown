@@ -28,10 +28,22 @@ import {
   Zap,
   ChevronDown,
   ChevronRight,
+  Star,
+  Trash2,
+  ExternalLink,
+  Calendar,
+  Loader2,
+  Save,
+  Edit,
+  Plus,
+  X,
 } from 'lucide-react';
+import { useFavorites } from '../hooks/useFavorites';
 
 interface ShowPlanningModuleProps {
   show?: Show;
+  isEditable?: boolean;
+  onSave?: (show: Show) => void | Promise<void>;
 }
 
 const formatDuration = (seconds: number): string => {
@@ -96,9 +108,24 @@ const getPositionColor = (position: HostPosition): string => {
   }
 };
 
-const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow }) => {
+const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ 
+  show = mockShow, 
+  isEditable = false,
+  onSave,
+}) => {
   const [expandedBlocks, setExpandedBlocks] = React.useState<Set<string>>(new Set());
   const [expandedSegments, setExpandedSegments] = React.useState<Set<string>>(new Set());
+  const [showFavorites, setShowFavorites] = React.useState(true);
+  const { favorites, isLoading: favoritesLoading, removeFavorite } = useFavorites();
+  
+  // Edit mode state
+  const [editedShow, setEditedShow] = React.useState<Show>(show);
+  const [isSaving, setIsSaving] = React.useState(false);
+  
+  // Update edited show when prop changes
+  React.useEffect(() => {
+    setEditedShow(show);
+  }, [show]);
 
   const toggleBlock = (blockId: string) => {
     const newExpanded = new Set(expandedBlocks);
@@ -121,7 +148,7 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
   };
 
   const getHostById = (hostId: string): Host | undefined => {
-    return show.hosts.find((h) => h.id === hostId);
+    return currentShow.hosts.find((h) => h.id === hostId);
   };
 
   const getTopicById = (topicId: string): Topic | undefined => {
@@ -142,23 +169,36 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
     return (
       <div
         key={segment.id}
-        className="border border-gray-200 dark:border-gray-700 rounded-lg mb-3 bg-white dark:bg-gray-800"
+        className="border border-gray-200 dark:border-gray-700 rounded-lg mb-3 bg-white dark:bg-gray-800 p-4"
       >
-        <div
-          className="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-          onClick={() => toggleSegment(segment.id)}
-        >
+        <div className="p-4">
           <div className="flex items-start justify-between">
-            <div className="flex-1">
+            <div 
+              className="flex-1 cursor-pointer"
+              onClick={() => toggleSegment(segment.id)}
+            >
               <div className="flex items-center gap-2 mb-2">
                 {isExpanded ? (
                   <ChevronDown className="h-4 w-4 text-gray-500" />
                 ) : (
                   <ChevronRight className="h-4 w-4 text-gray-500" />
                 )}
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  {segment.title}
-                </h4>
+                {isEditable ? (
+                  <input
+                    type="text"
+                    value={segment.title}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      updateSegment(block.id, segment.id, { title: e.target.value });
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                    className="font-semibold text-gray-900 dark:text-white bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 flex-1"
+                  />
+                ) : (
+                  <h4 className="font-semibold text-gray-900 dark:text-white">
+                    {segment.title}
+                  </h4>
+                )}
                 <span
                   className={`px-2 py-1 rounded text-xs font-medium ${getTensionColor(
                     segment.tensionLevel
@@ -178,6 +218,18 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
                 </span>
               </div>
             </div>
+            {isEditable && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deleteSegment(block.id, segment.id);
+                }}
+                className="p-1 rounded hover:bg-red-100 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400"
+                title="Delete segment"
+              >
+                <Trash2 className="h-4 w-4" />
+              </button>
+            )}
           </div>
         </div>
 
@@ -468,20 +520,33 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
         key={block.id}
         className="border-2 border-gray-300 dark:border-gray-600 rounded-lg p-4 mb-4 bg-gray-50 dark:bg-gray-900"
       >
-        <div
-          className="cursor-pointer mb-3"
-          onClick={() => toggleBlock(block.id)}
-        >
+        <div className="mb-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+            <div 
+              className="flex items-center gap-2 flex-1 cursor-pointer"
+              onClick={() => toggleBlock(block.id)}
+            >
               {isExpanded ? (
                 <ChevronDown className="h-5 w-5 text-gray-500" />
               ) : (
                 <ChevronRight className="h-5 w-5 text-gray-500" />
               )}
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                {block.title}
-              </h3>
+              {isEditable ? (
+                <input
+                  type="text"
+                  value={block.title}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    updateBlock(block.id, { title: e.target.value });
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-lg font-bold text-gray-900 dark:text-white bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-2 py-1"
+                />
+              ) : (
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                  {block.title}
+                </h3>
+              )}
               <span className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs font-medium">
                 {block.type.replace('_', ' ')}
               </span>
@@ -492,6 +557,18 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
                 {formatDuration(block.estimatedDurationSeconds)}
               </span>
               <span>{block.segments.length} segments</span>
+              {isEditable && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteBlock(block.id);
+                  }}
+                  className="p-1 rounded hover:bg-red-100 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400"
+                  title="Delete block"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -560,37 +637,300 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
     );
   };
 
+  const handleRemoveFavorite = async (id: string) => {
+    await removeFavorite(id);
+  };
+
+  const formatFavoriteDate = (date: Date): string => {
+    return new Date(date).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  };
+
+  const formatPublishedDate = (dateString: string): string => {
+    try {
+      return new Date(dateString).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      });
+    } catch {
+      return dateString;
+    }
+  };
+
+  const handleSave = async () => {
+    if (!onSave) return;
+    
+    try {
+      setIsSaving(true);
+      await onSave(editedShow);
+    } catch (error) {
+      console.error('Error saving show:', error);
+      alert('Failed to save show. Please try again.');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setEditedShow(show);
+  };
+
+  const updateShow = (updates: Partial<Show>) => {
+    setEditedShow(prev => ({ ...prev, ...updates }));
+  };
+
+  const updateBlock = (blockId: string, updates: Partial<Block>) => {
+    setEditedShow(prev => ({
+      ...prev,
+      blocks: prev.blocks.map(block =>
+        block.id === blockId ? { ...block, ...updates } : block
+      ),
+    }));
+  };
+
+  const deleteBlock = (blockId: string) => {
+    if (!window.confirm('Are you sure you want to delete this block?')) return;
+    setEditedShow(prev => ({
+      ...prev,
+      blocks: prev.blocks.filter(block => block.id !== blockId),
+    }));
+  };
+
+  const updateSegment = (blockId: string, segmentId: string, updates: Partial<Segment>) => {
+    setEditedShow(prev => ({
+      ...prev,
+      blocks: prev.blocks.map(block =>
+        block.id === blockId
+          ? {
+              ...block,
+              segments: block.segments.map(segment =>
+                segment.id === segmentId ? { ...segment, ...updates } : segment
+              ),
+            }
+          : block
+      ),
+    }));
+  };
+
+  const deleteSegment = (blockId: string, segmentId: string) => {
+    if (!window.confirm('Are you sure you want to delete this segment?')) return;
+    setEditedShow(prev => ({
+      ...prev,
+      blocks: prev.blocks.map(block =>
+        block.id === blockId
+          ? {
+              ...block,
+              segments: block.segments.filter(segment => segment.id !== segmentId),
+            }
+          : block
+      ),
+    }));
+  };
+
+  const currentShow = isEditable ? editedShow : show;
+
   return (
     <div className="space-y-6">
+      {/* Save/Cancel buttons when editing */}
+      {isEditable && (
+        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Edit className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+              <span className="font-medium text-blue-900 dark:text-blue-100">
+                Edit Mode
+              </span>
+            </div>
+            <div className="flex gap-3">
+              <button
+                onClick={handleCancel}
+                disabled={isSaving}
+                className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSave}
+                disabled={isSaving}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                {isSaving ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Saving...
+                  </>
+                ) : (
+                  <>
+                    <Save className="h-4 w-4" />
+                    Save Changes
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Favorite Articles Section */}
+      <div className="bg-white dark:bg-gray-800 rounded-lg border-2 border-yellow-500 dark:border-yellow-600">
+        <div 
+          className="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+          onClick={() => setShowFavorites(!showFavorites)}
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              {showFavorites ? (
+                <ChevronDown className="h-5 w-5 text-gray-500" />
+              ) : (
+                <ChevronRight className="h-5 w-5 text-gray-500" />
+              )}
+              <Star className="h-6 w-6 text-yellow-500 fill-current" />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                Favorite Articles
+              </h3>
+              <span className="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full text-sm font-medium">
+                {favorites.length}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {showFavorites && (
+          <div className="border-t border-gray-200 dark:border-gray-700 p-4">
+            {favoritesLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+              </div>
+            ) : favorites.length === 0 ? (
+              <div className="text-center py-8">
+                <Star className="h-12 w-12 text-gray-300 dark:text-gray-600 mx-auto mb-3" />
+                <p className="text-gray-500 dark:text-gray-400 text-sm">
+                  No favorite articles yet. Add articles to your favorites from the search results.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {favorites.map((favorite) => (
+                  <div
+                    key={favorite.id}
+                    className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:border-yellow-500 dark:hover:border-yellow-600 transition-colors bg-white dark:bg-gray-900"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
+                          {favorite.title}
+                        </h4>
+                        
+                        {favorite.summary && (
+                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
+                            {favorite.summary}
+                          </p>
+                        )}
+                        
+                        <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            Saved: {formatFavoriteDate(favorite.savedAt)}
+                          </span>
+                          
+                          {favorite.publishedDate && (
+                            <span className="flex items-center gap-1">
+                              <Clock className="h-3 w-3" />
+                              Published: {formatPublishedDate(favorite.publishedDate)}
+                            </span>
+                          )}
+                          
+                          {favorite.author && (
+                            <span className="truncate max-w-32">
+                              By {favorite.author}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      
+                      <div className="flex gap-2 flex-shrink-0">
+                        <a
+                          href={favorite.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                          title="Open article"
+                        >
+                          <ExternalLink className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                        </a>
+                        <button
+                          onClick={() => handleRemoveFavorite(favorite.id)}
+                          className="p-2 rounded-lg border border-red-300 dark:border-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                          title="Remove from favorites"
+                        >
+                          <Trash2 className="h-4 w-4 text-red-600 dark:text-red-400" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
       {/* Show Header */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-6 text-white">
         <div className="flex items-start justify-between mb-4">
-          <div>
-            <h2 className="text-2xl font-bold mb-1">{show.title}</h2>
-            {show.episodeNumber && (
-              <p className="text-blue-100">Episode #{show.episodeNumber}</p>
+          <div className="flex-1">
+            {isEditable ? (
+              <input
+                type="text"
+                value={currentShow.title}
+                onChange={(e) => updateShow({ title: e.target.value })}
+                className="text-2xl font-bold mb-1 bg-white/20 text-white px-3 py-1 rounded border-2 border-white/30 focus:border-white focus:outline-none w-full"
+              />
+            ) : (
+              <h2 className="text-2xl font-bold mb-1">{currentShow.title}</h2>
+            )}
+            {currentShow.episodeNumber && (
+              <p className="text-blue-100">Episode #{currentShow.episodeNumber}</p>
             )}
           </div>
-          <span
-            className={`px-3 py-1 rounded-full text-xs font-medium ${
-              show.status === 'ready' || show.status === 'live'
-                ? 'bg-green-500'
-                : show.status === 'completed'
-                ? 'bg-gray-500'
-                : 'bg-yellow-500'
-            }`}
-          >
-            {show.status.replace('_', ' ').toUpperCase()}
-          </span>
+          {isEditable ? (
+            <select
+              value={currentShow.status}
+              onChange={(e) => updateShow({ status: e.target.value as Show['status'] })}
+              className="px-3 py-1 rounded-full text-xs font-medium bg-white/20 text-white border-2 border-white/30 focus:border-white focus:outline-none"
+            >
+              <option value="planning">PLANNING</option>
+              <option value="in_prep">IN PREP</option>
+              <option value="ready">READY</option>
+              <option value="live">LIVE</option>
+              <option value="completed">COMPLETED</option>
+              <option value="archived">ARCHIVED</option>
+            </select>
+          ) : (
+            <span
+              className={`px-3 py-1 rounded-full text-xs font-medium ${
+                currentShow.status === 'ready' || currentShow.status === 'live'
+                  ? 'bg-green-500'
+                  : currentShow.status === 'completed'
+                  ? 'bg-gray-500'
+                  : 'bg-yellow-500'
+              }`}
+            >
+              {currentShow.status.replace('_', ' ').toUpperCase()}
+            </span>
+          )}
         </div>
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div className="flex items-center gap-2">
             <Clock className="h-4 w-4" />
-            <span>Air Date: {formatDate(show.airDate)}</span>
+            <span>Air Date: {formatDate(currentShow.airDate)}</span>
           </div>
           <div className="flex items-center gap-2">
             <Play className="h-4 w-4" />
-            <span>Duration: {formatDuration(show.estimatedDurationSeconds)}</span>
+            <span>Duration: {formatDuration(currentShow.estimatedDurationSeconds)}</span>
           </div>
         </div>
       </div>
@@ -602,7 +942,7 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
           Hosts
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {show.hosts.map((host) => (
+          {currentShow.hosts.map((host) => (
             <div
               key={host.id}
               className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-gray-50 dark:bg-gray-900"
@@ -623,7 +963,7 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
       </div>
 
       {/* Opening Teaser */}
-      {show.openingTeaser && (
+      {currentShow.openingTeaser && (
         <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-lg p-4 text-white">
           <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
             <TrendingUp className="h-5 w-5" />
@@ -631,7 +971,7 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
           </h3>
           <p className="text-sm mb-2">Teased Topics:</p>
           <ul className="list-disc list-inside text-sm space-y-1">
-            {show.openingTeaser.teasedTopics.map((topic, idx) => (
+            {currentShow.openingTeaser.teasedTopics.map((topic, idx) => (
               <li key={idx}>{topic}</li>
             ))}
           </ul>
@@ -644,11 +984,11 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
           <Play className="h-6 w-6" />
           Show Blocks
         </h3>
-        {show.blocks.map((block) => renderBlock(block))}
+        {currentShow.blocks.map((block) => renderBlock(block))}
       </div>
 
       {/* Closing Teaser */}
-      {show.closingTeaser && (
+      {currentShow.closingTeaser && (
         <div className="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-lg p-4 text-white">
           <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
             <MessageSquare className="h-5 w-5" />
@@ -656,11 +996,11 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
           </h3>
           <p className="text-sm mb-2 font-medium">Tomorrow's Topics:</p>
           <ul className="list-disc list-inside text-sm space-y-1 mb-3">
-            {show.closingTeaser.tomorrowsTopics.map((topic, idx) => (
+            {currentShow.closingTeaser.tomorrowsTopics.map((topic, idx) => (
               <li key={idx}>{topic}</li>
             ))}
           </ul>
-          <p className="text-sm italic">"{show.closingTeaser.cliffhangerQuestion}"</p>
+          <p className="text-sm italic">"{currentShow.closingTeaser.cliffhangerQuestion}"</p>
         </div>
       )}
 
@@ -668,13 +1008,13 @@ const ShowPlanningModule: React.FC<ShowPlanningModuleProps> = ({ show = mockShow
       <div className="bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
         <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Production Info</h3>
         <div className="grid grid-cols-2 gap-2 text-xs text-gray-600 dark:text-gray-400">
-          <div>Producer: {show.metadata.producer}</div>
-          <div>Director: {show.metadata.director}</div>
-          <div>Studio: {show.metadata.studio}</div>
-          {show.metadata.season && <div>Season: {show.metadata.season}</div>}
+          <div>Producer: {currentShow.metadata.producer}</div>
+          <div>Director: {currentShow.metadata.director}</div>
+          <div>Studio: {currentShow.metadata.studio}</div>
+          {currentShow.metadata.season && <div>Season: {currentShow.metadata.season}</div>}
         </div>
         <div className="mt-2 flex flex-wrap gap-1">
-          {show.metadata.tags.map((tag, idx) => (
+          {currentShow.metadata.tags.map((tag, idx) => (
             <span
               key={idx}
               className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded text-xs"

@@ -32,7 +32,7 @@ const SportsSearch: React.FC<SportsSearchProps> = ({ onEditTeams, favoriteTeams,
     const team = config.teams.find((team: any) => team.short_name === teamShortName);
     
     if (team) {
-      const focusedQuery = `${team.name} ${config.label} news articles latest updates`;
+      const focusedQuery = `What are the latest ${team.name} ${config.label} news articles?`;
       setSearchQuery(focusedQuery);
     }
   };

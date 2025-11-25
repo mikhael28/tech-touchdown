@@ -6,6 +6,7 @@ import { FantasyLeagueProvider } from "./contexts/FantasyLeagueContext";
 import Layout from "./components/Layout";
 import News from "./pages/News";
 import Games from "./pages/Games";
+import Shows from "./pages/Shows";
 import Podcast from "./pages/Podcast";
 import PodcastRecording from "./pages/PodcastRecording";
 import Companies from "./pages/Companies";
@@ -30,6 +31,7 @@ function App() {
                 <Route index element={<Games />} />
                 <Route path="news" element={<News />} />
                 <Route path="sports" element={<Games />} />
+                <Route path="shows" element={<Shows />} />
                 <Route path="radio" element={<Radio />} />
                 <Route path="experiments" element={<Experiments />} />
                 <Route path="podcast" element={<Podcast />} />

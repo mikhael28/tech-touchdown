@@ -4,7 +4,7 @@ import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 import ThemeToggle from "./ThemeToggle";
 import SidebarRadioList from "./SidebarRadioList";
-import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search, Mic, Building2, Clipboard, Headphones, Radio, BookOpen, Podcast as PodcastIcon } from "lucide-react";
+import { Home, User, Settings, LogOut, Menu, X, Trophy, Laptop, Search, Mic, Building2, Clipboard, Headphones, Radio, BookOpen, Podcast as PodcastIcon, Clapperboard } from "lucide-react";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -24,6 +24,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       name: "News",
       href: "/news",
       icon: Trophy,
+    },
+    {
+      name: "Show Planning",
+      href: "/shows",
+      icon: Clapperboard,
     },
     {
       name: "Radio",

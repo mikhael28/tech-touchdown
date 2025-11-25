@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Calendar, Globe, User, Clock, AlertCircle, Loader2, Eye, FileText } from 'lucide-react';
+import { ExternalLink, Calendar, Globe, User, Clock, AlertCircle, Loader2, Eye, FileText, Star } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
@@ -8,6 +8,7 @@ import RightSideDrawer from './RightSideDrawer';
 import ExternalIframe from './ExternalIframe';
 import ContentDisplay from './ContentDisplay';
 import { exaApi } from '../services/exaApi';
+import { useFavorites } from '../hooks/useFavorites';
 
 
 interface SearchResultsProps {
@@ -20,6 +21,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   onSearch
 }) => {
   const { isLoading, results, error, query } = searchState;
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   
   // State for drawer and iframe
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -91,6 +93,18 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     setSelectedContent(null);
   };
 
+  const handleToggleFavorite = async (result: ExaSearchResult) => {
+    const isCurrentlyFavorite = isFavorite(result.url);
+    
+    if (isCurrentlyFavorite) {
+      // Generate the same ID format as in favoritesDB
+      const id = btoa(result.url).replace(/[^a-zA-Z0-9]/g, '');
+      await removeFavorite(id);
+    } else {
+      await addFavorite(result);
+    }
+  };
+
   if (isLoading) {
     return (
       <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
@@ -149,21 +163,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   }
 
   return (
-    <div className="space-y-4">
-      {/* Header with search query and results count */}
-      <div className="flex items-center justify-between px-2">
-        <div className="space-y-1">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-            Search Results
-          </h2>
-          <p className="text-sm text-muted-foreground">
-            Found {results.length} result{results.length !== 1 ? 's' : ''} for "{query}"
-          </p>
-        </div>
-      </div>
+    <div>
+     
 
       {/* Results List */}
-      <div className="space-y-4">
+      <div className="">
         {results.map((result, index) => (
           <Card 
             key={index} 
@@ -205,6 +209,19 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                 
                 {/* Action Buttons */}
                 <div className="flex gap-2 flex-shrink-0">
+                  <Button
+                    variant={isFavorite(result.url) ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => handleToggleFavorite(result)}
+                    className={`flex items-center gap-2 px-3 ${
+                      isFavorite(result.url) 
+                        ? 'bg-yellow-500 hover:bg-yellow-600 text-white border-yellow-500' 
+                        : 'border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+                    }`}
+                    title={isFavorite(result.url) ? 'Remove from favorites' : 'Add to favorites'}
+                  >
+                    <Star className={`h-4 w-4 ${isFavorite(result.url) ? 'fill-current' : ''}`} />
+                  </Button>
                   <Button
                     variant="default"
                     size="sm"

@@ -18,6 +18,7 @@ import twimlRoutes from "./routes/twiml";
 import gameChatRoutes from "./routes/gameChat";
 import blogRoutes from "./routes/blog";
 import newsRoutes from "./routes/news";
+import showsRoutes from "./routes/shows";
 import { initializeDatabase, testConnection } from "./lib/database";
 
 const app = express();
@@ -285,6 +286,7 @@ app.use("/api/twiml", twimlRoutes);
 app.use("/api/chat", gameChatRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/news", newsRoutes);
+app.use("/api/shows", showsRoutes);
 
 // Root endpoint
 app.get("/", (req: Request, res: Response) => {
@@ -302,6 +304,7 @@ app.get("/", (req: Request, res: Response) => {
       scripts: "/api/scripts",
       blog: "/api/blog",
       news: "/api/news",
+      shows: "/api/shows",
       frontend_example: "/static/frontend-example.html",
     },
     links: {
@@ -347,6 +350,7 @@ app.listen(PORT, async () => {
   console.log(`🎵 TwiML API: http://localhost:${PORT}/api/twiml`);
   console.log(`💬 Game Chat API: http://localhost:${PORT}/api/chat`);
   console.log(`📝 Blog API: http://localhost:${PORT}/api/blog`);
+  console.log(`🎬 Shows API: http://localhost:${PORT}/api/shows`);
   console.log(`⚙️  Scripts API: http://localhost:${PORT}/api/scripts`);
 
   // Initialize database if NEON_DATABASE_URL is provided

@@ -57,29 +57,20 @@ function FavoriteItemsBubbles<T extends string = string>({
 
   if (!hasAnyItems) {
     return (
-      <div className="flex min-h-[180px] items-center justify-center">
-        <div className="space-y-4 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-            <span className="text-2xl">{emptyIcon}</span>
-          </div>
-          <div className="space-y-2">
-            <p className="text-lg text-muted-foreground">{emptyTitle}</p>
-            {emptyDescription && (
-              <p className="text-sm text-muted-foreground">
-                {emptyDescription}
-              </p>
-            )}
-          </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={onEdit}
-            className="mt-4"
-          >
-            {editButtonText}
-          </Button>
+      
+        <div className="flex justify-between items-center min-h-[100px]">
+       
+            <p className="text-lg text-muted-foreground">{emptyIcon} {emptyTitle}</p>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onEdit}
+              className="mt-4"
+            >
+              {editButtonText}
+            </Button>
         </div>
-      </div>
+     
     );
   }
 
