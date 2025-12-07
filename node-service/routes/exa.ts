@@ -154,7 +154,7 @@ router.post(
         startPublishedDate,
         endPublishedDate,
         useAutoprompt = true,
-        type = "neural",
+        type = "keyword",
       } = req.body;
 
       if (!query) {
@@ -207,7 +207,6 @@ router.post(
         query,
         options: searchOptions,
         results: results.results,
-        autopromptString: results.autopromptString,
         demoMode: demoMode,
       });
     } catch (error: any) {
@@ -239,11 +238,13 @@ router.post(
         startPublishedDate,
         endPublishedDate,
         useAutoprompt = true,
-        type = "neural",
+        type = "keyword",
         text = true,
         highlights = false,
         summary = false,
       } = req.body;
+
+      console.log("req.body", req.body);
 
       if (!query) {
         res.status(400).json({
@@ -299,7 +300,7 @@ router.post(
           autopromptString: `Demo search with content for: ${query}`,
         };
       } else {
-        results = await exaClient!.searchAndContents(query, {
+        results = await exaClient!.search(query, {
           ...searchOptions,
           ...contentOptions,
         });
@@ -311,7 +312,6 @@ router.post(
         options: searchOptions,
         contentOptions,
         results: results.results,
-        autopromptString: results.autopromptString,
         demoMode: demoMode,
       });
     } catch (error: any) {

@@ -23,6 +23,124 @@ interface NewsAPIResponse {
   articles: NewsArticle[];
 }
 
+// Convert NewsAPI article to unified search result format
+function convertToUnifiedFormat(article: NewsArticle) {
+  return {
+    url: article.url,
+    title: article.title,
+    publishedDate: article.publishedAt,
+    author: article.author || article.source.name,
+    score: 1.0,
+    summary: article.description || undefined,
+    text: article.content || undefined,
+    source: 'news' as const,
+  };
+}
+
+// General search endpoint - search for news articles by query
+router.post('/search', async (req: Request, res: Response) => {
+  try {
+    const { 
+      query, 
+      numResults = 10,
+      category,
+      language = 'en',
+      sortBy = 'publishedAt',
+      from,
+      to
+    } = req.body;
+
+    if (!query) {
+      return res.status(400).json({
+        success: false,
+        error: 'Query parameter is required',
+      });
+    }
+
+    const apiKey = process.env.NEWS_API_KEY;
+    
+    // Fallback to demo data if no API key
+    if (!apiKey) {
+      console.warn('⚠️  NEWS_API_KEY not found - using demo mode');
+      const demoArticles = [
+        {
+          source: { id: 'demo', name: 'Demo News' },
+          author: 'Demo Author',
+          title: `Demo: ${query} - Latest developments and insights`,
+          description: `This is a demo article about ${query}. In production, this would show real news articles from NewsAPI.org`,
+          url: 'https://newsapi.org',
+          urlToImage: null,
+          publishedAt: new Date().toISOString(),
+          content: `Demo content for ${query}. Get a free API key at https://newsapi.org to see real results.`,
+        },
+        {
+          source: { id: 'demo', name: 'Demo Tech News' },
+          author: 'Demo Tech Reporter',
+          title: `Breaking: ${query} trends and analysis`,
+          description: `Comprehensive coverage of ${query} with expert analysis and commentary.`,
+          url: 'https://newsapi.org',
+          urlToImage: null,
+          publishedAt: new Date(Date.now() - 3600000).toISOString(),
+          content: `In-depth analysis of ${query}. Real articles available with API key.`,
+        },
+        {
+          source: { id: 'demo', name: 'Demo Sports & Tech' },
+          author: 'Demo Analyst',
+          title: `${query}: What you need to know today`,
+          description: `Key updates and essential information about ${query}.`,
+          url: 'https://newsapi.org',
+          urlToImage: null,
+          publishedAt: new Date(Date.now() - 7200000).toISOString(),
+          content: `Summary of ${query} developments. Sign up at NewsAPI.org for real-time news.`,
+        },
+      ];
+
+      return res.json({
+        success: true,
+        results: demoArticles.slice(0, numResults).map(convertToUnifiedFormat),
+        demoMode: true,
+        autopromptString: query,
+      });
+    }
+    
+    // Use NewsAPI if key is available
+    const params: any = {
+      q: query,
+      pageSize: Math.min(numResults, 100),
+      language,
+      sortBy,
+      apiKey,
+    };
+
+    if (category) params.category = category;
+    if (from) params.from = from;
+    if (to) params.to = to;
+
+    const response = await axios.get<NewsAPIResponse>(
+      'https://newsapi.org/v2/everything',
+      {
+        params,
+        timeout: 10000,
+      }
+    );
+    
+    res.json({
+      success: true,
+      results: response.data.articles.map(convertToUnifiedFormat),
+      autopromptString: query,
+    });
+  } catch (error: any) {
+    console.error('Error searching news:', error);
+    
+    // Provide error response with fallback data
+    res.status(error.response?.status || 500).json({
+      success: false,
+      error: error.response?.data?.message || error.message || 'Failed to search news',
+      results: [],
+    });
+  }
+});
+
 // Get sports news headlines
 router.get('/sports-headlines', async (req: Request, res: Response) => {
   try {
@@ -165,6 +283,16 @@ router.get('/sports-headlines', async (req: Request, res: Response) => {
       source: 'fallback',
     });
   }
+});
+
+// Health check endpoint
+router.get('/health', (req: Request, res: Response) => {
+  const apiKey = process.env.NEWS_API_KEY;
+  res.json({
+    status: 'ok',
+    service: 'NewsAPI',
+    demoMode: !apiKey,
+  });
 });
 
 export default router;

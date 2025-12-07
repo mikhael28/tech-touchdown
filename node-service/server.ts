@@ -11,6 +11,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import fetch from "node-fetch";
 import exaRoutes from "./routes/exa";
+import parallelRoutes from "./routes/parallel";
 import authRoutes from "./routes/auth";
 import sportsRoutes from "./routes/sports";
 import twilioRoutes from "./routes/twilio";
@@ -279,6 +280,7 @@ Return ONLY the JSON object, no other text.`;
 
 // API Routes
 app.use("/api/exa", exaRoutes);
+app.use("/api/parallel", parallelRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/sports", sportsRoutes);
 app.use("/api/twilio", twilioRoutes);
@@ -296,6 +298,7 @@ app.get("/", (req: Request, res: Response) => {
     endpoints: {
       health: "/health",
       exa: "/api/exa",
+      parallel: "/api/parallel",
       auth: "/api/auth",
       sports: "/api/sports",
       twilio: "/api/twilio",
@@ -344,6 +347,7 @@ app.listen(PORT, async () => {
   console.log(`🚀 Tech Touchdown API Server running on port ${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🔍 Exa AI API: http://localhost:${PORT}/api/exa`);
+  console.log(`⚡ Parallel AI API: http://localhost:${PORT}/api/parallel`);
   console.log(`🏈 Sports API: http://localhost:${PORT}/api/sports`);
   console.log(`📰 News API: http://localhost:${PORT}/api/news`);
   console.log(`📞 Twilio API: http://localhost:${PORT}/api/twilio`);

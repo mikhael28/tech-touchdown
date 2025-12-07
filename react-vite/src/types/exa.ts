@@ -9,6 +9,8 @@ export interface ExaSearchResult {
   text?: string;
   highlights?: string[];
   summary?: string;
+  source?: "exa" | "parallel";
+  excerpts?: string[];
 }
 
 export interface ExaSearchResponse {
