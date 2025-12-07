@@ -57,94 +57,87 @@ function FavoriteItemsBubbles<T extends string = string>({
 
   if (!hasAnyItems) {
     return (
-      
-        <div className="flex justify-between items-center min-h-[100px]">
-       
-            <p className="text-lg text-muted-foreground">{emptyIcon} {emptyTitle}</p>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={onEdit}
-              className="mt-4"
-            >
-              {editButtonText}
-            </Button>
-        </div>
-     
+      <div className="flex min-h-[60px] items-center justify-between">
+        <p className="text-sm text-muted-foreground">
+          {emptyIcon} {emptyTitle}
+        </p>
+        <Button variant="outline" size="sm" onClick={onEdit}>
+          {editButtonText}
+        </Button>
+      </div>
     );
   }
 
   return (
-    <div className="min-h-[180px] space-y-4">
+    <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold">{title}</h3>
+        <h3 className="text-sm font-semibold">{title}</h3>
         <Button variant="outline" size="sm" onClick={onEdit}>
           {editButtonText}
         </Button>
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {(Object.entries(favoriteItems) as [T, string[]][]).map(([category, items]) => {
-          if (items.length === 0) return null;
+      <div className="flex flex-wrap gap-1.5">
+        {(Object.entries(favoriteItems) as [T, string[]][]).map(
+          ([category, items]) => {
+            if (items.length === 0) return null;
 
-          return items.map((itemShortName: string) => {
-            const item = getItemInfo(category as T, itemShortName);
-            if (!item) return null;
+            return items.map((itemShortName: string) => {
+              const item = getItemInfo(category as T, itemShortName);
+              if (!item) return null;
 
-            const config = categoryConfig[category as T];
+              const config = categoryConfig[category as T];
 
-            return (
-              <div
-                key={`${String(category)}-${itemShortName}`}
-                className={`group relative inline-flex items-center gap-3 rounded-full border border-border bg-gradient-to-r from-muted to-muted/80 px-4 py-2 transition-all duration-200 hover:border-primary/30 hover:from-primary/10 hover:to-primary/5 hover:shadow-md ${
-                  onItemClick ? "cursor-pointer" : ""
-                }`}
-                onClick={() =>
-                  onItemClick?.(category as T, itemShortName)
-                }
-              >
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-background">
-                  {item.icon_url || item.logo_url ? (
-                    <img
-                      src={item.icon_url || item.logo_url}
-                      alt={item.name}
-                      className="h-5 w-5 object-contain"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = "none";
-                      }}
-                    />
-                  ) : (
-                    <div
-                      className="flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold text-white"
-                      style={{ backgroundColor: item.color }}
-                    >
-                      {item.short_name.charAt(0)}
-                    </div>
-                  )}
-                </div>
-                <span className="text-sm font-semibold text-foreground">
-                  {item.short_name}
-                </span>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-6 w-6 rounded-full p-0 opacity-0 transition-all duration-200 hover:bg-destructive hover:text-destructive-foreground group-hover:opacity-100"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onRemoveItem(category as T, itemShortName);
-                  }}
+              return (
+                <div
+                  key={`${String(category)}-${itemShortName}`}
+                  className={`group relative inline-flex items-center gap-2 rounded-full border border-border bg-gradient-to-r from-muted to-muted/80 px-2.5 py-1 transition-all duration-200 hover:border-primary/30 hover:from-primary/10 hover:to-primary/5 hover:shadow-md ${
+                    onItemClick ? "cursor-pointer" : ""
+                  }`}
+                  onClick={() => onItemClick?.(category as T, itemShortName)}
                 >
-                  <X className="h-3 w-3" />
-                </Button>
-              </div>
-            );
-          });
-        })}
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-background">
+                    {item.icon_url || item.logo_url ? (
+                      <img
+                        src={item.icon_url || item.logo_url}
+                        alt={item.name}
+                        className="h-4 w-4 object-contain"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = "none";
+                        }}
+                      />
+                    ) : (
+                      <div
+                        className="flex h-4 w-4 items-center justify-center rounded-full text-xs font-bold text-white"
+                        style={{ backgroundColor: item.color }}
+                      >
+                        {item.short_name.charAt(0)}
+                      </div>
+                    )}
+                  </div>
+                  <span className="text-xs font-semibold text-foreground">
+                    {item.short_name}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-5 w-5 rounded-full p-0 opacity-0 transition-all duration-200 hover:bg-destructive hover:text-destructive-foreground group-hover:opacity-100"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onRemoveItem(category as T, itemShortName);
+                    }}
+                  >
+                    <X className="h-2.5 w-2.5" />
+                  </Button>
+                </div>
+              );
+            });
+          }
+        )}
       </div>
     </div>
   );
 }
 
 export default FavoriteItemsBubbles;
-
