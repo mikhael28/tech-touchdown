@@ -1,5 +1,6 @@
 // Service for fetching sports news headlines
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
 
 export interface NewsArticle {
   source: {
@@ -18,16 +19,16 @@ export interface NewsArticle {
 export interface NewsResponse {
   success: boolean;
   articles: NewsArticle[];
-  source: 'newsapi' | 'espn-rss' | 'mock' | 'fallback';
+  source: "newsapi" | "espn-rss" | "mock" | "fallback";
 }
 
 class NewsService {
   async getSportsHeadlines(): Promise<NewsResponse> {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/news/sports-headlines`, {
-        method: 'GET',
+      const response = await fetch(`${API_BASE_URL}/news/sports-headlines`, {
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
@@ -37,16 +38,15 @@ class NewsService {
 
       return await response.json();
     } catch (error) {
-      console.error('Error fetching sports headlines:', error);
+      console.error("Error fetching sports headlines:", error);
       // Return fallback data
       return {
         success: false,
         articles: [],
-        source: 'fallback',
+        source: "fallback",
       };
     }
   }
 }
 
 export const newsService = new NewsService();
-

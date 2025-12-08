@@ -1,6 +1,7 @@
-import { GameStatsResponse } from '../types/gameStats';
+import { GameStatsResponse } from "../types/gameStats";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
 
 export interface GameStatsParams {
   gameId: string;
@@ -11,14 +12,16 @@ export interface GameStatsParams {
 class GameStatsService {
   async getGameStats(params: GameStatsParams): Promise<GameStatsResponse> {
     const { gameId, sport, league } = params;
-    
+
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/sports/games/${gameId}/stats?sport=${encodeURIComponent(sport)}&league=${encodeURIComponent(league)}`,
+        `${API_BASE_URL}/sports/games/${gameId}/stats?sport=${encodeURIComponent(
+          sport
+        )}&league=${encodeURIComponent(league)}`,
         {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         }
       );
@@ -30,11 +33,10 @@ class GameStatsService {
       const data: GameStatsResponse = await response.json();
       return data;
     } catch (error) {
-      console.error('Error fetching game stats:', error);
+      console.error("Error fetching game stats:", error);
       throw error;
     }
   }
 }
 
 export const gameStatsService = new GameStatsService();
-
